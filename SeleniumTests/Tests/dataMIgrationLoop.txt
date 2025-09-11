@@ -1,0 +1,35 @@
+using OpenQA.Selenium;
+using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Support.UI;
+using System.Text.Json;
+
+// Load JSON
+string json = File.ReadAllText("users.json");
+var users = JsonSerializer.Deserialize<List<User>>(json);
+
+// Start Selenium
+IWebDriver driver = new ChromeDriver();
+WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+
+foreach (var user in users)
+{
+    driver.Navigate().GoToUrl("https://example.com/register");
+
+    // Fill fields
+    wait.Until(d => d.FindElement(By.Id("username"))).SendKeys(user.Username);
+    wait.Until(d => d.FindElement(By.Id("email"))).SendKeys(user.Email);
+    wait.Until(d => d.FindElement(By.Id("password"))).SendKeys(user.Password);
+
+    // Submit form
+    driver.FindElement(By.Id("submit")).Click();
+
+    // Maybe wait for confirmation
+    wait.Until(d => d.FindElement(By.Id("successMessage")));
+}
+
+public class User
+{
+    public string Username { get; set; }
+    public string Email { get; set; }
+    public string Password { get; set; }
+}
