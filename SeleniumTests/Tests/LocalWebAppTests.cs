@@ -29,7 +29,9 @@ namespace SeleniumTests
         public void OLTesting()
         {
             var UserLog = new Login(driver, wait);
+            var UserAppInfo = new AppProjInfo(driver, wait);
             UserLog.LoginTest("http://192.168.20.71:1024/Account/Login?statusCode=0", "RFGARCIA", "P@ssw0rd");
+            // UserAppInfo.FillUserAppInfo();
         }
 
         // [TestCleanup]
