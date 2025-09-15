@@ -6,6 +6,7 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
 using SeleniumExtras.WaitHelpers;
+using SeleniumTests.Helpers;
 using SeleniumTests.Pages;
 
 namespace SeleniumTests
@@ -26,7 +27,7 @@ namespace SeleniumTests
         }
 
         [TestMethod]
-        [TestCategory("Online Application")]
+        [TestCategory("OnlineApplication")]
         [Ignore]
         public void OnlineAppTesting()
         {
@@ -41,12 +42,22 @@ namespace SeleniumTests
         }
 
         [TestMethod]
+        [TestCategory("WebPortal")]
+        [Ignore]
         public void WebPortalTesting()
         {
-            var WebPLogin = new WebPLogin(driver,wait);
+            var WebPLogin = new WebPLogin(driver, wait);
             var PermitApp = new PermitApp(driver, wait);
             WebPLogin.WebPLoginTesting("http://192.168.20.71:1025/");
             PermitApp.ReceiveApp("http://192.168.20.71:1025/Permits/Building");
+        }
+
+        [TestMethod]
+        [TestCategory("Register")]
+        public void RegisterTest()
+        {
+            var Register = new Register(driver, wait);
+            Register.RegisterTest("http://192.168.20.71:1024/", "KLEI", "BARGAS");
         }
 
         // [TestCleanup]
