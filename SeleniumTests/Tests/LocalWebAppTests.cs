@@ -26,12 +26,17 @@ namespace SeleniumTests
         }
 
         [TestMethod]
-        public void OLTesting()
+        [TestCategory("Online Application")]
+        public void OnlineAppTesting()
         {
             var UserLog = new Login(driver, wait);
             var UserAppInfo = new AppProjInfo(driver, wait);
+            var ProfDoc = new ProfDocInfo(driver, wait);
+            var Submit = new SubmitApp(driver, wait);
             UserLog.LoginTest("http://192.168.20.71:1024/Account/Login?statusCode=0", "RFGARCIA", "P@ssw0rd");
-            // UserAppInfo.FillUserAppInfo();
+            UserAppInfo.FillUserAppInfo();
+            ProfDoc.ProfDocTest();
+            Submit.SubmitTest();
         }
 
         // [TestCleanup]

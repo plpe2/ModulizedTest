@@ -22,20 +22,18 @@ namespace SeleniumTests.Pages
             wait.Until(d => d.FindElement(By.XPath("//*[@id='modalOwnBuilding']")).Displayed);
 
             // Function for Selecting Existing Records
-            /*
-            driver.FindElement(By.XPath("//table[@id='tblOwnBuilding']//td[normalize-space(text())='MADLA']")).Click();
+            
+            driver.FindElement(By.XPath("//table[@id='tblOwnBuilding']//td[normalize-space(text())='LODGE']")).Click();
             IWebElement btn = wait.Until(ExpectedConditions.ElementToBeClickable(By.Id("btnSelectExisting")));
             ((IJavaScriptExecutor)driver).ExecuteScript("arguments[0].scrollIntoView(true);", btn);
-            btn.Click();*/
+            btn.Click();
 
             wait.UntilLoadingDisappears(driver);
 
             // Function for Creating new Building Permit
-            // driver.FindElement(By.XPath("//*[@id='btnNewBuilding']")).Click();
-
-            var newBldg = wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath("//*[@id='btnNewBuilding']")));
-            ((IJavaScriptExecutor)driver).ExecuteScript("arguments[0].scrollIntoView(true);", newBldg);
-            newBldg.Click();
+            // var newBldg = wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath("//*[@id='btnNewBuilding']")));
+            // ((IJavaScriptExecutor)driver).ExecuteScript("arguments[0].scrollIntoView(true);", newBldg);
+            // newBldg.Click();
 
             wait.Until(d => d.FindElement(By.XPath("//*[@id='tab1']")).Displayed);
             wait.UntilLoadingDisappears(driver);
@@ -91,7 +89,6 @@ namespace SeleniumTests.Pages
             driver.FindElement(By.XPath("/html/body/div[3]/div/div[6]/button[1]")).Click();
 
             driver.FindElement(By.XPath("/html/body/div[1]/div[2]/div/ul/li[4]/a")).Click();
-            wait.UntilLoadingDisappears(driver);
         }
     }
 }
