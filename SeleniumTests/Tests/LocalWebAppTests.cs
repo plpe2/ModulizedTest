@@ -43,7 +43,10 @@ namespace SeleniumTests
         [TestMethod]
         public void WebPortalTesting()
         {
-            
+            var WebPLogin = new WebPLogin(driver,wait);
+            var PermitApp = new PermitApp(driver, wait);
+            WebPLogin.WebPLoginTesting("http://192.168.20.71:1025/");
+            PermitApp.ReceiveApp("http://192.168.20.71:1025/Permits/Building");
         }
 
         // [TestCleanup]
