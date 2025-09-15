@@ -17,13 +17,13 @@ namespace SeleniumTests.Pages
             this.wait = wait = new WebDriverWait(driver, TimeSpan.FromSeconds(20));
         }
 
-        public void FillUserAppInfo()
+        public void FillUserAppInfo(string appName)
         {
             wait.Until(d => d.FindElement(By.XPath("//*[@id='modalOwnBuilding']")).Displayed);
 
             // Function for Selecting Existing Records
-            
-            driver.FindElement(By.XPath("//table[@id='tblOwnBuilding']//td[normalize-space(text())='LODGE']")).Click();
+            var appLocator = string.Concat("//table[@id='tblOwnBuilding']//td[normalize-space(text())='", appName,"']");
+            driver.FindElement(By.XPath(appLocator)).Click();
             IWebElement btn = wait.Until(ExpectedConditions.ElementToBeClickable(By.Id("btnSelectExisting")));
             ((IJavaScriptExecutor)driver).ExecuteScript("arguments[0].scrollIntoView(true);", btn);
             btn.Click();
@@ -61,7 +61,7 @@ namespace SeleniumTests.Pages
 
             wait.Until(d => d.FindElement(By.XPath("//*[@id='formProjectInfo']/div/div/div/div[2]/div[3]/div[1]/div[1]/div[1]/div/div[2]/div")));
             driver.FindElement(By.XPath("//*[@id='formProjectInfo']/div/div/div/div[2]/div[3]/div[1]/div[1]/div[1]/div/div[2]/div/div[2]/ul/li[2]/a")).Click();
-            driver.selectElement("Building.Project.BaseBuildingName", "LODGE");
+            driver.selectElement("Building.Project.BaseBuildingName", appName);
             driver.selectElement("Building.Project.TDN", "98219826279");
             driver.selectElement("Building.Project.TCTNo", "7154256907");
             driver.selectDropdown("Building.Project.ScopeofWork", "New Construction");

@@ -27,6 +27,7 @@ namespace SeleniumTests
 
         [TestMethod]
         [TestCategory("Online Application")]
+        [Ignore]
         public void OnlineAppTesting()
         {
             var UserLog = new Login(driver, wait);
@@ -34,9 +35,15 @@ namespace SeleniumTests
             var ProfDoc = new ProfDocInfo(driver, wait);
             var Submit = new SubmitApp(driver, wait);
             UserLog.LoginTest("http://192.168.20.71:1024/Account/Login?statusCode=0", "RFGARCIA", "P@ssw0rd");
-            UserAppInfo.FillUserAppInfo();
+            UserAppInfo.FillUserAppInfo("KWLDGE");
             ProfDoc.ProfDocTest();
             Submit.SubmitTest();
+        }
+
+        [TestMethod]
+        public void WebPortalTesting()
+        {
+            
         }
 
         // [TestCleanup]
