@@ -36,7 +36,8 @@ namespace SeleniumTests
             driver.selectElement("OwnerAddress.Zipcode", "4102");
 
             //Login Credentials
-            driver.selectElement("AccountInfo.Username", String.Concat(fName,lName));
+            char[] fUsername = fName.ToCharArray();
+            driver.selectElement("AccountInfo.Username", String.Concat(fUsername[0],lName));
             driver.selectElement("AccountInfo.Password", "P@ssw0rd");
             driver.selectElement("AccountInfo.ConfirmPassword", "P@ssw0rd");
 

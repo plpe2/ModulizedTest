@@ -19,6 +19,9 @@ namespace SeleniumTests
         public void WebPLoginTesting(string url)
         {
             driver.goToURL(url);
+            driver.selectElement("username", "admin super");
+            driver.selectElement("password", "P@ssw0rd");
+            driver.FindElement(By.XPath("//*[@id='formLogin']/div[3]/input")).Click();
         }
 
     }

@@ -17,7 +17,7 @@ namespace SeleniumTests.Pages
             this.wait = wait = new WebDriverWait(driver, TimeSpan.FromSeconds(20));
         }
 
-        public void LoginTest(string url, string Username, string Password)
+        public void LoginTest(string url, string Username, string cNum)
         {   
             driver.goToURL("http://192.168.20.71:1021/BuildingPermit/Application#");
 
@@ -25,8 +25,8 @@ namespace SeleniumTests.Pages
             driver.selectElement("Prefix", "BLG");
             driver.selectElement("pincode", "1234");
             driver.selectElement("year", "25");
-            driver.selectElement("SeriesNo", "0000029");
-            driver.selectElement("Username", "GLHAL");
+            driver.selectElement("SeriesNo", cNum);
+            driver.selectElement("Username", Username);
             driver.selectElement("Password", "P@ssw0rd");
 
             //Submitting Form

@@ -22,8 +22,17 @@ namespace SeleniumTests
         {
             var options = new ChromeOptions();
             // options.AddArgument("--headless=new");
-            options.AddArguments(["--start-maximized", "--ignore-certificate-errors"]);
+            options.AddArguments(["--start-maximized", "--ignore-certificate-errors", "--incognito"]);
             driver = new ChromeDriver(options);
+        }
+
+        [TestMethod]
+        [TestCategory("Register")]
+        [Ignore]
+        public void RegisterTest()
+        {
+            var Register = new Register(driver, wait);
+            Register.RegisterTest("http://192.168.20.71:1024/", "Norman", "GALLOD");
         }
 
         [TestMethod]
@@ -35,29 +44,21 @@ namespace SeleniumTests
             var UserAppInfo = new AppProjInfo(driver, wait);
             var ProfDoc = new ProfDocInfo(driver, wait);
             var Submit = new SubmitApp(driver, wait);
-            UserLog.LoginTest("http://192.168.20.71:1024/Account/Login?statusCode=0", "RFGARCIA", "P@ssw0rd");
-            UserAppInfo.FillUserAppInfo("KWLDGE");
-            ProfDoc.ProfDocTest();
-            Submit.SubmitTest();
+            UserLog.LoginTest("http://192.168.20.71:1024/Account/Login?statusCode=0", "NGALLOD", "0000041");
+            // UserAppInfo.FillUserAppInfo("KWLDGE");
+            // ProfDoc.ProfDocTest();
+            // Submit.SubmitTest();
         }
 
         [TestMethod]
         [TestCategory("WebPortal")]
-        [Ignore]
+        // [Ignore]
         public void WebPortalTesting()
         {
             var WebPLogin = new WebPLogin(driver, wait);
             var PermitApp = new PermitApp(driver, wait);
             WebPLogin.WebPLoginTesting("http://192.168.20.71:1025/");
-            PermitApp.ReceiveApp("http://192.168.20.71:1025/Permits/Building");
-        }
-
-        [TestMethod]
-        [TestCategory("Register")]
-        public void RegisterTest()
-        {
-            var Register = new Register(driver, wait);
-            Register.RegisterTest("http://192.168.20.71:1024/", "KLEI", "BARGAS");
+            PermitApp.ReceiveApp();
         }
 
         // [TestCleanup]
