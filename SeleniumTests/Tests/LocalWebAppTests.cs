@@ -52,13 +52,30 @@ namespace SeleniumTests
 
         [TestMethod]
         [TestCategory("WebPortal")]
-        // [Ignore]
+        [Ignore]
         public void WebPortalTesting()
         {
             var WebPLogin = new WebPLogin(driver, wait);
             var PermitApp = new PermitApp(driver, wait);
             WebPLogin.WebPLoginTesting("http://192.168.20.71:1025/");
             PermitApp.ReceiveApp();
+        }
+
+        [TestMethod]
+        [TestCategory("BPAS")]
+        [Ignore]
+        public void BPASTesting()
+        {
+            var BPASLogin = new BPASLogin(driver, wait);
+            BPASLogin.BPASLoginTest();
+        }
+
+        [TestMethod]
+        [TestCategory("PTRAX")]
+        public void PTRAXTesting()
+        {
+            var PTRAXTest = new PTRAXTest(driver, wait);
+            PTRAXTest.PTRAXLogin(); 
         }
 
         // [TestCleanup]
