@@ -32,7 +32,7 @@ namespace SeleniumTests
         public void RegisterTest()
         {
             var Register = new Register(driver, wait);
-            Register.RegisterTest("http://192.168.20.71:1024/", "Norman", "GALLOD");
+            Register.RegisterTest("http://192.168.20.71:1024/", "RANDY", "HALLOT");
         }
 
         [TestMethod]
@@ -44,21 +44,21 @@ namespace SeleniumTests
             var UserAppInfo = new AppProjInfo(driver, wait);
             var ProfDoc = new ProfDocInfo(driver, wait);
             var Submit = new SubmitApp(driver, wait);
-            UserLog.LoginTest("http://192.168.20.71:1024/Account/Login?statusCode=0", "NGALLOD", "0000041");
-            // UserAppInfo.FillUserAppInfo("KWLDGE");
-            // ProfDoc.ProfDocTest();
-            // Submit.SubmitTest();
+            UserLog.LoginTest("http://192.168.20.71:1024/Account/Login?statusCode=0", "RHALLOT", "0000043");
+            UserAppInfo.FillUserAppInfo("CRTV");
+            ProfDoc.ProfDocTest();
+            Submit.SubmitTest();
         }
 
         [TestMethod]
         [TestCategory("WebPortal")]
-        [Ignore]
+        // [Ignore]
         public void WebPortalTesting()
         {
             var WebPLogin = new WebPLogin(driver, wait);
             var PermitApp = new PermitApp(driver, wait);
             WebPLogin.WebPLoginTesting("http://192.168.20.71:1025/");
-            PermitApp.ReceiveApp();
+            PermitApp.ReceiveApp("NBP2509-00016");
         }
 
         [TestMethod]
@@ -68,10 +68,13 @@ namespace SeleniumTests
         {
             var BPASLogin = new BPASLogin(driver, wait);
             BPASLogin.BPASLoginTest();
+            BPASLogin.NBPEvalTest();
         }
 
         [TestMethod]
         [TestCategory("PTRAX")]
+        [Ignore]
+
         public void PTRAXTesting()
         {
             var PTRAXTest = new PTRAXTest(driver, wait);

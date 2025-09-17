@@ -35,6 +35,16 @@ namespace SeleniumTests.Helpers
             });
         }
 
+        public static void waitElementDisappear(this WebDriverWait wait, IWebDriver driver)
+        {
+            var xPath = "//div[contains(text(), 'Loading')]";
+            wait.Until(d =>
+            {
+                var elements = d.FindElements(By.XPath(xPath));
+                return elements.Count == 0 || !elements[0].Displayed;
+            });
+        }
+
         public static void addressGens(this IWebDriver driver, string elementName)
         {
             Random rand = new Random();

@@ -1,5 +1,6 @@
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
+using SeleniumExtras.WaitHelpers;
 using SeleniumTests.Helpers;
 using System;
 using System.ComponentModel.DataAnnotations;
@@ -17,21 +18,30 @@ namespace SeleniumTests
             this.wait = wait = new WebDriverWait(driver, TimeSpan.FromSeconds(20));
         }
 
-        public void ReceiveApp()
+        public void ReceiveApp(string appNo)
         {
             wait.Until(d =>
             {
                 var elements = d.FindElements(By.XPath("//*[@id='tblPermitApplications_processing']"));
                 return elements.Count == 0 || !elements[0].Displayed;
             });
-            driver.FindElement(By.Id("txtApplicationNumber")).SendKeys("EXU2509-00001");
+            driver.FindElement(By.Id("txtApplicationNumber")).SendKeys(appNo);
             driver.FindElement(By.Id("btnSearchApplicant")).Click();
             wait.Until(d =>
             {
                 var elements = d.FindElements(By.XPath("//*[@id='tblPermitApplications_processing']"));
                 return elements.Count == 0 || !elements[0].Displayed;
             });
-            driver.FindElement(By.XPath("//*/td[text()='EXU2509-00001']")).Click();
+            var appLocation = string.Concat("//*/td[text()='" + appNo + "']");
+            driver.FindElement(By.XPath(appLocation)).Click();
+
+            wait.waitElementDisappear(driver);
+            IWebElement btn = wait.Until(ExpectedConditions.ElementToBeClickable(By.Id("btnVerifySelectedApplication")));
+            ((IJavaScriptExecutor)driver).ExecuteScript("arguments[0].scrollIntoView(true);", btn);
+            btn.Click();
+
+            wait.Until(d => d.FindElement(By.XPath("//*[@id='ModalMessage']")).Displayed);
+            driver.FindElement(By.XPath("//*[@id='ModalMessage']/div/div/div[3]/button")).Click();
         }
     }
 }

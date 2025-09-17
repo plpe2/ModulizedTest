@@ -26,6 +26,12 @@ namespace SeleniumTests
             wait.UntilLoadingDisappears(driver);
             wait.Until(d => d.FindElement(By.XPath("//*[@id='ConfirmedLogin']")).Displayed);
             driver.FindElement(By.XPath("//*[@id='btnLogInOK']")).Click();
+            wait.UntilLoadingDisappears(driver);
+        }
+
+        public void NBPEvalTest()
+        {
+            driver.goToURL("http://192.168.20.71:1027/PermitEvaluation/PermitEvaluationGeodetic");
         }
     }
 }
