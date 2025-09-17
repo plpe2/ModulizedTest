@@ -1,5 +1,6 @@
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
+using SeleniumExtras.WaitHelpers;
 using SeleniumTests.Helpers;
 using System;
 
@@ -22,6 +23,30 @@ namespace SeleniumTests
             driver.selectElement("ctl00$ContentPlaceHolder1$ctlLogin1$txtUser", "receiving");
             driver.selectElement("ctl00$ContentPlaceHolder1$ctlLogin1$txtPass", "P@ssw0rd");
             driver.FindElement(By.XPath("//*[@id='ContentPlaceHolder1_ctlLogin1_btnLogin']")).Click();
+        }
+
+        public void AppReceiving()
+        {
+            // wait.Until(d => d.FindElement(By.XPath("//*[@id='gbox_grdMailbox_Procurement']")).Displayed);
+            // driver.FindElement(By.XPath("//td[contains(text(), 'NBP2509-00013')]")).Click();
+            // driver.FindElement(By.XPath("//td[contains(text(), 'NBP2509-00013')]/parent::tr//input[@type='checkbox']")).Click();
+            // driver.FindElement(By.XPath("//*[@id='MainContent_btnDocMgr_batchAcceptance']")).Click();
+            // wait.Until(d => d.FindElement(By.XPath("/html/body/div[12]")).Displayed);
+            // driver.FindElement(By.XPath("//*[@id='MainContent_btnDocMgr_AcceptOk']")).Click();
+            // IAlert alertReceive = driver.SwitchTo().Alert();
+            // alertReceive.Accept();
+            // wait.Until(d => d.FindElement(By.XPath("/html/body/div[12]")).Displayed);
+            // driver.goToURL("http://192.168.20.71:1023/Document%20Manager/Mailbox%20Incoming.aspx");
+            
+            wait.Until(d => d.FindElement(By.XPath("//*[@id='gbox_grdMailbox_Procurement']")).Displayed);
+            driver.FindElement(By.XPath("//td[contains(text(), 'NBP2509-00013')]")).Click();
+            driver.FindElement(By.XPath("//td[contains(text(), 'NBP2509-00013')]/parent::tr//input[@type='checkbox']")).Click();
+            driver.selectDropdown("ctl00$MainContent$ctlDocMgr_OperatorsAdvice1$ddl_JumpTo_Steps", "Step 4 : EVALUATION AND ASSESSMENT");
+            var jumpbtn = wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath("//*[@id='btnJump']")));
+            ((IJavaScriptExecutor)driver).ExecuteScript("arguments[0].scrollIntoView(true);", jumpbtn);
+            jumpbtn.Click();
+            IAlert alertJump = driver.SwitchTo().Alert();
+            alertJump.Accept();
         }
     }
 }

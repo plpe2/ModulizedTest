@@ -28,11 +28,11 @@ namespace SeleniumTests
 
         [TestMethod]
         [TestCategory("Register")]
-        [Ignore]
+        // [Ignore]
         public void RegisterTest()
         {
             var Register = new Register(driver, wait);
-            Register.RegisterTest("http://192.168.20.71:1024/", "RANDY", "HALLOT");
+            Register.RegisterTest("http://192.168.20.71:1024/", "JOLLY", "BHAN");
         }
 
         [TestMethod]
@@ -52,7 +52,7 @@ namespace SeleniumTests
 
         [TestMethod]
         [TestCategory("WebPortal")]
-        // [Ignore]
+        [Ignore]
         public void WebPortalTesting()
         {
             var WebPLogin = new WebPLogin(driver, wait);
@@ -78,7 +78,8 @@ namespace SeleniumTests
         public void PTRAXTesting()
         {
             var PTRAXTest = new PTRAXTest(driver, wait);
-            PTRAXTest.PTRAXLogin(); 
+            PTRAXTest.PTRAXLogin();
+            PTRAXTest.AppReceiving();
         }
 
         // [TestCleanup]
