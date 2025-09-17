@@ -19,21 +19,21 @@ namespace SeleniumTests.Pages
 
         public void FillUserAppInfo(string appName)
         {
-            wait.Until(d => d.FindElement(By.XPath("//*[@id='modalOwnBuilding']")).Displayed);
+            // wait.Until(d => d.FindElement(By.XPath("//*[@id='modalOwnBuilding']")).Displayed);
 
             // Function for Selecting Existing Records
-            var appLocator = string.Concat("//table[@id='tblOwnBuilding']//td[normalize-space(text())='", appName,"']");
-            driver.FindElement(By.XPath(appLocator)).Click();
-            IWebElement btn = wait.Until(ExpectedConditions.ElementToBeClickable(By.Id("btnSelectExisting")));
-            ((IJavaScriptExecutor)driver).ExecuteScript("arguments[0].scrollIntoView(true);", btn);
-            btn.Click();
+            // var appLocator = string.Concat("//table[@id='tblOwnBuilding']//td[normalize-space(text())='", appName,"']");
+            // driver.FindElement(By.XPath(appLocator)).Click();
+            // IWebElement btn = wait.Until(ExpectedConditions.ElementToBeClickable(By.Id("btnSelectExisting")));
+            // ((IJavaScriptExecutor)driver).ExecuteScript("arguments[0].scrollIntoView(true);", btn);
+            // btn.Click();
 
             wait.UntilLoadingDisappears(driver);
 
             // Function for Creating new Building Permit
-            // var newBldg = wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath("//*[@id='btnNewBuilding']")));
-            // ((IJavaScriptExecutor)driver).ExecuteScript("arguments[0].scrollIntoView(true);", newBldg);
-            // newBldg.Click();
+            var newBldg = wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath("//*[@id='btnNewBuilding']")));
+            ((IJavaScriptExecutor)driver).ExecuteScript("arguments[0].scrollIntoView(true);", newBldg);
+            newBldg.Click();
 
             wait.Until(d => d.FindElement(By.XPath("//*[@id='tab1']")).Displayed);
             wait.UntilLoadingDisappears(driver);

@@ -28,7 +28,7 @@ namespace SeleniumTests
 
         [TestMethod]
         [TestCategory("Register")]
-        // [Ignore]
+        [Ignore]
         public void RegisterTest()
         {
             var Register = new Register(driver, wait);
@@ -44,8 +44,8 @@ namespace SeleniumTests
             var UserAppInfo = new AppProjInfo(driver, wait);
             var ProfDoc = new ProfDocInfo(driver, wait);
             var Submit = new SubmitApp(driver, wait);
-            UserLog.LoginTest("http://192.168.20.71:1024/Account/Login?statusCode=0", "RHALLOT", "0000043");
-            UserAppInfo.FillUserAppInfo("CRTV");
+            UserLog.LoginTest("http://192.168.20.71:1024/Account/Login?statusCode=0", "CLOWNE", "0000045");
+            UserAppInfo.FillUserAppInfo("SCKS");
             ProfDoc.ProfDocTest();
             Submit.SubmitTest();
         }
@@ -58,7 +58,7 @@ namespace SeleniumTests
             var WebPLogin = new WebPLogin(driver, wait);
             var PermitApp = new PermitApp(driver, wait);
             WebPLogin.WebPLoginTesting("http://192.168.20.71:1025/");
-            PermitApp.ReceiveApp("NBP2509-00016");
+            PermitApp.ReceiveApp("NBP2509-00020");
         }
 
         [TestMethod]
@@ -73,13 +73,14 @@ namespace SeleniumTests
 
         [TestMethod]
         [TestCategory("PTRAX")]
-        [Ignore]
+        // [Ignore]
 
         public void PTRAXTesting()
         {
             var PTRAXTest = new PTRAXTest(driver, wait);
             PTRAXTest.PTRAXLogin();
             PTRAXTest.AppReceiving();
+            PTRAXTest.AppEval();
         }
 
         // [TestCleanup]
