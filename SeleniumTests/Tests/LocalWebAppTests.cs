@@ -62,18 +62,8 @@ namespace SeleniumTests
         }
 
         [TestMethod]
-        [TestCategory("BPAS")]
-        [Ignore]
-        public void BPASTesting()
-        {
-            var BPASLogin = new BPASLogin(driver, wait);
-            BPASLogin.BPASLoginTest();
-            BPASLogin.NBPEvalTest();
-        }
-
-        [TestMethod]
         [TestCategory("PTRAX")]
-        // [Ignore]
+        [Ignore]
 
         public void PTRAXTesting()
         {
@@ -81,6 +71,16 @@ namespace SeleniumTests
             PTRAXTest.PTRAXLogin();
             PTRAXTest.AppReceiving();
             PTRAXTest.AppEval();
+        }
+
+        [TestMethod]
+        [TestCategory("BPAS")]
+        // [Ignore]
+        public void BPASTesting()
+        {
+            var BPASLogin = new BPASLogin(driver, wait);
+            BPASLogin.BPASLoginTest();
+            BPASLogin.NBPEvalTest();
         }
 
         // [TestCleanup]

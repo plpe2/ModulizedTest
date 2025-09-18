@@ -56,10 +56,22 @@ namespace SeleniumTests
             wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath("//*[@id='LinkButton1']"))).Click();
         }
 
-        public void AppEval(){
+        public void AppEval()
+        {
             driver.selectElement("ctl00$ContentPlaceHolder1$ctlLogin1$txtUser", "evaluator");
             driver.selectElement("ctl00$ContentPlaceHolder1$ctlLogin1$txtPass", "P@ssw0rd");
             driver.FindElement(By.XPath("//*[@id='ContentPlaceHolder1_ctlLogin1_btnLogin']")).Click();
+            
+            wait.Until(d => d.FindElement(By.XPath("//*[@id='gbox_grdMailbox_Procurement']")).Displayed);
+            driver.FindElement(By.XPath("//td[contains(text(), 'NBP2509-00019')]")).Click();
+            driver.FindElement(By.XPath("//td[contains(text(), 'NBP2509-00019')]/parent::tr//input[@type='checkbox']")).Click();
+            driver.FindElement(By.XPath("//*[@id='MainContent_btnDocMgr_batchAcceptance']")).Click();
+            wait.Until(d => d.FindElement(By.XPath("/html/body/div[12]")).Displayed);
+            driver.FindElement(By.XPath("//*[@id='MainContent_btnDocMgr_AcceptOk']")).Click();
+            IAlert alertReceive = driver.SwitchTo().Alert();
+            alertReceive.Accept();
+            wait.Until(d => d.FindElement(By.XPath("/html/body/div[12]")).Displayed);
+            driver.FindElement(By.XPath("/html/body/div[13]/div[1]/a/span")).Click();
         }
     }
 }
