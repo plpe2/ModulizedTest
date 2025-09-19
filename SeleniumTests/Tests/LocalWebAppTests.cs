@@ -32,7 +32,7 @@ namespace SeleniumTests
         public void RegisterTest()
         {
             var Register = new Register(driver, wait);
-            Register.RegisterTest("http://192.168.20.71:1024/", "JOLLY", "BHAN");
+            Register.RegisterTest("http://192.168.20.71:1024/", "RANDY", "WINGSLESS");
         }
 
         [TestMethod]
@@ -44,10 +44,10 @@ namespace SeleniumTests
             var UserAppInfo = new AppProjInfo(driver, wait);
             var ProfDoc = new ProfDocInfo(driver, wait);
             var Submit = new SubmitApp(driver, wait);
-            UserLog.LoginTest("http://192.168.20.71:1024/Account/Login?statusCode=0", "CLOWNE", "0000045");
-            UserAppInfo.FillUserAppInfo("SCKS");
-            ProfDoc.ProfDocTest();
-            Submit.SubmitTest();
+            UserLog.LoginTest("http://192.168.20.71:1024/Account/Login?statusCode=0", "RFGARCIA", "0000013");
+            // UserAppInfo.FillUserAppInfo("SCKS");
+            // ProfDoc.ProfDocTest();
+            // Submit.SubmitTest();
         }
 
         [TestMethod]
@@ -80,7 +80,7 @@ namespace SeleniumTests
         {
             var BPASLogin = new BPASLogin(driver, wait);
             BPASLogin.BPASLoginTest();
-            BPASLogin.NBPEvalTest();
+            BPASLogin.ArchiTest();
         }
 
         // [TestCleanup]

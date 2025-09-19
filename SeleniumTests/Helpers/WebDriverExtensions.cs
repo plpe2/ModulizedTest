@@ -2,6 +2,7 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using SeleniumExtras.WaitHelpers;
 using System;
+using System.Threading;
 
 namespace SeleniumTests.Helpers
 {
@@ -68,9 +69,27 @@ namespace SeleniumTests.Helpers
 
         public static void ClickElement(this IWebDriver driver, WebDriverWait wait, string elementName)
         {
-            var btn = wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath(elementName)));
-            ((IJavaScriptExecutor)driver).ExecuteScript("window.scrollTo(0, arguments[0].getBoundingClientRect().top + window.pageYOffset - 150);", btn);
-            btn.Click();
+            bool clicked = false;
+            int attempts = 0;
+
+            while (!clicked && attempts < 3)
+            {
+                try
+                {
+                    var btn = wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath(elementName)));
+                    ((IJavaScriptExecutor)driver).ExecuteScript(
+                        "arguments[0].scrollIntoView({ behavior: 'auto', block: 'center'});", 
+                        btn
+                    );
+                    btn.Click();
+                    clicked = true;
+                }
+                catch (ElementClickInterceptedException)
+                {
+                    attempts++;
+                    Thread.Sleep(200); // small delay for animation to finish
+                }
+            }
         }
     }
 }
