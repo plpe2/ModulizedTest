@@ -1,5 +1,6 @@
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
+using SeleniumExtras.WaitHelpers;
 using System;
 
 namespace SeleniumTests.Helpers
@@ -53,6 +54,23 @@ namespace SeleniumTests.Helpers
             element.Clear();
             element.SendKeys("" + addressRand);
             return;
+        }
+
+        public static void EvalGens(this IWebDriver driver, string elementName)
+        {
+            Random rand = new Random();
+            var addressRand = rand.Next(150, 250);
+            var element = driver.FindElement(By.Name(elementName));
+            element.Clear();
+            element.SendKeys("" + addressRand);
+            return;
+        }
+
+        public static void ClickElement(this IWebDriver driver, WebDriverWait wait, string elementName)
+        {
+            var btn = wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath(elementName)));
+            ((IJavaScriptExecutor)driver).ExecuteScript("window.scrollTo(0, arguments[0].getBoundingClientRect().top + window.pageYOffset - 150);", btn);
+            btn.Click();
         }
     }
 }
