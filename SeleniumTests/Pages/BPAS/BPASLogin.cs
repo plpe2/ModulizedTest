@@ -1,3 +1,4 @@
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using SeleniumExtras.WaitHelpers;
@@ -59,7 +60,8 @@ namespace SeleniumTests
             wait.UntilLoadingDisappears(driver);
             wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath("//*[contains(text(), 'NBP2509-00019')]"))).Click();
             wait.UntilLoadingDisappears(driver);
-            
+
+            //Fire Zones and Fire Resistivity
             driver.EvalGens("FireAveCover");
             driver.EvalGens("FireOverAll");
             driver.EvalGens("SolidAveCover");
@@ -103,7 +105,7 @@ namespace SeleniumTests
             wait.Until(d => d.FindElement(By.XPath("//*[@id='modalbtnSaveB']")).Displayed);
             driver.ClickElement(wait, "//*[@id='closemdal']");
             driver.ClickElement(wait, "/html/body/div[116]/div/section/div/div/div[2]/div/div[2]/div/div/div[2]/form/div[2]/div/div/div[3]/div/div[1]/div/h3/a[1]/label");
-            
+
             //Max Height of Building
             driver.ClickElement(wait, "/html/body/div[116]/div/section/div/div/div[2]/div/div[2]/div/div/div[2]/form/div[2]/div/div/div[4]/div/div[1]/div/h3/label");
             wait.Until(d => d.FindElement(By.XPath("//*[@id='collapse4']")).Displayed);
@@ -113,7 +115,8 @@ namespace SeleniumTests
             driver.ClickElement(wait, "//*[@id='btnSaveBldgEvalMHoB']");
             wait.Until(d => d.FindElement(By.XPath("//*[@id='modalbtnSaveB']")).Displayed);
             driver.ClickElement(wait, "//*[@id='closemdal']");
-            
+            driver.ClickElement(wait, "/html/body/div[116]/div/section/div/div/div[2]/div/div[2]/div/div/div[2]/form/div[2]/div/div/div[4]/div/div[1]/div/h3/a[1]/label");
+
             //Parking Space
             driver.ClickElement(wait, "/html/body/div[116]/div/section/div/div/div[2]/div/div[2]/div/div/div[2]/form/div[2]/div/div/div[5]/div/div[1]/div/h3/label");
             wait.Until(d => d.FindElement(By.XPath("//*[@id='collapse5']")).Displayed);
@@ -121,7 +124,8 @@ namespace SeleniumTests
             driver.ClickElement(wait, "//*[@id='btnSaveBldgEvalPS']");
             wait.Until(d => d.FindElement(By.XPath("//*[@id='modalbtnSaveB']")).Displayed);
             driver.ClickElement(wait, "//*[@id='closemdal']");
-            
+            driver.ClickElement(wait, "/html/body/div[116]/div/section/div/div/div[2]/div/div[2]/div/div/div[2]/form/div[2]/div/div/div[5]/div/div[1]/div/h3/a[1]/label");
+
             //Occupant Load
             driver.ClickElement(wait, "/html/body/div[116]/div/section/div/div/div[2]/div/div[2]/div/div/div[2]/form/div[2]/div/div/div[6]/div/div[1]/div/h3/label");
             wait.Until(d => d.FindElement(By.XPath("//*[@id='collapse6']")).Displayed);
@@ -131,7 +135,8 @@ namespace SeleniumTests
             driver.ClickElement(wait, "//*[@id='btnSaveBldgEvalOL']");
             wait.Until(d => d.FindElement(By.XPath("//*[@id='modalbtnSaveB']")).Displayed);
             driver.ClickElement(wait, "//*[@id='closemdal']");
-            
+            driver.ClickElement(wait, "/html/body/div[116]/div/section/div/div/div[2]/div/div[2]/div/div/div[2]/form/div[2]/div/div/div[6]/div/div[1]/div/h3/a[1]/label");
+
             //Glazing and Opening
             driver.ClickElement(wait, "/html/body/div[116]/div/section/div/div/div[2]/div/div[2]/div/div/div[2]/form/div[2]/div/div/div[7]/div/div[1]/div/h3/label");
             wait.Until(d => d.FindElement(By.XPath("//*[@id='collapse7']")).Displayed);
@@ -141,6 +146,7 @@ namespace SeleniumTests
             driver.ClickElement(wait, "//*[@id='btnSaveBldgEvalGaO']");
             wait.Until(d => d.FindElement(By.XPath("//*[@id='modalbtnSaveB']")).Displayed);
             driver.ClickElement(wait, "//*[@id='closemdal']");
+            driver.ClickElement(wait, "/html/body/div[116]/div/section/div/div/div[2]/div/div[2]/div/div/div[2]/form/div[2]/div/div/div[7]/div/div[1]/div/h3/a[1]/label");
 
             //Architectural Accessibility
             driver.ClickElement(wait, "/html/body/div[116]/div/section/div/div/div[2]/div/div[2]/div/div/div[2]/form/div[2]/div/div/div[8]/div/div[1]/div/h3/label");
@@ -156,7 +162,8 @@ namespace SeleniumTests
             driver.ClickElement(wait, "//*[@id='btnSaveBldgEvalAAccessibility']");
             wait.Until(d => d.FindElement(By.XPath("//*[@id='modalbtnSaveB']")).Displayed);
             driver.ClickElement(wait, "//*[@id='closemdal']");
-            
+            driver.ClickElement(wait, "/html/body/div[116]/div/section/div/div/div[2]/div/div[2]/div/div/div[2]/form/div[2]/div/div/div[8]/div/div[1]/div/h3/a[1]/label");
+
             //Light and Ventilation
             driver.ClickElement(wait, "/html/body/div[116]/div/section/div/div/div[2]/div/div[2]/div/div/div[2]/form/div[2]/div/div/div[9]/div/div[1]/div/h3/label");
             wait.Until(d => d.FindElement(By.XPath("//*[@id='collapse9']")).Displayed);
@@ -168,7 +175,8 @@ namespace SeleniumTests
             driver.ClickElement(wait, "//*[@id='btnSaveBldgEvalLV']");
             wait.Until(d => d.FindElement(By.XPath("//*[@id='modalbtnSaveB']")).Displayed);
             driver.ClickElement(wait, "//*[@id='closemdal']");
-            
+            driver.ClickElement(wait, "/html/body/div[116]/div/section/div/div/div[2]/div/div[2]/div/div/div[2]/form/div[2]/div/div/div[9]/div/div[1]/div/h3/a[1]/label");
+
             //Line and Grade
             driver.ClickElement(wait, "/html/body/div[116]/div/section/div/div/div[2]/div/div[2]/div/div/div[2]/form/div[2]/div/div/div[10]/div/div[1]/div/h3/label");
             wait.Until(d => d.FindElement(By.XPath("//*[@id='collapse10']")).Displayed);
@@ -183,7 +191,9 @@ namespace SeleniumTests
             driver.ClickElement(wait, "//*[@id='btnSaveBldgEvalLG']");
             wait.Until(d => d.FindElement(By.XPath("//*[@id='modalbtnSaveB']")).Displayed);
             driver.ClickElement(wait, "//*[@id='closemdal']");
-            
+            driver.ClickElement(wait, "/html/body/div[116]/div/section/div/div/div[2]/div/div[2]/div/div/div[2]/form/div[2]/div/div/div[10]/div/div[1]/div/h3/a[1]/label");
+
+            driver.ClickElement(wait, "//*[@id='btnSaveBldgEval']");
         }
     }
 }
