@@ -67,6 +67,33 @@ namespace SeleniumTests.Helpers
             return;
         }
 
+        public static void ProjInfoGens(this IWebDriver driver, string elementName, string field)
+        {
+            Random rand = new Random();
+            string[] codes = new string[3];
+            for (int x = 0; x < 3; x++)
+            {
+                var addressRand = rand.Next(5000, 99999);
+                codes[x] = String.Concat("", addressRand);
+            }
+            var element = driver.FindElement(By.Name(elementName));
+            element.Clear();
+            switch (field)
+            {
+                case "LPIN":
+                    element.SendKeys("P-" + codes[0] + codes[1] + codes[2]);
+                    return;
+                case "TDN":
+                    element.SendKeys("T" + "-" + codes[1] + codes[2]);
+                    return;
+                case "TCT":
+                    element.SendKeys("T-" + codes[0] + codes[1]);
+                    return;
+                default:
+                    break;
+            }
+        }
+
         public static void ClickElement(this IWebDriver driver, WebDriverWait wait, string elementName)
         {
             bool clicked = false;
@@ -78,7 +105,7 @@ namespace SeleniumTests.Helpers
                 {
                     var btn = wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath(elementName)));
                     ((IJavaScriptExecutor)driver).ExecuteScript(
-                        "arguments[0].scrollIntoView({ behavior: 'auto', block: 'center'});", 
+                        "arguments[0].scrollIntoView({ behavior: 'auto', block: 'center'});",
                         btn
                     );
                     btn.Click();

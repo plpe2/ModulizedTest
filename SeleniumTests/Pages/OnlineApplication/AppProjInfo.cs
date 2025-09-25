@@ -3,6 +3,7 @@ using OpenQA.Selenium.Support.UI;
 using SeleniumExtras.WaitHelpers;
 using SeleniumTests.Helpers;
 using System;
+using System.Net.Http;
 using System.Threading;
 
 namespace SeleniumTests.Pages
@@ -14,15 +15,15 @@ namespace SeleniumTests.Pages
         public AppProjInfo(IWebDriver driver, WebDriverWait wait)
         {
             this.driver = driver;
-            this.wait = wait = new WebDriverWait(driver, TimeSpan.FromSeconds(20));
+            this.wait = wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
         }
 
         public void FillUserAppInfo(string appName)
         {
-            // wait.Until(d => d.FindElement(By.XPath("//*[@id='modalOwnBuilding']")).Displayed);
+            wait.Until(d => d.FindElement(By.XPath("//*[@id='modalOwnBuilding']")).Displayed);
 
             // Function for Selecting Existing Records
-            // var appLocator = string.Concat("//table[@id='tblOwnBuilding']//td[normalize-space(text())='", appName,"']");
+            // var appLocator = string.Concat("//table[@id='tblOwnBuilding']//td[normalize-space(text())='", appName, "']");
             // driver.FindElement(By.XPath(appLocator)).Click();
             // IWebElement btn = wait.Until(ExpectedConditions.ElementToBeClickable(By.Id("btnSelectExisting")));
             // ((IJavaScriptExecutor)driver).ExecuteScript("arguments[0].scrollIntoView(true);", btn);
@@ -30,18 +31,13 @@ namespace SeleniumTests.Pages
 
             wait.UntilLoadingDisappears(driver);
 
-            // Function for Creating new Building Permit
-            var newBldg = wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath("//*[@id='btnNewBuilding']")));
-            ((IJavaScriptExecutor)driver).ExecuteScript("arguments[0].scrollIntoView(true);", newBldg);
-            newBldg.Click();
-
+            //Function for New Building
+            driver.ClickElement(wait, "//*[@id='btnNewBuilding']");
             wait.Until(d => d.FindElement(By.XPath("//*[@id='tab1']")).Displayed);
             wait.UntilLoadingDisappears(driver);
 
             //For Newly Created Account
             // driver.selectElement sexDropdown = new driver.selectElement(driver.FindElement(By.Id("Applicant_Person_Gender")));
-
-            // sexDropdown.SelectByText("Male");
 
             IWebElement saveBtn = wait.Until(ExpectedConditions.ElementToBeClickable(By.CssSelector("li.save a.btn.btn-warning")));
             saveBtn.Click();
@@ -56,14 +52,14 @@ namespace SeleniumTests.Pages
 
             //Building Information
             //Building Description
-            driver.selectElement("Building.Project.PIN", "13894432789");
+            driver.ProjInfoGens("Building.Project.PIN", "LPIN");
             wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath("//*[@id='formProjectInfo']/div/div/div/div[2]/div[3]/div[1]/div[1]/div[1]/div/div[2]/button"))).Click();
 
             wait.Until(d => d.FindElement(By.XPath("//*[@id='formProjectInfo']/div/div/div/div[2]/div[3]/div[1]/div[1]/div[1]/div/div[2]/div")));
             driver.FindElement(By.XPath("//*[@id='formProjectInfo']/div/div/div/div[2]/div[3]/div[1]/div[1]/div[1]/div/div[2]/div/div[2]/ul/li[2]/a")).Click();
             driver.selectElement("Building.Project.BaseBuildingName", appName);
-            driver.selectElement("Building.Project.TDN", "98219826279");
-            driver.selectElement("Building.Project.TCTNo", "7154256907");
+            driver.ProjInfoGens("Building.Project.TDN", "TDN");
+            driver.ProjInfoGens("Building.Project.TCTNo", "TCT");
             driver.selectDropdown("Building.Project.ScopeofWork", "New Construction");
             driver.selectElement("Building.Project.EstimatedCost", "40000000");
             driver.selectElement("Building.Project.FloorArea", "50");
@@ -82,6 +78,10 @@ namespace SeleniumTests.Pages
             driver.addressGens("Building.Project.Address.PhaseNo");
             driver.selectDropdown("Building.Project.Address.SubdivisionName", "ADDAS 2A");
             driver.selectDropdown("Building.Project.Address.CompoundComplexID", "Compound");
+
+            driver.ClickElement(wait, "//*[@id='formProjectInfo']/div/div/div/div[2]/div[5]/div[2]/div[1]/div/div[2]/button");
+            wait.Until(d => d.FindElement(By.XPath("//*[@id='formProjectInfo']/div/div/div/div[2]/div[5]/div[2]/div[1]/div/div[2]/div")).Displayed);
+            driver.ClickElement(wait, "//*[@id='formProjectInfo']/div/div/div/div[2]/div[5]/div[2]/div[1]/div/div[2]/div/div[2]/ul/li[7]/a");
 
             saveBtn.Click();
 
