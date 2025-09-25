@@ -32,21 +32,21 @@ namespace SeleniumTests
         public void RegisterTest()
         {
             var Register = new Register(driver, wait);
-            Register.RegisterTest("http://192.168.20.71:1024/", "RANDY", "WINGSLESS");
+            Register.RegisterTest("http://192.168.20.71:1024/", "FRANCIS", "RANCE", "Male");
         }
 
         [TestMethod]
         [TestCategory("OnlineApplication")]
-        [Ignore]
+        // [Ignore]
         public void OnlineAppTesting()
         {
             var UserLog = new Login(driver, wait);
             var UserAppInfo = new AppProjInfo(driver, wait);
             var ProfDoc = new ProfDocInfo(driver, wait);
             var Submit = new SubmitApp(driver, wait);
-            UserLog.LoginTest("http://192.168.20.71:1024/Account/Login?statusCode=0", "RFGARCIA", "0000013");
-            // UserAppInfo.FillUserAppInfo("SCKS");
-            // ProfDoc.ProfDocTest();
+            UserLog.LoginTest("http://192.168.20.71:1024/Account/Login?statusCode=0", "FRANCE", "0000091");
+            UserAppInfo.FillUserAppInfo("HLDPR BLDG.");
+            ProfDoc.ProfDocTest();
             // Submit.SubmitTest();
         }
 
@@ -64,18 +64,17 @@ namespace SeleniumTests
         [TestMethod]
         [TestCategory("PTRAX")]
         [Ignore]
-
         public void PTRAXTesting()
         {
             var PTRAXTest = new PTRAXTest(driver, wait);
-            PTRAXTest.PTRAXLogin();
-            PTRAXTest.AppReceiving();
-            PTRAXTest.AppEval();
+            PTRAXTest.AppReceiving("");
+            // PTRAXTest.AppEval();
+            // PTRAXTest.BillingEval();
         }
 
         [TestMethod]
         [TestCategory("BPAS")]
-        // [Ignore]
+        [Ignore]
         public void BPASTesting()
         {
             var BPASLogin = new BPASLogin(driver, wait);

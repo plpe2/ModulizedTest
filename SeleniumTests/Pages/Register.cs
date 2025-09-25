@@ -16,7 +16,7 @@ namespace SeleniumTests
             this.wait = wait = new WebDriverWait(driver, TimeSpan.FromSeconds(20));
         }
 
-        public void RegisterTest(string url, string fName, string lName)
+        public void RegisterTest(string url, string fName, string lName, string genderSelect)
         {
             driver.goToURL(url);
 
@@ -30,6 +30,7 @@ namespace SeleniumTests
             driver.FindElement(By.Name("Application.IsOwner")).Click();
             driver.selectElement("Owner.FirstName", fName);
             driver.selectElement("Owner.LastName", lName);
+            driver.selectDropdown("Owner.Gender", genderSelect);
             driver.selectElement("Owner.MobileNo", "9391873976");
             driver.selectElement("Owner.Email", "villanuevapv1@gmail.com");
             driver.selectElement("OwnerAddress.FullAddress", "Blk 5 Lot 2 MOLINO HOMES MOLINO IV BACOOR, CAVITE");
