@@ -8,6 +8,9 @@ using OpenQA.Selenium.Support.UI;
 using SeleniumExtras.WaitHelpers;
 using SeleniumTests.Helpers;
 using SeleniumTests.Pages;
+using System.Net.Http;
+using System.Threading.Tasks;
+using System.Text.Json;
 
 namespace SeleniumTests
 {
@@ -16,6 +19,7 @@ namespace SeleniumTests
     {
         private IWebDriver driver;
         private WebDriverWait wait;
+        private HttpClient httpClient = new HttpClient();
 
         [TestInitialize]
         public void Setup()
@@ -27,17 +31,37 @@ namespace SeleniumTests
         }
 
         [TestMethod]
+        [Ignore]
+        public async Task apiCall()
+        {
+            driver.goToURL("http://192.168.20.71:1021/BuildingPermit/Application#");
+
+            var response = await httpClient.GetAsync("https://dummyjson.com/users?limit=2&skip=10&select=firstName,age");
+            response.EnsureSuccessStatusCode();
+            string json = await response.Content.ReadAsStringAsync();
+
+            // Parse JSON → In this fake API, "users" is an array of user objects
+            using JsonDocument doc = JsonDocument.Parse(json);
+            var users = doc.RootElement.GetProperty("users");
+            string appName = users[1].GetProperty("firstName").GetString();
+
+            //Initialize variables Selecting elements 
+            driver.selectElement("Username", appName);
+
+        }
+
+        [TestMethod]
         [TestCategory("Register")]
         [Ignore]
         public void RegisterTest()
         {
             var Register = new Register(driver, wait);
-            Register.RegisterTest("http://192.168.20.71:1024/", "FRANCIS", "RANCE", "Male");
+            Register.RegisterTest("http://192.168.20.71:1024/", "RAPLH", "LAUREN", "Male");
         }
 
         [TestMethod]
         [TestCategory("OnlineApplication")]
-        // [Ignore]
+        [Ignore]
         public void OnlineAppTesting()
         {
             var UserLog = new Login(driver, wait);
@@ -58,7 +82,7 @@ namespace SeleniumTests
             var WebPLogin = new WebPLogin(driver, wait);
             var PermitApp = new PermitApp(driver, wait);
             WebPLogin.WebPLoginTesting("http://192.168.20.71:1025/");
-            PermitApp.ReceiveApp("NBP2509-00020");
+            PermitApp.ReceiveApp("NBP2509-00039");
         }
 
         [TestMethod]
@@ -67,19 +91,20 @@ namespace SeleniumTests
         public void PTRAXTesting()
         {
             var PTRAXTest = new PTRAXTest(driver, wait);
-            PTRAXTest.AppReceiving("");
+            PTRAXTest.AppReceiving("NBP2509-00039");
             // PTRAXTest.AppEval();
             // PTRAXTest.BillingEval();
         }
 
         [TestMethod]
         [TestCategory("BPAS")]
-        [Ignore]
+        // [Ignore]
         public void BPASTesting()
         {
             var BPASLogin = new BPASLogin(driver, wait);
             BPASLogin.BPASLoginTest();
-            BPASLogin.ArchiTest();
+            // BPASLogin.ArchiTest("NBP2509-00039");
+            BPASLogin.ElectricalTest("NBP2509-00039");
         }
 
         // [TestCleanup]

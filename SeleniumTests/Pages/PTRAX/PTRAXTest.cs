@@ -42,13 +42,13 @@ namespace SeleniumTests
             driver.FindElement(By.XPath("/html/body/div[13]/div[1]/a/span")).Click();
 
             wait.Until(d => d.FindElement(By.XPath("//*[@id='gbox_grdMailbox_Procurement']")).Displayed);
-            driver.FindElement(By.XPath("//td[contains(text(), 'NBP2509-00019')]")).Click();
-            driver.FindElement(By.XPath("//td[contains(text(), 'NBP2509-00019')]/parent::tr//input[@type='checkbox']")).Click();
+            driver.FindElement(By.XPath(selColRecord)).Click();
+            driver.FindElement(By.XPath(chkBox)).Click();
             wait.Until(d => d.FindElement(By.Name("ctl00$MainContent$ctlDocMgr_OperatorsAdvice1$ddl_JumpTo_Steps")).Displayed);
             // driver.selectDropdown("ctl00$MainContent$ctlDocMgr_OperatorsAdvice1$ddl_JumpTo_Steps", "257");
             SelectElement phase = new SelectElement(driver.FindElement(By.Id("MainContent_ctlDocMgr_OperatorsAdvice1_ddl_JumpTo_Steps")));
             ((IJavaScriptExecutor)driver).ExecuteScript("arguments[0].scrollIntoView(true);", phase);
-            phase.SelectByValue("257");
+            phase.SelectByValue("542");
             var jumpbtn = wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath("//*[@id='btnJump']")));
             ((IJavaScriptExecutor)driver).ExecuteScript("arguments[0].scrollIntoView(true);", jumpbtn);
             jumpbtn.Click();

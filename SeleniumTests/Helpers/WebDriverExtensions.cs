@@ -23,9 +23,18 @@ namespace SeleniumTests.Helpers
 
         public static void selectDropdown(this IWebDriver driver, string titleName, string valueSelect)
         {
-            var dropdown = new SelectElement(driver.FindElement(By.Name(titleName)));
-            dropdown.SelectByText(valueSelect);
-            return;
+            if (titleName != "cmbApplicationKind")
+            {
+                var dropdown = new SelectElement(driver.FindElement(By.Name(titleName)));
+                dropdown.SelectByText(valueSelect);
+                return;
+            }
+            else
+            {
+                var dropdown = new SelectElement(driver.FindElement(By.Id(titleName)));
+                dropdown.SelectByText(valueSelect);
+                return;
+            }
         }
 
         public static void UntilLoadingDisappears(this WebDriverWait wait, IWebDriver driver)

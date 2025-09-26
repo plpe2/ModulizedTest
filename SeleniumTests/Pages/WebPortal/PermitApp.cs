@@ -34,11 +34,10 @@ namespace SeleniumTests
             });
             var appLocation = string.Concat("//*/td[text()='" + appNo + "']");
             driver.FindElement(By.XPath(appLocation)).Click();
-
             wait.waitElementDisappear(driver);
-            IWebElement btn = wait.Until(ExpectedConditions.ElementToBeClickable(By.Id("btnVerifySelectedApplication")));
-            ((IJavaScriptExecutor)driver).ExecuteScript("arguments[0].scrollIntoView(true);", btn);
-            btn.Click();
+
+            driver.selectDropdown("cmbApplicationKind", "Complex");
+            driver.ClickElement(wait, "//*[@id='btnVerifySelectedApplication']");
 
             wait.Until(d => d.FindElement(By.XPath("//*[@id='ModalMessage']")).Displayed);
             driver.FindElement(By.XPath("//*[@id='ModalMessage']/div/div/div[3]/button")).Click();
