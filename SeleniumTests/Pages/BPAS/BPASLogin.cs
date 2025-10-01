@@ -213,7 +213,7 @@ namespace SeleniumTests
             driver.ClickElement(wait, "//*[@id='btnAttachment']");
             wait.Until(d => d.FindElement(By.XPath("//*[@id='modalbtnSaveB']")).Displayed);
             driver.ClickElement(wait, "//*[@id='closemdal']");
-            // driver.ClickElement(wait, "//*[@id='card_one']/div[1]/div/h3/a[1]/label");
+            driver.ClickElement(wait, "//*[@id='card_one']/div[1]/div/h3/a[1]/label");
 
             driver.ClickElement(wait, "/html/body/div[116]/div/section/div/div/div/div[2]/div/div[2]/div/div/div[2]/div[2]/div/form/div/div[2]/div/div[1]/div/h3/label");
             wait.Until(d => d.FindElement(By.XPath("//*[@id='collapse2']")).Displayed);
@@ -326,6 +326,29 @@ namespace SeleniumTests
             driver.ClickElement(wait, "/html/body/div[116]/div/section/div/div/div/div[2]/div/div[2]/div/div/div[2]/div[2]/div/form/div/div[13]/div/div[1]/div/h3/a[1]/label");
 
             driver.ClickElement(wait, "//*[@id='btnSaveElectricalIns']");
+        }
+
+        public void StrucuralTest(string appNumber)
+        {
+            driver.goToURL("http://192.168.20.71:1027/PermitEvaluation/PermitEvaluationStructural");
+            wait.UntilLoadingDisappears(driver);
+            var appLocation = String.Concat("//*[contains(text(), '", appNumber, "')]");
+            wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath(appLocation))).Click();
+            wait.UntilLoadingDisappears(driver);
+
+            //GDCR
+            driver.ClickElement(wait, "//*[@id='collapse1']/div[1]/div[2]/div/div[1]/div[2]/div/label");
+            driver.ClickElement(wait, "//*[@id='collapse1']/div[1]/div[2]/div/div[2]/div/div[2]/label");
+            driver.ClickElement(wait, "//*[@id='collapse1']/div[1]/div[2]/div/div[2]/div/div[3]/label");
+            driver.ClickElement(wait, "//*[@id='collapse1']/div[1]/div[2]/div/div[2]/div/div[4]/label");
+            driver.ClickElement(wait, "//*[@id='btnSaveBldgEvalStructuralGDCR']");
+            wait.Until(d => d.FindElement(By.XPath("//*[@id='modalbtnSaveB']")).Displayed);
+            driver.ClickElement(wait, "//*[@id='closemdal']");
+            driver.ClickElement(wait, "/html/body/div[116]/div/section/div/div/div[2]/div/div[2]/div/div[1]/div[2]/form/div/div/div/div[1]/div/div[1]/div/h3/a[1]/label");
+
+            //SDR
+            driver.ClickElement(wait, "/html/body/div[116]/div/section/div/div/div/div[2]/div/div[2]/div/div/div[2]/div[2]/div/form/div/div[10]/div/div[1]/div/h3/label");
+            wait.Until(d => d.FindElement(By.XPath("//*[@id='collapse10']")).Displayed);
         }
     }
 }

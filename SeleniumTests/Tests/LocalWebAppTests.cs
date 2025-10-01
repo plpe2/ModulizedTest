@@ -56,7 +56,7 @@ namespace SeleniumTests
         public void RegisterTest()
         {
             var Register = new Register(driver, wait);
-            Register.RegisterTest("http://192.168.20.71:1024/", "RAPLH", "LAUREN", "Male");
+            Register.RegisterTest("http://192.168.20.71:1024/", "PEDRO", "INGAS", "Male", "Individual");
         }
 
         [TestMethod]
@@ -103,8 +103,9 @@ namespace SeleniumTests
         {
             var BPASLogin = new BPASLogin(driver, wait);
             BPASLogin.BPASLoginTest();
-            // BPASLogin.ArchiTest("NBP2509-00039");
-            BPASLogin.ElectricalTest("NBP2509-00039");
+            // BPASLogin.ArchiTest("NBP2509-00042");
+            // BPASLogin.ElectricalTest("NBP2509-00042");
+            BPASLogin.StrucuralTest("NBP2509-00042");
         }
 
         // [TestCleanup]
