@@ -16,29 +16,58 @@ namespace SeleniumTests
             this.wait = wait = new WebDriverWait(driver, TimeSpan.FromSeconds(20));
         }
 
-        public void RegisterTest(string url, string fName, string lName, string genderSelect)
+        public void RegisterTest(string url, string fName, string lName, string genderSelect, string regType)
         {
+            char[] fUsername = fName.ToCharArray();
+            var credential = String.Concat(fUsername[0], lName);
+
+
             driver.goToURL(url);
 
             driver.FindElement(By.Id("rbOwner")).Click();
 
-            driver.selectDropdown("OwnershipTypeID", "Individual");
+            switch (regType)
+            {
+                case "Individual":
+                    driver.selectDropdown("OwnershipTypeID", "Individual");
 
-            driver.selectDropdown("Owner.Title", "Mr.");
+                    driver.selectDropdown("Owner.Title", "Mr.");
 
-            //Owner Information
-            driver.FindElement(By.Name("Application.IsOwner")).Click();
-            driver.selectElement("Owner.FirstName", fName);
-            driver.selectElement("Owner.LastName", lName);
-            driver.selectDropdown("Owner.Gender", genderSelect);
-            driver.selectElement("Owner.MobileNo", "9391873976");
-            driver.selectElement("Owner.Email", "villanuevapv1@gmail.com");
-            driver.selectElement("OwnerAddress.FullAddress", "Blk 5 Lot 2 MOLINO HOMES MOLINO IV BACOOR, CAVITE");
-            driver.selectElement("OwnerAddress.Zipcode", "4102");
+                    //Owner Information
+                    driver.FindElement(By.Name("Application.IsOwner")).Click();
+                    driver.selectElement("Owner.FirstName", fName);
+                    driver.selectElement("Owner.LastName", lName);
+                    driver.selectDropdown("Owner.Gender", genderSelect);
+                    driver.selectElement("Owner.MobileNo", "9391873976");
+                    driver.selectElement("Owner.Email", "villanuevapv1@gmail.com");
+                    driver.selectElement("OwnerAddress.FullAddress", "Blk 5 Lot 2 MOLINO HOMES MOLINO IV BACOOR, CAVITE");
+                    driver.selectElement("OwnerAddress.Zipcode", "4102");
+                    break;
+                case "Company":
+                    driver.selectDropdown("OwnershipTypeID", "Company/Corporation");
+                    //Company Info
+                    driver.selectElement("Company.Name", credential);
+                    driver.selectElement("Company.MobileNo", "9391873976");
+                    driver.selectElement("Company.Email", "villanuevapv1@gmail.com");
+                    driver.selectElement("CompanyAddress.FullAddress", "MOLINO HOMES MOLINO IV BACOOR, CAVITE");
+                    driver.selectElement("CompanyAddress.Zipcode", "4102");
+
+                    //Representative Info
+                    driver.selectDropdown("Representative.Title", "Mr.");
+                    driver.selectElement("Representative.FirstName", fName);
+                    driver.selectElement("Representative.LastName", lName);
+                    driver.selectDropdown("Representative.Gender", genderSelect);
+                    driver.selectElement("Representative.MobileNo", "9391873976");
+                    driver.selectElement("Representative.Email", "villanuevapv1@gmail.com");
+                    driver.selectElement("RepresentativeAddress.FullAddress", "Blk 5 Lot 2 MOLINO HOMES MOLINO IV BACOOR, CAVITE");
+                    driver.selectElement("RepresentativeAddress.Zipcode", "4102");
+                    break;
+                default:
+                    break;
+            }
 
             //Login Credentials
-            char[] fUsername = fName.ToCharArray();
-            driver.selectElement("AccountInfo.Username", String.Concat(fUsername[0],lName));
+            driver.selectElement("AccountInfo.Username", credential);
             driver.selectElement("AccountInfo.Password", "P@ssw0rd");
             driver.selectElement("AccountInfo.ConfirmPassword", "P@ssw0rd");
 
