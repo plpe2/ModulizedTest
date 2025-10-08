@@ -20,7 +20,17 @@ namespace SeleniumTests
         {
             char[] fUsername = fName.ToCharArray();
             var credential = String.Concat(fUsername[0], lName);
+            var emailVal = String.Concat(credential, "@gmail.com");
+            string[] brgyList = ["MOLINO HOMES MOLINO IV", "ANIBAN III"];
 
+            Random rand = new Random();
+            string[] codes = new string[2];
+            for (int x = 0; x < 2; x++)
+            {
+                var addressRand = rand.Next(10);
+                codes[x] = String.Concat("", addressRand);
+            }
+            var addressVal = String.Concat("B", codes[0], " L", codes[1], " MOLINO HOMES MOLINO IV BACOOR, CAVITE");
 
             driver.goToURL(url);
 
@@ -39,8 +49,8 @@ namespace SeleniumTests
                     driver.selectElement("Owner.LastName", lName);
                     driver.selectDropdown("Owner.Gender", genderSelect);
                     driver.selectElement("Owner.MobileNo", "9391873976");
-                    driver.selectElement("Owner.Email", "villanuevapv1@gmail.com");
-                    driver.selectElement("OwnerAddress.FullAddress", "Blk 5 Lot 2 MOLINO HOMES MOLINO IV BACOOR, CAVITE");
+                    driver.selectElement("Owner.Email", emailVal);
+                    driver.selectElement("OwnerAddress.FullAddress", addressVal);
                     driver.selectElement("OwnerAddress.Zipcode", "4102");
                     break;
                 case "Company":
@@ -48,8 +58,8 @@ namespace SeleniumTests
                     //Company Info
                     driver.selectElement("Company.Name", credential);
                     driver.selectElement("Company.MobileNo", "9391873976");
-                    driver.selectElement("Company.Email", "villanuevapv1@gmail.com");
-                    driver.selectElement("CompanyAddress.FullAddress", "MOLINO HOMES MOLINO IV BACOOR, CAVITE");
+                    driver.selectElement("Company.Email", emailVal);
+                    driver.selectElement("CompanyAddress.FullAddress", addressVal);
                     driver.selectElement("CompanyAddress.Zipcode", "4102");
 
                     //Representative Info
@@ -58,8 +68,8 @@ namespace SeleniumTests
                     driver.selectElement("Representative.LastName", lName);
                     driver.selectDropdown("Representative.Gender", genderSelect);
                     driver.selectElement("Representative.MobileNo", "9391873976");
-                    driver.selectElement("Representative.Email", "villanuevapv1@gmail.com");
-                    driver.selectElement("RepresentativeAddress.FullAddress", "Blk 5 Lot 2 MOLINO HOMES MOLINO IV BACOOR, CAVITE");
+                    driver.selectElement("Representative.Email", emailVal);
+                    driver.selectElement("RepresentativeAddress.FullAddress", addressVal);
                     driver.selectElement("RepresentativeAddress.Zipcode", "4102");
                     break;
                 default:
