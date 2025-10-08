@@ -18,32 +18,42 @@ namespace SeleniumTests.Pages
             this.wait = wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
         }
 
-        public void FillUserAppInfo(string appName)
+        public void FillUserAppInfo(string appName, string appType, string accType)
         {
-            wait.Until(d => d.FindElement(By.XPath("//*[@id='modalOwnBuilding']")).Displayed);
 
-            // Function for Selecting Existing Records
-            // var appLocator = string.Concat("//table[@id='tblOwnBuilding']//td[normalize-space(text())='", appName, "']");
-            // driver.FindElement(By.XPath(appLocator)).Click();
-            // IWebElement btn = wait.Until(ExpectedConditions.ElementToBeClickable(By.Id("btnSelectExisting")));
-            // ((IJavaScriptExecutor)driver).ExecuteScript("arguments[0].scrollIntoView(true);", btn);
-            // btn.Click();
+            if (accType != "New")
+            {
+                //Registered
+                wait.UntilLoadingDisappears(driver);
+                wait.Until(d => d.FindElement(By.XPath("//*[@id='modalOwnBuilding']")).Displayed);
+
+                switch (appType)
+                {
+                    case "Create":
+                        //Function for New Building
+                        driver.ClickElement(wait, "//*[@id='btnNewBuilding']");
+                        wait.Until(d => d.FindElement(By.XPath("//*[@id='tab1']")).Displayed);
+                        break;
+                    case "Existing":
+                        // Function for Selecting Existing Records
+                        var appLocator = string.Concat("//table[@id='tblOwnBuilding']//td[normalize-space(text())='", appName, "']");
+                        driver.FindElement(By.XPath(appLocator)).Click();
+                        IWebElement btn = wait.Until(ExpectedConditions.ElementToBeClickable(By.Id("btnSelectExisting")));
+                        ((IJavaScriptExecutor)driver).ExecuteScript("arguments[0].scrollIntoView(true);", btn);
+                        btn.Click();
+                        break;
+                    default:
+                        break;
+                }
+            }
 
             wait.UntilLoadingDisappears(driver);
-
-            //Function for New Building
-            driver.ClickElement(wait, "//*[@id='btnNewBuilding']");
-            wait.Until(d => d.FindElement(By.XPath("//*[@id='tab1']")).Displayed);
-            wait.UntilLoadingDisappears(driver);
-
-            //For Newly Created Account
-            // driver.selectElement sexDropdown = new driver.selectElement(driver.FindElement(By.Id("Applicant_Person_Gender")));
 
             IWebElement saveBtn = wait.Until(ExpectedConditions.ElementToBeClickable(By.CssSelector("li.save a.btn.btn-warning")));
             saveBtn.Click();
 
             wait.Until(d => d.FindElement(By.XPath("/html/body/div[3]")).Displayed);
-            driver.FindElement(By.XPath("/html/body/div[3]/div/div[6]/button[1]")).Click();
+            driver.ClickElement(wait, "/html/body/div[3]/div/div[6]/button[1]");
             //Next Button
             driver.FindElement(By.XPath("/html/body/div[1]/div[2]/div/ul/li[4]/a")).Click();
 
@@ -61,10 +71,10 @@ namespace SeleniumTests.Pages
             driver.ProjInfoGens("Building.Project.TDN", "TDN");
             driver.ProjInfoGens("Building.Project.TCTNo", "TCT");
             driver.selectDropdown("Building.Project.ScopeofWork", "New Construction");
-            driver.selectElement("Building.Project.EstimatedCost", "40000000");
-            driver.selectElement("Building.Project.FloorArea", "50");
+            driver.selectElement("Building.Project.EstimatedCost", "30000000");
+            driver.selectElement("Building.Project.FloorArea", "30");
             driver.selectElement("Building.Project.UnitsPerFloor", "2");
-            driver.selectElement("Building.Project.LotArea", "60");
+            driver.selectElement("Building.Project.LotArea", "40");
             driver.selectElement("Building.Project.OpenSpace", "10");
             driver.selectElement("Building.Project.Garrage", "10");
             driver.selectElement("Building.Project.Terrace", "10");

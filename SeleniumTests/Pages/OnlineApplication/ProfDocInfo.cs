@@ -30,12 +30,21 @@ namespace SeleniumTests
 
             driver.FindElement(By.XPath("//*[@id='btnSearchProfLicense']")).Click();
             wait.Until(d => d.FindElement(By.XPath("//*[@id='ModalExistingProf']/div")).Displayed);
-            driver.FindElement(By.XPath("//*[@id='tblExistingProfLicense']/tbody/tr[1]/td[1]")).Click();
+            driver.FindElement(By.XPath("//*[@id='tblExistingProfLicense']/tbody/tr[5]/td[1]")).Click();
+            driver.selectDropdown("Designationmodal", "Plans and Specification");
             driver.FindElement(By.XPath("//*[@id='btnSaveExistingProf']")).Click();
             wait.UntilLoadingDisappears(driver);
             driver.FindElement(By.XPath("/html/body/div[1]/div[2]/div/ul/li[4]/a")).Click();
 
             wait.UntilLoadingDisappears(driver);
+
+            driver.DocReqClick(wait, "//*[@id='fileUploadForm']/div[1]/div[1]/div[1]/div[2]/div[1]/div/div/input[1]");
+            driver.DocReqClick(wait, "//*[@id='fileUploadForm']/div[1]/div[1]/div[1]/div[2]/div[2]/div/div/input[1]");
+            driver.DocReqClick(wait, "//*[@id='fileUploadForm']/div[1]/div[1]/div[1]/div[2]/div[3]/div/div/input[1]");
+
+            driver.DocReqClick(wait, "//*[@id='fileUploadForm']/div[1]/div[1]/div[2]/div[2]/div[1]/div/div/input[1]");
+            driver.DocReqClick(wait, "//*[@id='fileUploadForm']/div[1]/div[1]/div[2]/div[2]/div[2]/div/div/input[1]");
+            driver.DocReqClick(wait, "//*[@id='fileUploadForm']/div[1]/div[1]/div[2]/div[2]/div[3]/div/div/input[1]");
 
             var disclaimerLabel = wait.Until(ExpectedConditions.ElementToBeClickable(By.CssSelector("label[for='chkDisclaimer']")));
             ((IJavaScriptExecutor)driver).ExecuteScript("arguments[0].scrollIntoView(true);", disclaimerLabel);
