@@ -82,7 +82,7 @@ namespace SeleniumTests.Helpers
             string[] codes = new string[3];
             for (int x = 0; x < 3; x++)
             {
-                var addressRand = rand.Next(5000, 99999);
+                var addressRand = rand.Next(500, 999);
                 codes[x] = String.Concat("", addressRand);
             }
             var element = driver.FindElement(By.Name(elementName));
@@ -90,13 +90,13 @@ namespace SeleniumTests.Helpers
             switch (field)
             {
                 case "LPIN":
-                    element.SendKeys("P-" + codes[0] + codes[1] + codes[2]);
+                    element.SendKeys(codes[0] + codes[1] + codes[2] + codes[0]);
                     return;
                 case "TDN":
-                    element.SendKeys("T" + "-" + codes[1] + codes[2]);
+                    element.SendKeys(codes[1] + codes[2] + codes[0] + codes[1]);
                     return;
                 case "TCT":
-                    element.SendKeys("T-" + codes[0] + codes[1]);
+                    element.SendKeys("T-" + codes[1] + codes[0] + codes[2]);
                     return;
                 default:
                     break;
@@ -126,6 +126,12 @@ namespace SeleniumTests.Helpers
                     Thread.Sleep(200); // small delay for animation to finish
                 }
             }
+        }
+
+        public static void DocReqClick(this IWebDriver driver, WebDriverWait wait, string elementLoc)
+        {
+            driver.ClickElement(wait, elementLoc);
+            wait.UntilLoadingDisappears(driver);
         }
     }
 }
