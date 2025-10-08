@@ -39,9 +39,12 @@ namespace SeleniumTests
             // ArchiTest();
         }
 
-        public void GeodeticTest()
+        public void GeodeticTest(string appNumber)
         {
-            wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath("//*[contains(text(), 'NBP2509-00019')]"))).Click();
+            var appLocation = String.Concat("//*[contains(text(), '", appNumber, "')]");
+            driver.goToURL("http://192.168.20.71:1027/PermitEvaluation/PermitEvaluationGeodetic");
+            wait.UntilLoadingDisappears(driver);
+            wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath(appLocation))).Click();
             wait.UntilLoadingDisappears(driver);
             driver.ClickElement(wait, "//*[@id='frmComplianceGeodetic']/div[1]/div[3]/div/label");
             driver.ClickElement(wait, "//*[@id='frmComplianceGeodetic']/div[2]/div[3]/div/label");
@@ -347,8 +350,98 @@ namespace SeleniumTests
             driver.ClickElement(wait, "/html/body/div[116]/div/section/div/div/div[2]/div/div[2]/div/div[1]/div[2]/form/div/div/div/div[1]/div/div[1]/div/h3/a[1]/label");
 
             //SDR
-            driver.ClickElement(wait, "/html/body/div[116]/div/section/div/div/div/div[2]/div/div[2]/div/div/div[2]/div[2]/div/form/div/div[10]/div/div[1]/div/h3/label");
-            wait.Until(d => d.FindElement(By.XPath("//*[@id='collapse10']")).Displayed);
+            driver.ClickElement(wait, "/html/body/div[116]/div/section/div/div/div[2]/div/div[2]/div/div[1]/div[2]/form/div/div/div/div[2]/div/div[1]/div/h3/label");
+            wait.Until(d => d.FindElement(By.XPath("//*[@id='collapse2']")).Displayed);
+            driver.selectElement("SDRTypeofMaterialV", "metal");
+            driver.EvalGens("SDRVeneerWeightV");
+            driver.ClickElement(wait, "//*[@id='btnSaveBldgEvalStructuralSDR']");
+            wait.Until(d => d.FindElement(By.XPath("//*[@id='modalbtnSaveB']")).Displayed);
+            driver.ClickElement(wait, "//*[@id='closemdal']");
+            driver.ClickElement(wait, "/html/body/div[116]/div/section/div/div/div[2]/div/div[2]/div/div[1]/div[2]/form/div/div/div/div[2]/div/div[1]/div/h3/a[1]/label");
+
+            //EFRW
+            driver.ClickElement(wait, "/html/body/div[116]/div/section/div/div/div[2]/div/div[2]/div/div[1]/div[2]/form/div/div/div/div[3]/div/div[1]/div/h3/label");
+            wait.Until(d => d.FindElement(By.XPath("//*[@id='collapse3']")).Displayed);
+            driver.EvalGens("EFRWThickness");
+            driver.EvalGens("EFRWDepth");
+            driver.EvalGens("EFRWNoofColumn");
+            driver.ClickElement(wait, "//*[@id='collapse3']/div[1]/div[2]/div/div[2]/div[2]/div/div[2]/div/label");
+            driver.ClickElement(wait, "//*[@id='btnSaveBldgEvalStructuralEFRW']");
+            wait.Until(d => d.FindElement(By.XPath("//*[@id='modalbtnSaveB']")).Displayed);
+            driver.ClickElement(wait, "//*[@id='closemdal']");
+            driver.ClickElement(wait, "/html/body/div[116]/div/section/div/div/div[2]/div/div[2]/div/div[1]/div[2]/form/div/div/div/div[3]/div/div[1]/div/h3/a[1]/label");
+
+            //PC
+            driver.ClickElement(wait, "/html/body/div[116]/div/section/div/div/div[2]/div/div[2]/div/div[1]/div[2]/form/div/div/div/div[4]/div/div[1]/div/h3/label");
+            wait.Until(d => d.FindElement(By.XPath("//*[@id='collapse4']")).Displayed);
+            driver.ClickElement(wait, "//*[@id='collapse4']/div[1]/div[2]/div[2]/div[1]/div/label");
+            driver.ClickElement(wait, "//*[@id='collapse4']/div[1]/div[2]/div[2]/div[2]/div/label");
+            driver.ClickElement(wait, "//*[@id='collapse4']/div[1]/div[2]/div[2]/div[3]/div/label");
+            driver.selectElement("PCOthers", "Complied");
+            driver.ClickElement(wait, "//*[@id='btnSaveBldgEvalStructuralPC']");
+            wait.Until(d => d.FindElement(By.XPath("//*[@id='modalbtnSaveB']")).Displayed);
+            driver.ClickElement(wait, "//*[@id='closemdal']");
+            driver.ClickElement(wait, "/html/body/div[116]/div/section/div/div/div[2]/div/div[2]/div/div[1]/div[2]/form/div/div/div/div[4]/div/div[1]/div/h3/a[1]/label");
+
+            //PSRCDE
+            driver.ClickElement(wait, "/html/body/div[116]/div/section/div/div/div[2]/div/div[2]/div/div[1]/div[2]/form/div/div/div/div[5]/div/div[1]/div/h3/label");
+            wait.Until(d => d.FindElement(By.XPath("//*[@id='collapse5']")).Displayed);
+            driver.EvalGens("PSRCDERailingHeight");
+            driver.EvalGens("PSRCDEFenceHeight");
+            driver.EvalGens("PSRCDEFenceMaterial");
+            driver.EvalGens("PSRCDEPassageWays");
+            driver.EvalGens("PSRCDEToolsLocation");
+            driver.ClickElement(wait, "//*[@id='collapse5']/div[1]/div[2]/div/div[6]/div[1]/label");
+            driver.ClickElement(wait, "//*[@id='collapse5']/div[1]/div[2]/div/div[6]/div[2]/label");
+            driver.ClickElement(wait, "//*[@id='btnSaveBldgEvalStructuralPSRCDE']");
+            wait.Until(d => d.FindElement(By.XPath("//*[@id='modalbtnSaveB']")).Displayed);
+            driver.ClickElement(wait, "//*[@id='closemdal']");
+            driver.ClickElement(wait, "/html/body/div[116]/div/section/div/div/div[2]/div/div[2]/div/div[1]/div[2]/form/div/div/div/div[5]/div/div[1]/div/h3/a[1]/label");
+
+            //A/DB
+            driver.ClickElement(wait, "/html/body/div[116]/div/section/div/div/div[2]/div/div[2]/div/div[1]/div[2]/form/div/div/div/div[6]/div/div[1]/div/h3/label");
+            wait.Until(d => d.FindElement(By.XPath("//*[@id='collapse6']")).Displayed);
+            driver.ClickElement(wait, "//*[@id='collapse6']/div[1]/div[2]/div/div/div[2]/div[1]/div/label");
+            driver.ClickElement(wait, "//*[@id='collapse6']/div[1]/div[2]/div/div/div[2]/div[2]/div/label");
+            driver.ClickElement(wait, "//*[@id='collapse6']/div[1]/div[2]/div/div/div[3]/div[1]/div/label");
+            driver.ClickElement(wait, "//*[@id='collapse6']/div[1]/div[2]/div/div/div[3]/div[2]/div/label");
+            driver.ClickElement(wait, "//*[@id='collapse6']/div[1]/div[2]/div/div/div[4]/div[1]/div/label");
+            driver.ClickElement(wait, "//*[@id='collapse6']/div[1]/div[2]/div/div/div[4]/div[2]/div/label");
+            driver.ClickElement(wait, "//*[@id='btnSaveBldgEvalStructuralADB']");
+            wait.Until(d => d.FindElement(By.XPath("//*[@id='modalbtnSaveB']")).Displayed);
+            driver.ClickElement(wait, "//*[@id='closemdal']");
+            driver.ClickElement(wait, "/html/body/div[116]/div/section/div/div/div[2]/div/div[2]/div/div[1]/div[2]/form/div/div/div/div[6]/div/div[1]/div/h3/a[1]/label");
+
+            // //P
+            // driver.ClickElement(wait, "/html/body/div[116]/div/section/div/div/div[2]/div/div[2]/div/div[1]/div[2]/form/div/div/div/div[7]/div/div[1]/div/h3/label");
+            // wait.Until(d => d.FindElement(By.XPath("//*[@id='collapse7']")).Displayed);
+            // driver.selectElement("SDRTypeofMaterialV", "metal");
+            // driver.EvalGens("SDRVeneerWeightV");
+            // driver.ClickElement(wait, "//*[@id='btnSaveBldgEvalStructuralSDR']");
+            // wait.Until(d => d.FindElement(By.XPath("//*[@id='modalbtnSaveB']")).Displayed);
+            // driver.ClickElement(wait, "//*[@id='closemdal']");
+            driver.ClickElement(wait, "/html/body/div[116]/div/section/div/div/div[2]/div/div[2]/div/div[1]/div[2]/form/div/div/div/div[7]/div/div[1]/div/h3/a[1]/label");
+
+            //S
+            driver.ClickElement(wait, "/html/body/div[116]/div/section/div/div/div[2]/div/div[2]/div/div[1]/div[2]/form/div/div/div/div[8]/div/div[1]/div/h3/label");
+            wait.Until(d => d.FindElement(By.XPath("//*[@id='collapse8']")).Displayed);
+            driver.ClickElement(wait, "//*[@id='collapse8']/div[1]/div[2]/div/div[1]/fieldset/div/div[1]/div[1]/label");
+            driver.ClickElement(wait, "//*[@id='collapse8']/div[1]/div[2]/div/div[1]/fieldset/div/div[2]/div[1]/label");
+            driver.ClickElement(wait, "//*[@id='collapse8']/div[1]/div[2]/div/div[1]/fieldset/div/div[1]/div[3]/label");
+            driver.ClickElement(wait, "//*[@id='collapse8']/div[1]/div[2]/div/div[1]/fieldset/div/div[2]/div[3]/label");
+            driver.ClickElement(wait, "//*[@id='collapse8']/div[1]/div[2]/div/div[2]/fieldset/div/div[1]/div[1]/label");
+            driver.ClickElement(wait, "//*[@id='collapse8']/div[1]/div[2]/div/div[2]/fieldset/div/div[1]/div[3]/label");
+            driver.ClickElement(wait, "//*[@id='collapse8']/div[1]/div[2]/div/div[2]/fieldset/div/div[2]/div[1]/label");
+            driver.ClickElement(wait, "//*[@id='collapse8']/div[1]/div[2]/div/div[2]/fieldset/div/div[2]/div[3]/label");
+            driver.ClickElement(wait, "//*[@id='btnSaveBldgEvalStructuralS']");
+            wait.Until(d => d.FindElement(By.XPath("//*[@id='modalbtnSaveB']")).Displayed);
+            driver.ClickElement(wait, "//*[@id='closemdal']");
+            driver.ClickElement(wait, "/html/body/div[116]/div/section/div/div/div[2]/div/div[2]/div/div[1]/div[2]/form/div/div/div/div[8]/div/div[1]/div/h3/a[1]/label");
+
+            //SIR
+            driver.ClickElement(wait, "/html/body/div[116]/div/section/div/div/div[2]/div/div[2]/div/div[1]/div[2]/form/div/div/div/div[9]/div/div[1]/div/h3/a[1]/label");
+
+            driver.ClickElement(wait, "//*[@id='btnSaveBldgEvalStructural']");
         }
     }
 }
