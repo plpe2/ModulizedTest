@@ -18,34 +18,39 @@ namespace SeleniumTests.Pages
             this.wait = wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
         }
 
-        public void FillUserAppInfo(string appName, string appType, string accType)
+        public void FillUserAppInfo(string appName, string accType, string appType)
         {
 
-            if (accType != "New")
+            switch (appType)
             {
-                //Registered
-                wait.UntilLoadingDisappears(driver);
-                wait.Until(d => d.FindElement(By.XPath("//*[@id='modalOwnBuilding']")).Displayed);
-
-                switch (appType)
-                {
-                    case "Create":
-                        //Function for New Building
-                        driver.ClickElement(wait, "//*[@id='btnNewBuilding']");
-                        wait.Until(d => d.FindElement(By.XPath("//*[@id='tab1']")).Displayed);
-                        break;
-                    case "Existing":
-                        // Function for Selecting Existing Records
-                        var appLocator = string.Concat("//table[@id='tblOwnBuilding']//td[normalize-space(text())='", appName, "']");
-                        driver.FindElement(By.XPath(appLocator)).Click();
-                        IWebElement btn = wait.Until(ExpectedConditions.ElementToBeClickable(By.Id("btnSelectExisting")));
-                        ((IJavaScriptExecutor)driver).ExecuteScript("arguments[0].scrollIntoView(true);", btn);
-                        btn.Click();
-                        break;
-                    default:
-                        break;
-                }
+                case "Create":
+                    if (accType != "New") //Detect if Registered account
+                    {
+                        wait.UntilLoadingDisappears(driver);
+                        wait.Until(d => d.FindElement(By.XPath("//*[@id='modalOwnBuilding']")).Displayed);
+                    }
+                    else { break; } //Break the case if the account is New
+                    //Function for New Building
+                    driver.ClickElement(wait, "//*[@id='btnNewBuilding']");
+                    wait.Until(d => d.FindElement(By.XPath("//*[@id='tab1']")).Displayed);
+                    break;
+                case "Existing":
+                    if (accType != "New") //Detect if Registered account
+                    {
+                        wait.UntilLoadingDisappears(driver);
+                        wait.Until(d => d.FindElement(By.XPath("//*[@id='modalOwnBuilding']")).Displayed);
+                    }
+                    // Function for Selecting Existing Records
+                    var appLocator = string.Concat("//table[@id='tblOwnBuilding']//td[normalize-space(text())='", appName, "']");
+                    driver.FindElement(By.XPath(appLocator)).Click();
+                    IWebElement btn = wait.Until(ExpectedConditions.ElementToBeClickable(By.Id("btnSelectExisting")));
+                    ((IJavaScriptExecutor)driver).ExecuteScript("arguments[0].scrollIntoView(true);", btn);
+                    btn.Click();
+                    break;
+                default:
+                    break;
             }
+
 
             wait.UntilLoadingDisappears(driver);
 
