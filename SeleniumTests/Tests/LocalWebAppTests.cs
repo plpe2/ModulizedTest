@@ -56,7 +56,7 @@ namespace SeleniumTests
         public void RegisterTest()
         {
             var Register = new Register(driver, wait);
-            Register.RegisterTest("http://192.168.20.71:1024/", "RODEL", "HALL", "Male", "Individual");
+            Register.RegisterTest("http://192.168.20.71:1024/", "MATTHEW", "LAUREN", "Male", "Individual");
         }
 
         [TestMethod]
@@ -68,8 +68,8 @@ namespace SeleniumTests
             var UserAppInfo = new AppProjInfo(driver, wait);
             var ProfDoc = new ProfDocInfo(driver, wait);
             var Submit = new SubmitApp(driver, wait);
-            UserLog.LoginTest("http://192.168.20.71:1024/Account/Login?statusCode=0", "RHALL", "0000005");
-            UserAppInfo.FillUserAppInfo("FWR BLDG.", "New", "Create"); //Pending for Testing
+            UserLog.LoginTest("http://192.168.20.71:1024/Account/Login?statusCode=0", "MLAUREN", "0000009");
+            UserAppInfo.FillUserAppInfo("WBCU", "New", "Create"); //Pending for Testing
             ProfDoc.ProfDocTest();
             Submit.SubmitTest();
         }
@@ -82,7 +82,7 @@ namespace SeleniumTests
             var WebPLogin = new WebPLogin(driver, wait);
             var PermitApp = new PermitApp(driver, wait);
             WebPLogin.WebPLoginTesting("http://192.168.20.71:1025/");
-            PermitApp.ReceiveApp("NBP2509-00039");
+            PermitApp.ReceiveApp("NBP2510-00008");
         }
 
         [TestMethod]
@@ -91,7 +91,7 @@ namespace SeleniumTests
         public void PTRAXTesting()
         {
             var PTRAXTest = new PTRAXTest(driver, wait);
-            PTRAXTest.AppReceiving("NBP2509-00039");
+            PTRAXTest.AppReceiving("NBP2510-00008");
             // PTRAXTest.AppEval();
             // PTRAXTest.BillingEval();
         }
@@ -103,10 +103,10 @@ namespace SeleniumTests
         {
             var BPASLogin = new BPASLogin(driver, wait);
             BPASLogin.BPASLoginTest();
-            BPASLogin.GeodeticTest("NBP2510-00002");
-            BPASLogin.ArchiTest("NBP2510-00002");
-            BPASLogin.ElectricalTest("NBP2510-00002");
-            BPASLogin.StrucuralTest("NBP2510-00002");
+            BPASLogin.GeodeticTest("NBP2510-00007");
+            BPASLogin.ArchiTest("NBP2510-00007");
+            BPASLogin.ElectricalTest("NBP2510-00007");
+            BPASLogin.StrucuralTest("NBP2510-00007");
             // BPASLogin.MEchanicalTest("NBP2510-00001");
         }
 

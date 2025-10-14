@@ -30,7 +30,7 @@ namespace SeleniumTests
 
             driver.FindElement(By.XPath("//*[@id='btnSearchProfLicense']")).Click();
             wait.Until(d => d.FindElement(By.XPath("//*[@id='ModalExistingProf']/div")).Displayed);
-            driver.FindElement(By.XPath("//*[@id='tblExistingProfLicense']/tbody/tr[5]/td[1]")).Click();
+            driver.FindElement(By.XPath("//*[@id='tblExistingProfLicense']/tbody/tr[1]/td[1]")).Click();
             driver.selectDropdown("Designationmodal", "Plans and Specification");
             driver.FindElement(By.XPath("//*[@id='btnSaveExistingProf']")).Click();
             wait.UntilLoadingDisappears(driver);

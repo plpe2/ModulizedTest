@@ -87,6 +87,9 @@ namespace SeleniumTests.Pages
             driver.selectElement("Building.Project.TotalUnits", "2");
 
             // Start Building Location
+            driver.selectDropdown("Building.Project.ConstructionProgressDescription", "Started");
+            driver.selectElement("Building.Project.ConstructionDate", "06152025");
+            driver.selectElement("Building.Project.CompletionDate", "11272026");
             driver.addressGens("Building.Project.Address.HouseNo");
             driver.addressGens("Building.Project.Address.LotNo");
             driver.addressGens("Building.Project.Address.BlockNo");
