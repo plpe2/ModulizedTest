@@ -56,7 +56,7 @@ namespace SeleniumTests
         public void RegisterTest()
         {
             var Register = new Register(driver, wait);
-            Register.RegisterTest("http://192.168.20.71:1024/", "ryan", "calamba", "Male", "Individual");
+            Register.RegisterTest("http://192.168.20.71:1024", "richard", "alex", "Male", "Individual");
         }
 
         [TestMethod]
@@ -68,8 +68,8 @@ namespace SeleniumTests
             var UserAppInfo = new AppProjInfo(driver, wait);
             var ProfDoc = new ProfDocInfo(driver, wait);
             var Submit = new SubmitApp(driver, wait);
-            UserLog.LoginTest("http://192.168.20.71:1024/Account/Login?statusCode=0", "rcalamba", "0000008");
-            UserAppInfo.FillUserAppInfo("ABSF", true, "Create"); //Pending for Testing
+            UserLog.LoginTest("http://192.168.20.71:1024/Account/Login?statusCode=0", "ralex", "0000012");
+            UserAppInfo.FillUserAppInfo("JKSMNS", false, "Create"); //Pending for Testing
             ProfDoc.ProfDocTest();
             Submit.SubmitTest();
         }
@@ -103,12 +103,13 @@ namespace SeleniumTests
         {
             var BPASLogin = new BPASLogin(driver, wait);
             BPASLogin.BPASLoginTest();
-            // BPASLogin.GeodeticTest("NBP2510-00007");
-            // BPASLogin.ArchiTest("NBP2510-00007");
-            // BPASLogin.ElectricalTest("NBP2510-00007");
-            // BPASLogin.StrucuralTest("NBP2510-00007");
+            // BPASLogin.GeodeticTest("NBP2510-00009");
+            // BPASLogin.ArchiTest("NBP2510-00009");
+            // BPASLogin.ElectricalTest("NBP2510-00009");
+            // BPASLogin.StrucuralTest("NBP2510-00009");
             // BPASLogin.MEchanicalTest("NBP2510-00010");
-            BPASLogin.SanitaryTest("NBP2510-00007");
+            // BPASLogin.SanitaryTest("NBP2510-00009");
+            BPASLogin.PlumbingTest("NBP2510-00009");
         }
 
         // [TestCleanup]
