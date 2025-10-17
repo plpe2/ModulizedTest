@@ -600,5 +600,79 @@ namespace SeleniumTests
 
             driver.ClickElement(wait, "//*[@id='btnSave']");
         }
+
+        public void SanitaryTest(string appNumber)
+        {
+            driver.goToURL("http://192.168.20.71:1027/PermitEvaluation/PermitEvaluationSanitary");
+            wait.UntilLoadingDisappears(driver);
+            var appLocation = String.Concat("//*[contains(text(), '", appNumber, "')]");
+            wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath(appLocation))).Click();
+            wait.UntilLoadingDisappears(driver);
+
+            driver.selectElement("DSDrainagePipeMaterialExcretaDS", "pvc");
+            driver.EvalGens("DSDrainagePipeSizeExcretaDS");
+            driver.selectElement("DSFittingMaterialExcretaDS", "pvc");
+            driver.selectElement("DSDrainagePipeMaterialSanitaryDS", "pvc");
+            driver.EvalGens("DSDrainagePipeSizeSanitaryDS");
+            driver.selectElement("DSFittingMaterialSanitaryDS", "pvc");
+            driver.selectElement("DSRoofDrianMaterialStormDS", "pvc");
+            driver.EvalGens("DSDrainagePipeSizeStormDS");
+            driver.selectElement("DSFittingMaterialStormDS", "pvc");
+            driver.selectElement("DSDrainagePipeMaterialVentS", "pvc");
+            driver.EvalGens("DSDrainagePipeSizeVentS");
+            driver.selectElement("DSVentStackMaterialVentS", "pvc");
+            driver.selectElement("DSFittingMaterialVentS", "pvc");
+            driver.ClickElement(wait, "//*[@id='btnSaveBldgEvalPlumbingDS']");
+            wait.Until(d => d.FindElement(By.XPath("//*[@id='modalbtnSaveB']")).Displayed);
+            driver.ClickElement(wait, "//*[@id='closemdal']");
+            driver.ClickElement(wait, "//*[@id='card_one']/div[1]/div/h3/a[1]/label");
+
+            //WDS
+            driver.ClickElement(wait, "/html/body/div[116]/div/section/div/div/div/div[2]/div/div[2]/div/div/div[2]/div[2]/div/form/div/div[2]/div/div[1]/div/h3/label");
+            wait.Until(d => d.FindElement(By.XPath("//*[@id='collapse2']")).Displayed);
+            driver.ClickElement(wait, "//*[@id='collapse2']/div[2]/div/div/div/div[1]/div/label");
+            driver.ClickElement(wait, "//*[@id='collapse2']/div[2]/div/div/div/div[2]/div/label");
+            driver.ClickElement(wait, "//*[@id='collapse2']/div[2]/div/div/div/div[3]/div/label");
+            driver.ClickElement(wait, "//*[@id='collapse2']/div[2]/div/div/div/div[4]/div/label");
+            driver.ClickElement(wait, "//*[@id='collapse2']/div[2]/div/div/div/div[5]/div/label");
+            driver.ClickElement(wait, "//*[@id='btnSaveWasteWater']");
+            wait.Until(d => d.FindElement(By.XPath("//*[@id='modalbtnSaveB']")).Displayed);
+            driver.ClickElement(wait, "//*[@id='closemdal']");
+            driver.ClickElement(wait, "/html/body/div[116]/div/section/div/div/div/div[2]/div/div[2]/div/div/div[2]/div[2]/div/form/div/div[2]/div/div[1]/div/h3/a[1]/label");
+
+            //SDS
+            driver.ClickElement(wait, "/html/body/div[116]/div/section/div/div/div/div[2]/div/div[2]/div/div/div[2]/div[2]/div/form/div/div[3]/div/div[1]/div/h3/label");
+            wait.Until(d => d.FindElement(By.XPath("//*[@id='collapse3']")).Displayed);
+            driver.selectElement("StormDrainageRDL", "Near");
+            driver.ClickElement(wait, "//*[@id='collapse3']/div[2]/div/div/div/div[2]/div/label");
+            driver.ClickElement(wait, "//*[@id='btnSaveStormDrainage']");
+            wait.Until(d => d.FindElement(By.XPath("//*[@id='modalbtnSaveB']")).Displayed);
+            driver.ClickElement(wait, "//*[@id='closemdal']");
+            driver.ClickElement(wait, "/html/body/div[116]/div/section/div/div/div/div[2]/div/div[2]/div/div/div[2]/div[2]/div/form/div/div[3]/div/div[1]/div/h3/a[1]/label");
+
+            //PVC
+            driver.ClickElement(wait, "/html/body/div[116]/div/section/div/div/div/div[2]/div/div[2]/div/div/div[2]/div[2]/div/form/div/div[4]/div/div[1]/div/h3/label");
+            wait.Until(d => d.FindElement(By.XPath("//*[@id='collapse4']")).Displayed);
+            driver.ClickElement(wait, "//*[@id='collapse4']/div[2]/div/div/div/div[1]/div[1]/div/div/label");
+            driver.ClickElement(wait, "//*[@id='collapse4']/div[2]/div/div/div/div[1]/div[1]/div/div/label");
+            driver.ClickElement(wait, "//*[@id='btnSavePestVermin']");
+            wait.Until(d => d.FindElement(By.XPath("//*[@id='modalbtnSaveB']")).Displayed);
+            driver.ClickElement(wait, "//*[@id='closemdal']");
+            driver.ClickElement(wait, "/html/body/div[116]/div/section/div/div/div/div[2]/div/div[2]/div/div/div[2]/div[2]/div/form/div/div[4]/div/div[1]/div/h3/a[1]/label");
+
+            //NPC
+            driver.ClickElement(wait, "/html/body/div[116]/div/section/div/div/div/div[2]/div/div[2]/div/div/div[2]/div[2]/div/form/div/div[5]/div/div[1]/div/h3/label");
+            wait.Until(d => d.FindElement(By.XPath("//*[@id='collapse5']")).Displayed);
+            driver.selectDropdown("CategoryID", "AA");
+            driver.ClickElement(wait, "//*[@id='btnSaveNoisePollution']");
+            wait.Until(d => d.FindElement(By.XPath("//*[@id='modalbtnSaveB']")).Displayed);
+            driver.ClickElement(wait, "//*[@id='closemdal']");
+            driver.ClickElement(wait, "/html/body/div[116]/div/section/div/div/div/div[2]/div/div[2]/div/div/div[2]/div[2]/div/form/div/div[5]/div/div[1]/div/h3/a[1]/label");
+
+            //PM
+            driver.ClickElement(wait, "/html/body/div[116]/div/section/div/div/div/div[2]/div/div[2]/div/div/div[2]/div[2]/div/form/div/div[6]/div/div[1]/div/h3/a[1]/label");
+
+            driver.ClickElement(wait, "//*[@id='btnSaveSanitaryIns']");
+        }
     }
 }

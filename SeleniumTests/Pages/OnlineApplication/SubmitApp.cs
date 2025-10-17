@@ -19,7 +19,7 @@ namespace SeleniumTests
 
         public void SubmitTest()
         {
-            wait.Until(d => d.FindElement(By.XPath("//*[@id='tab4']")).Displayed);
+            wait.Until(d => d.FindElement(By.XPath("//*[@id='tab5']")).Displayed);
             wait.UntilLoadingDisappears(driver);
             //Application Preview
             wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath("/html/body/div[1]/div[2]/div/ul/li[5]/a"))).Click();

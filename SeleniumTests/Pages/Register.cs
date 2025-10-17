@@ -49,6 +49,7 @@ namespace SeleniumTests
                     driver.selectElement("Owner.LastName", lName);
                     driver.selectDropdown("Owner.Gender", genderSelect);
                     driver.selectElement("Owner.MobileNo", "9391873976");
+                    driver.FindElement(By.Name("Owner.DateOfBirth")).SendKeys("11152000");
                     driver.selectElement("Owner.Email", emailVal);
                     driver.selectElement("OwnerAddress.FullAddress", addressVal);
                     driver.selectElement("OwnerAddress.Zipcode", "4102");
@@ -67,6 +68,7 @@ namespace SeleniumTests
                     driver.selectElement("Representative.FirstName", fName);
                     driver.selectElement("Representative.LastName", lName);
                     driver.selectDropdown("Representative.Gender", genderSelect);
+                    driver.FindElement(By.Name("Owner.DateOfBirth")).SendKeys("11152000");
                     driver.selectElement("Representative.MobileNo", "9391873976");
                     driver.selectElement("Representative.Email", emailVal);
                     driver.selectElement("RepresentativeAddress.FullAddress", addressVal);

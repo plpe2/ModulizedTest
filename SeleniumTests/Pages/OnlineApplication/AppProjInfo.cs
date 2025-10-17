@@ -18,13 +18,13 @@ namespace SeleniumTests.Pages
             this.wait = wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
         }
 
-        public void FillUserAppInfo(string appName, string accType, string appType)
+        public void FillUserAppInfo(string appName, Boolean accType, string appType)
         {
 
             switch (appType)
             {
                 case "Create":
-                    if (accType != "New") //Detect if Registered account
+                    if (!accType) //Detect if Registered account
                     {
                         wait.UntilLoadingDisappears(driver);
                         wait.Until(d => d.FindElement(By.XPath("//*[@id='modalOwnBuilding']")).Displayed);
@@ -35,7 +35,7 @@ namespace SeleniumTests.Pages
                     wait.Until(d => d.FindElement(By.XPath("//*[@id='tab1']")).Displayed);
                     break;
                 case "Existing":
-                    if (accType != "New") //Detect if Registered account
+                    if (!accType) //Detect if Registered account
                     {
                         wait.UntilLoadingDisappears(driver);
                         wait.Until(d => d.FindElement(By.XPath("//*[@id='modalOwnBuilding']")).Displayed);
@@ -84,7 +84,7 @@ namespace SeleniumTests.Pages
             driver.selectElement("Building.Project.Garrage", "10");
             driver.selectElement("Building.Project.Terrace", "10");
             driver.selectElement("Building.Project.Height", "25");
-            driver.selectElement("Building.Project.TotalUnits", "2");
+            driver.selectElement("Building.Project.TotalUnits", "1");
 
             // Start Building Location
             driver.selectDropdown("Building.Project.ConstructionProgressDescription", "Started");
