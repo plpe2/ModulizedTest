@@ -39,15 +39,15 @@ namespace SeleniumTests
             switch (regType)
             {
                 case "Individual":
-                    driver.selectDropdown("OwnershipTypeID", "Individual");
+                    driver.selectDropdown(wait, "OwnershipTypeID", "Individual");
 
-                    driver.selectDropdown("Owner.Title", "Mr.");
+                    driver.selectDropdown(wait, "Owner.Title", "Mr.");
 
                     //Owner Information
                     driver.FindElement(By.Name("Application.IsOwner")).Click();
                     driver.selectElement("Owner.FirstName", fName);
                     driver.selectElement("Owner.LastName", lName);
-                    driver.selectDropdown("Owner.Gender", genderSelect);
+                    driver.selectDropdown(wait, "Owner.Gender", genderSelect);
                     driver.selectElement("Owner.MobileNo", "9391873976");
                     driver.FindElement(By.Name("Owner.DateOfBirth")).SendKeys("11152000");
                     driver.selectElement("Owner.Email", emailVal);
@@ -55,7 +55,7 @@ namespace SeleniumTests
                     driver.selectElement("OwnerAddress.Zipcode", "4102");
                     break;
                 case "Company":
-                    driver.selectDropdown("OwnershipTypeID", "Company/Corporation");
+                    driver.selectDropdown(wait, "OwnershipTypeID", "Company/Corporation");
                     //Company Info
                     driver.selectElement("Company.Name", credential);
                     driver.selectElement("Company.MobileNo", "9391873976");
@@ -64,10 +64,10 @@ namespace SeleniumTests
                     driver.selectElement("CompanyAddress.Zipcode", "4102");
 
                     //Representative Info
-                    driver.selectDropdown("Representative.Title", "Mr.");
+                    driver.selectDropdown(wait, "Representative.Title", "Mr.");
                     driver.selectElement("Representative.FirstName", fName);
                     driver.selectElement("Representative.LastName", lName);
-                    driver.selectDropdown("Representative.Gender", genderSelect);
+                    driver.selectDropdown(wait, "Representative.Gender", genderSelect);
                     driver.FindElement(By.Name("Owner.DateOfBirth")).SendKeys("11152000");
                     driver.selectElement("Representative.MobileNo", "9391873976");
                     driver.selectElement("Representative.Email", emailVal);
@@ -83,7 +83,7 @@ namespace SeleniumTests
             driver.selectElement("AccountInfo.Password", "P@ssw0rd");
             driver.selectElement("AccountInfo.ConfirmPassword", "P@ssw0rd");
 
-            driver.selectDropdown("AccountInfo.SecurityQuestionID", "What is your Mothers' mother maiden name?");
+            driver.selectDropdown(wait, "AccountInfo.SecurityQuestionID", "What is your Mothers' mother maiden name?");
 
             driver.selectElement("AccountInfo.SecurityAnswer", "Google");
             driver.selectElement("AccountInfo.SecurityCode", "1234");

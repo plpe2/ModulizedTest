@@ -75,7 +75,7 @@ namespace SeleniumTests.Pages
             driver.selectElement("Building.Project.BaseBuildingName", appName);
             driver.ProjInfoGens("Building.Project.TDN", "TDN");
             driver.ProjInfoGens("Building.Project.TCTNo", "TCT");
-            driver.selectDropdown("Building.Project.ScopeofWork", "New Construction");
+            driver.selectDropdown(wait, "Building.Project.ScopeofWork", "New Construction");
             driver.selectElement("Building.Project.EstimatedCost", "30000000");
             driver.selectElement("Building.Project.FloorArea", "30");
             driver.selectElement("Building.Project.UnitsPerFloor", "2");
@@ -87,15 +87,18 @@ namespace SeleniumTests.Pages
             driver.selectElement("Building.Project.TotalUnits", "1");
 
             // Start Building Location
-            driver.selectDropdown("Building.Project.ConstructionProgressDescription", "Started");
+            driver.selectDropdown(wait, "Building.Project.ConstructionProgressDescription", "To Start");
             driver.selectElement("Building.Project.ConstructionDate", "06152025");
             driver.selectElement("Building.Project.CompletionDate", "11272026");
             driver.addressGens("Building.Project.Address.HouseNo");
             driver.addressGens("Building.Project.Address.LotNo");
             driver.addressGens("Building.Project.Address.BlockNo");
             driver.addressGens("Building.Project.Address.PhaseNo");
-            driver.selectDropdown("Building.Project.Address.SubdivisionName", "ADDAS 2A");
-            driver.selectDropdown("Building.Project.Address.CompoundComplexID", "Compound");
+            // driver.selectDropdown("Building.Project.Address.SubdivisionName", "LOTE");
+            driver.ClickElement(wait, "//*[@id='formProjectInfo']/div/div/div/div[2]/div[5]/div[1]/div[3]/div/div[2]/button");
+            wait.Until(d => d.FindElement(By.XPath("//*[@id='formProjectInfo']/div/div/div/div[2]/div[5]/div[1]/div[3]/div/div[2]/div")).Displayed);
+            driver.ClickElement(wait, "//*[@id='formProjectInfo']/div/div/div/div[2]/div[5]/div[1]/div[3]/div/div[2]/div/div[2]/ul/li[10]");
+            driver.selectDropdown(wait, "Building.Project.Address.CompoundComplexID", "Compound");
 
             driver.ClickElement(wait, "//*[@id='formProjectInfo']/div/div/div/div[2]/div[5]/div[2]/div[1]/div/div[2]/button");
             wait.Until(d => d.FindElement(By.XPath("//*[@id='formProjectInfo']/div/div/div/div[2]/div[5]/div[2]/div[1]/div/div[2]/div")).Displayed);

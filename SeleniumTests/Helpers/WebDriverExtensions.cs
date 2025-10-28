@@ -21,7 +21,7 @@ namespace SeleniumTests.Helpers
             driver.Navigate().GoToUrl(UrlString);
         }
 
-        public static void selectDropdown(this IWebDriver driver, string titleName, string valueSelect)
+        public static void selectDropdown(this IWebDriver driver, WebDriverWait wait, string titleName, string valueSelect)
         {
             if (titleName != "cmbApplicationKind")
             {
@@ -31,8 +31,9 @@ namespace SeleniumTests.Helpers
             }
             else
             {
+                wait.Until(ExpectedConditions.ElementIsVisible(By.Id(titleName)));
                 var dropdown = new SelectElement(driver.FindElement(By.Id(titleName)));
-                dropdown.SelectByText(valueSelect);
+                dropdown.SelectByText(valueSelect.Trim());
                 return;
             }
         }

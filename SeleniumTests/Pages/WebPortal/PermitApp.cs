@@ -36,7 +36,7 @@ namespace SeleniumTests
             driver.FindElement(By.XPath(appLocation)).Click();
             wait.waitElementDisappear(driver);
 
-            driver.selectDropdown("cmbApplicationKind", "Complex");
+            driver.selectDropdown(wait, "cmbApplicationKind", "Complex");
             driver.ClickElement(wait, "//*[@id='btnVerifySelectedApplication']");
 
             wait.Until(d => d.FindElement(By.XPath("//*[@id='ModalMessage']")).Displayed);

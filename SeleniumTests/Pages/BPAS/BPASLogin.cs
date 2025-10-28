@@ -45,7 +45,7 @@ namespace SeleniumTests
             var appLocation = String.Concat("//*[contains(text(), '", appNumber, "')]");
             driver.goToURL("http://192.168.20.71:1027/PermitEvaluation/PermitEvaluationGeodetic");
             wait.UntilLoadingDisappears(driver);
-            wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath(appLocation))).Click();
+            driver.ClickElement(wait, appLocation);
             wait.UntilLoadingDisappears(driver);
             driver.ClickElement(wait, "//*[@id='frmComplianceGeodetic']/div[1]/div[3]/div/label");
             driver.ClickElement(wait, "//*[@id='frmComplianceGeodetic']/div[2]/div[3]/div/label");
@@ -115,7 +115,7 @@ namespace SeleniumTests
             //Max Height of Building
             driver.ClickElement(wait, "/html/body/div[116]/div/section/div/div/div[2]/div/div[2]/div/div/div[2]/form/div[2]/div/div/div[4]/div/div[1]/div/h3/label");
             wait.Until(d => d.FindElement(By.XPath("//*[@id='collapse4']")).Displayed);
-            driver.selectDropdown("TypeOfBuildingStructureID", "Residential(R-1) Basic");
+            driver.selectDropdown(wait, "TypeOfBuildingStructureID", "Residential(R-1) Basic");
             driver.EvalGens("MHoBBHL");
             // driver.EvalGens("TowerHeight"); for not duplicating the table
             driver.ClickElement(wait, "//*[@id='btnSaveBldgEvalMHoB']");
@@ -233,7 +233,7 @@ namespace SeleniumTests
             driver.ClickElement(wait, "/html/body/div[116]/div/section/div/div/div/div[2]/div/div[2]/div/div/div[2]/div[2]/div/form/div/div[3]/div/div[1]/div/h3/label");
             wait.Until(d => d.FindElement(By.XPath("//*[@id='collapse3']")).Displayed);
             driver.EvalGens("CapacitorVoltage");
-            driver.selectDropdown("CapacitorEnclosure", "Vault");
+            driver.selectDropdown(wait, "CapacitorEnclosure", "Vault");
             driver.EvalGens("CapacitorFlammable");
             driver.ClickElement(wait, "//*[@id='btnCapacitor']");
             wait.Until(d => d.FindElement(By.XPath("//*[@id='modalbtnSaveB']")).Displayed);
@@ -306,7 +306,7 @@ namespace SeleniumTests
 
             driver.ClickElement(wait, "/html/body/div[116]/div/section/div/div/div/div[2]/div/div[2]/div/div/div[2]/div[2]/div/form/div/div[10]/div/div[1]/div/h3/label");
             wait.Until(d => d.FindElement(By.XPath("//*[@id='collapse10']")).Displayed);
-            driver.selectDropdown("EnclosureID", "Vault");
+            driver.selectDropdown(wait, "EnclosureID", "Vault");
             driver.ClickElement(wait, "//*[@id='btnServEquip']");
             wait.Until(d => d.FindElement(By.XPath("//*[@id='modalbtnSaveB']")).Displayed);
             driver.ClickElement(wait, "//*[@id='closemdal']");
@@ -571,7 +571,7 @@ namespace SeleniumTests
             driver.ClickElement(wait, "/html/body/div[116]/div/section/div/div/div[2]/div/div[2]/div/div[1]/div[2]/form/div/div/div/div[9]/div/div[1]/div/h3/label");
             wait.Until(d => d.FindElement(By.XPath("//*[@id='collapse9']")).Displayed);
             driver.EvalGens("PipeQty");
-            driver.selectDropdown("PipeSizeID", "Large");
+            driver.selectDropdown(wait, "PipeSizeID", "Large");
             driver.EvalGens("PipeMeasure");
             driver.ClickElement(wait, "//*[@id='btnSavePipings']");
             wait.Until(d => d.FindElement(By.XPath("//*[@id='modalbtnSaveB']")).Displayed);
@@ -663,7 +663,7 @@ namespace SeleniumTests
             //NPC
             driver.ClickElement(wait, "/html/body/div[116]/div/section/div/div/div/div[2]/div/div[2]/div/div/div[2]/div[2]/div/form/div/div[5]/div/div[1]/div/h3/label");
             wait.Until(d => d.FindElement(By.XPath("//*[@id='collapse5']")).Displayed);
-            driver.selectDropdown("CategoryID", "AA");
+            driver.selectDropdown(wait, "CategoryID", "AA");
             driver.ClickElement(wait, "//*[@id='btnSaveNoisePollution']");
             wait.Until(d => d.FindElement(By.XPath("//*[@id='modalbtnSaveB']")).Displayed);
             driver.ClickElement(wait, "//*[@id='closemdal']");
@@ -720,6 +720,34 @@ namespace SeleniumTests
             driver.ClickElement(wait, "/html/body/div[116]/div/section/div/div/div[2]/div/div[2]/div/div/div[2]/form/div[2]/div/div/div[3]/div/div[1]/div/h3/a[1]/label");
 
             driver.ClickElement(wait, "//*[@id='btnSaveBldgEvalPlumbing']");
+        }
+
+        public void ElectronicsTest(string appNumber)
+        {
+            driver.goToURL("http://192.168.20.71:1027/PermitEvaluation/PermitEvaluationElectronics");
+            wait.UntilLoadingDisappears(driver);
+            var appLocation = String.Concat("//*[contains(text(), '", appNumber, "')]");
+            wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath(appLocation))).Click();
+            wait.UntilLoadingDisappears(driver);
+
+            // driver.ClickElement(wait, "//*[@id='collapse1']/div/div[2]/div/div[1]/div[1]/a/label");
+            // driver.ClickElement(wait, "//*[@id='collapse1']/div/div[2]/div/div[2]/div[1]/a/label");
+            // driver.ClickElement(wait, "//*[@id='collapse1']/div/div[2]/div/div[3]/div[1]/a/label");
+            // driver.ClickElement(wait, "//*[@id='collapse1']/div/div[2]/div/div[4]/div[1]/a/label");
+            // driver.ClickElement(wait, "//*[@id='collapse1']/div/div[2]/div/div[1]/div[3]/a/label");
+            // driver.ClickElement(wait, "//*[@id='collapse1']/div/div[2]/div/div[2]/div[3]/a/label");
+            // driver.ClickElement(wait, "//*[@id='btnSaveCompleteness']");
+            // wait.Until(d => d.FindElement(By.XPath("//*[@id='modalbtnSaveB']")).Displayed);
+            // driver.ClickElement(wait, "//*[@id='closemdal']");
+            // driver.ClickElement(wait, "//*[@id='card_one']/div[1]/div/h3/a[1]/label");
+
+            //Installations
+            // driver.EvalGens("");
+            driver.ClickElement(wait, "//*[@id='`btnSaveAll']");
+            driver.EvalGens("Capacity");
+            driver.ClickElement(wait, "//*[@id='btnAddInsElectronics']");
+            driver.ClickElement(wait, "//*[@id='closemdal']");
+
         }
     }
 }

@@ -42,11 +42,9 @@ namespace SeleniumTests
             driver.ClickElement(wait, "/html/body/div[13]/div[1]/a/span");
 
             wait.Until(d => d.FindElement(By.XPath("//*[@id='gbox_grdMailbox_Procurement']")).Displayed);
-            driver.ClickElement(wait, selColRecord);
             driver.ClickElement(wait, chkBox);
-            wait.Until(d => d.FindElement(By.Name("ctl00$MainContent$ctlDocMgr_OperatorsAdvice1$ddl_JumpTo_Steps")).Displayed);
-            // driver.selectDropdown("ctl00$MainContent$ctlDocMgr_OperatorsAdvice1$ddl_JumpTo_Steps", "257");
-            driver.selectDropdown("ctl00$MainContent$ctlDocMgr_OperatorsAdvice1$ddl_JumpTo_Steps", "Step 4 : PROCESS APPLICATION (TECHNICAL EVALUATION)");
+            driver.ClickElement(wait, selColRecord);
+            driver.selectDropdown(wait, "ctl00$MainContent$ctlDocMgr_OperatorsAdvice1$ddl_JumpTo_Steps", "Step 4 : PROCESS APPLICATION (TECHNICAL EVALUATION)");
             driver.ClickElement(wait, "//*[@id='btnJump']");
             IAlert alertJump = driver.SwitchTo().Alert();
             alertJump.Accept();
@@ -81,7 +79,7 @@ namespace SeleniumTests
             driver.ClickElement(wait, chkBox);
             wait.Until(d => d.FindElement(By.Name("ctl00$MainContent$ctlDocMgr_OperatorsAdvice1$ddl_JumpTo_Steps")).Displayed);
             // driver.selectDropdown("ctl00$MainContent$ctlDocMgr_OperatorsAdvice1$ddl_JumpTo_Steps", "257");
-            driver.selectDropdown("ctl00$MainContent$ctlDocMgr_OperatorsAdvice1$ddl_JumpTo_Steps", "Step 8 : BILLING (ISSUANCE OF ORDER OF PAYMENT)");
+            driver.selectDropdown(wait, "ctl00$MainContent$ctlDocMgr_OperatorsAdvice1$ddl_JumpTo_Steps", "Step 8 : BILLING (ISSUANCE OF ORDER OF PAYMENT)");
             driver.ClickElement(wait, "//*[@id='btnJump']");
             IAlert alertJump = driver.SwitchTo().Alert();
             alertJump.Accept();
