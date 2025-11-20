@@ -18,8 +18,8 @@ namespace SeleniumTests.Pages
         }
 
         public void LoginTest(string url, string Username, string cNum)
-        {   
-            driver.goToURL("http://192.168.20.71:1021/BuildingPermit/Application#");
+        {
+            driver.goToURL(url);
 
             //Initialize variables Selecting elements 
             driver.selectElement("Prefix", "BLG");

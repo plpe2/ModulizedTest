@@ -5,7 +5,6 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
-using SeleniumExtras.WaitHelpers;
 using SeleniumTests.Helpers;
 using SeleniumTests.Pages;
 using System.Net.Http;
@@ -26,8 +25,9 @@ namespace SeleniumTests
         {
             var options = new ChromeOptions();
             // options.AddArgument("--headless=new");
-            options.AddArguments(["--start-maximized", "--ignore-certificate-errors", "--incognito"]);
+            // options.AddArguments(["--start-maximized", "--ignore-certificate-errors", "--incognito", "--no-sandbox", "--disable-gpu"]);
             driver = new ChromeDriver(options);
+
         }
 
         [TestMethod]
@@ -55,33 +55,33 @@ namespace SeleniumTests
         public void RegisterTest()
         {
             var Register = new Register(driver, wait);
-            Register.RegisterTest("http://192.168.20.71:1024", "justin", "delmar", "Male", "Individual");
+            Register.RegisterTest("http://192.168.20.71:1024", "julius", "habanero", "Male", "Individual");
         }
 
         [TestMethod]
         [TestCategory("OnlineApplication")]
-        [Ignore]
+        // [Ignore]
         public void OnlineAppTesting()
         {
             var UserLog = new Login(driver, wait);
             var UserAppInfo = new AppProjInfo(driver, wait);
             var ProfDoc = new ProfDocInfo(driver, wait);
             var Submit = new SubmitApp(driver, wait);
-            UserLog.LoginTest("http://192.168.20.71:1024/Account/Login?statusCode=0", "jdelmar", "0000020");
-            UserAppInfo.FillUserAppInfo("NBTR", false, "Create"); //Pending for Testing
+            UserLog.LoginTest("http://192.168.20.71:1021/BuildingPermit/Application#", "jsantos", "0000004");
+            UserAppInfo.FillUserAppInfo("QRSA", true, "Create"); //sPending for Testing
             ProfDoc.ProfDocTest();
             Submit.SubmitTest();
         }
 
         [TestMethod]
         [TestCategory("WebPortal")]
-        [Ignore]
+        // [Ignore]
         public void WebPortalTesting()
         {
             var WebPLogin = new WebPLogin(driver, wait);
             var PermitApp = new PermitApp(driver, wait);
             WebPLogin.WebPLoginTesting("http://192.168.20.71:1025/");
-            PermitApp.ReceiveApp("NBP2510-00009");
+            PermitApp.ReceiveApp("NBP2511-00003");
         }
 
         [TestMethod]
@@ -90,8 +90,8 @@ namespace SeleniumTests
         public void PTRAXTesting()
         {
             var PTRAXTest = new PTRAXTest(driver, wait);
-            PTRAXTest.AppReceiving("NBP2510-00009");
-            // PTRAXTest.AppEval("NBP2510-00005");
+            PTRAXTest.AppReceiving("NBP2511-00007");
+            // PTRAXTest.AppEval("NBP2511-00003");
             // PTRAXTest.BillingEval();
         }
 
@@ -102,14 +102,27 @@ namespace SeleniumTests
         {
             var BPASLogin = new BPASLogin(driver, wait);
             BPASLogin.BPASLoginTest();
-            // BPASLogin.GeodeticTest("NBP2510-00009");
-            // BPASLogin.ArchiTest("NBP2510-00009");
-            // BPASLogin.ElectricalTest("NBP2510-00009");
-            // BPASLogin.StrucuralTest("NBP2510-00009");
-            // BPASLogin.MEchanicalTest("NBP2510-00016");
-            // BPASLogin.SanitaryTest("NBP2510-00016");
-            // BPASLogin.PlumbingTest("NBP2510-00016");
-            // BPASLogin.ElectronicsTest("NBP2510-00008");
+            BPASLogin.GeodeticTest("NBP2511-00002");
+            BPASLogin.ArchiTest("NBP2511-00002");
+            BPASLogin.ElectricalTest("NBP2511-00002");
+            BPASLogin.StrucuralTest("NBP2511-00002");
+            // BPASLogin.MEchanicalTest("NBP2511-00002");
+            // BPASLogin.SanitaryTest("NBP2511-00002");
+            // BPASLogin.PlumbingTest("NBP2511-00006");
+            // BPASLogin.ElectronicsTest("NBP2511-00006");
+        }
+
+        [TestMethod]
+        [TestCategory("Professional")]
+        [Ignore]
+        public void ProfTest()
+        {
+            var proffunc = new AddProf(driver, wait);
+            var UserLog = new Login(driver, wait);
+            var UserAppInfo = new AppProjInfo(driver, wait);
+            UserLog.LoginTest("http://192.168.20.71:1021/BuildingPermit/Application#", "mcruz", "0000003");
+            UserAppInfo.FillUserAppInfo("NBRK", false, "Existing");
+            proffunc.CreateProf();
         }
 
         [TestCleanup]
