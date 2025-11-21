@@ -34,7 +34,7 @@ namespace SeleniumTests
             driver.selectDropdown(wait, "Designationmodal", "Plans and Specification");
             driver.FindElement(By.XPath("//*[@id='btnSaveExistingProf']")).Click();
             wait.UntilLoadingDisappears(driver);
-            driver.FindElement(By.XPath("/html/body/div[1]/div[2]/div/ul/li[4]/a")).Click();
+            driver.FindElement(By.XPath("/html/body/div[1]/div[2]/div/ul/li[3]/a")).Click();
 
             wait.UntilLoadingDisappears(driver);
 
@@ -50,7 +50,7 @@ namespace SeleniumTests
             ((IJavaScriptExecutor)driver).ExecuteScript("arguments[0].scrollIntoView(true);", disclaimerLabel);
             disclaimerLabel.Click();
 
-            driver.FindElement(By.XPath("/html/body/div[1]/div[2]/div/ul/li[4]/a")).Click();
+            driver.FindElement(By.XPath("/html/body/div[1]/div[2]/div/ul/li[3]/a")).Click();
         }
     }
 }

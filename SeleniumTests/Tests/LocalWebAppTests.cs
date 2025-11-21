@@ -30,6 +30,7 @@ namespace SeleniumTests
             driver = new ChromeDriver(options);
         }
 
+
         [TestMethod]
         [Ignore]
         public async Task apiCall()
@@ -55,20 +56,20 @@ namespace SeleniumTests
         public void RegisterTest()
         {
             var Register = new Register(driver, wait);
-            Register.RegisterTest("http://192.168.20.71:1024", "justin", "delmar", "Male", "Individual");
+            Register.RegisterTest("http://192.168.20.71:1024", "martin", "uy", "Male", "Individual");
         }
 
         [TestMethod]
         [TestCategory("OnlineApplication")]
-        [Ignore]
+        // [Ignore]
         public void OnlineAppTesting()
         {
             var UserLog = new Login(driver, wait);
             var UserAppInfo = new AppProjInfo(driver, wait);
             var ProfDoc = new ProfDocInfo(driver, wait);
             var Submit = new SubmitApp(driver, wait);
-            UserLog.LoginTest("http://192.168.20.71:1024/Account/Login?statusCode=0", "jdelmar", "0000020");
-            UserAppInfo.FillUserAppInfo("NBTR", false, "Create"); //Pending for Testing
+            UserLog.LoginTest("http://192.168.20.71:1024/Account/Login?statusCode=0", "muy", "0000008");
+            UserAppInfo.FillUserAppInfo("JTC", false, "Existing"); //Pending for Testing
             ProfDoc.ProfDocTest();
             Submit.SubmitTest();
         }
@@ -81,7 +82,7 @@ namespace SeleniumTests
             var WebPLogin = new WebPLogin(driver, wait);
             var PermitApp = new PermitApp(driver, wait);
             WebPLogin.WebPLoginTesting("http://192.168.20.71:1025/");
-            PermitApp.ReceiveApp("NBP2510-00009");
+            PermitApp.ReceiveApp("NBP2511-00004");
         }
 
         [TestMethod]
@@ -90,7 +91,7 @@ namespace SeleniumTests
         public void PTRAXTesting()
         {
             var PTRAXTest = new PTRAXTest(driver, wait);
-            PTRAXTest.AppReceiving("NBP2510-00009");
+            PTRAXTest.AppReceiving("NBP2511-00004");
             // PTRAXTest.AppEval("NBP2510-00005");
             // PTRAXTest.BillingEval();
         }
@@ -102,20 +103,20 @@ namespace SeleniumTests
         {
             var BPASLogin = new BPASLogin(driver, wait);
             BPASLogin.BPASLoginTest();
-            // BPASLogin.GeodeticTest("NBP2510-00009");
-            // BPASLogin.ArchiTest("NBP2510-00009");
-            // BPASLogin.ElectricalTest("NBP2510-00009");
-            // BPASLogin.StrucuralTest("NBP2510-00009");
+            BPASLogin.GeodeticTest("NBP2511-00004");
+            BPASLogin.ArchiTest("NBP2511-00004");
+            BPASLogin.ElectricalTest("NBP2511-00004");
+            BPASLogin.StrucuralTest("NBP2511-00004");
             // BPASLogin.MEchanicalTest("NBP2510-00016");
-            // BPASLogin.SanitaryTest("NBP2510-00016");
+            BPASLogin.SanitaryTest("NBP2511-00004");
             // BPASLogin.PlumbingTest("NBP2510-00016");
-            // BPASLogin.ElectronicsTest("NBP2510-00008");
+            // BPASLogin.ElectronicsTest("NBP2511-00004");
         }
 
-        [TestCleanup]
-        public void Teardown()
-        {
-            driver?.Quit();
-        }
+        // [TestCleanup]
+        // public void Teardown()
+        // {
+        //     driver?.Quit();
+        // }
     }
 }

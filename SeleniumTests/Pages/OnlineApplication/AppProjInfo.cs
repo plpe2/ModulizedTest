@@ -60,7 +60,7 @@ namespace SeleniumTests.Pages
             wait.Until(d => d.FindElement(By.XPath("/html/body/div[3]")).Displayed);
             driver.ClickElement(wait, "/html/body/div[3]/div/div[6]/button[1]");
             //Next Button
-            driver.FindElement(By.XPath("/html/body/div[1]/div[2]/div/ul/li[4]/a")).Click();
+            driver.ClickElement(wait, "/html/body/div[1]/div[2]/div/ul/li[3]/a");
 
             wait.Until(d => d.FindElement(By.XPath("//*[@id='tab2']")).Displayed);
             wait.UntilLoadingDisappears(driver);
@@ -68,7 +68,7 @@ namespace SeleniumTests.Pages
             //Building Information
             //Building Description
             driver.ProjInfoGens("Building.Project.PIN", "LPIN");
-            wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath("//*[@id='formProjectInfo']/div/div/div/div[2]/div[3]/div[1]/div[1]/div[1]/div/div[2]/button"))).Click();
+            driver.ClickElement(wait, "//*[@id='formProjectInfo']/div/div/div/div[2]/div[3]/div[1]/div[1]/div[1]/div/div[2]/button");
 
             wait.Until(d => d.FindElement(By.XPath("//*[@id='formProjectInfo']/div/div/div/div[2]/div[3]/div[1]/div[1]/div[1]/div/div[2]/div")));
             driver.FindElement(By.XPath("//*[@id='formProjectInfo']/div/div/div/div[2]/div[3]/div[1]/div[1]/div[1]/div/div[2]/div/div[2]/ul/li[2]/a")).Click();
@@ -96,20 +96,21 @@ namespace SeleniumTests.Pages
             driver.addressGens("Building.Project.Address.PhaseNo");
             // driver.selectDropdown("Building.Project.Address.SubdivisionName", "LOTE");
             driver.ClickElement(wait, "//*[@id='formProjectInfo']/div/div/div/div[2]/div[5]/div[1]/div[3]/div/div[2]/button");
-            wait.Until(d => d.FindElement(By.XPath("//*[@id='formProjectInfo']/div/div/div/div[2]/div[5]/div[1]/div[3]/div/div[2]/div")).Displayed);
-            driver.ClickElement(wait, "//*[@id='formProjectInfo']/div/div/div/div[2]/div[5]/div[1]/div[3]/div/div[2]/div/div[2]/ul/li[10]");
+            driver.selectDropdown(wait, "Building.Project.Address.BarangayName", "ALIMA");
+            // wait.Until(d => d.FindElement(By.XPath("//*[@id='formProjectInfo']/div/div/div/div[2]/div[5]/div[1]/div[3]/div/div[2]/div")).Displayed);
+            driver.selectDropdown(wait, "Building.Project.Address.BarangayName", "LIGAS I");
             driver.selectDropdown(wait, "Building.Project.Address.CompoundComplexID", "Compound");
 
-            driver.ClickElement(wait, "//*[@id='formProjectInfo']/div/div/div/div[2]/div[5]/div[2]/div[1]/div/div[2]/button");
-            wait.Until(d => d.FindElement(By.XPath("//*[@id='formProjectInfo']/div/div/div/div[2]/div[5]/div[2]/div[1]/div/div[2]/div")).Displayed);
-            driver.ClickElement(wait, "//*[@id='formProjectInfo']/div/div/div/div[2]/div[5]/div[2]/div[1]/div/div[2]/div/div[2]/ul/li[7]/a");
+            // driver.ClickElement(wait, "//*[@id='formProjectInfo']/div/div/div/div[2]/div[5]/div[2]/div[1]/div/div[2]/button");
+            // wait.Until(d => d.FindElement(By.XPath("//*[@id='formProjectInfo']/div/div/div/div[2]/div[5]/div[2]/div[1]/div/div[2]/div")).Displayed);
+            // driver.ClickElement(wait, "//*[@id='formProjectInfo']/div/div/div/div[2]/div[5]/div[2]/div[1]/div/div[2]/div/div[2]/ul/li[7]/a");
 
             saveBtn.Click();
 
             wait.Until(d => d.FindElement(By.XPath("/html/body/div[3]")).Displayed);
             driver.FindElement(By.XPath("/html/body/div[3]/div/div[6]/button[1]")).Click();
 
-            driver.FindElement(By.XPath("/html/body/div[1]/div[2]/div/ul/li[4]/a")).Click();
+            driver.FindElement(By.XPath("/html/body/div[1]/div[2]/div/ul/li[3]/a")).Click();
         }
     }
 }
