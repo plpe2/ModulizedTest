@@ -64,7 +64,7 @@ namespace SeleniumTests
             driver.goToURL("http://192.168.20.71:1027/PermitEvaluation/PermitEvaluationArchitectural");
             wait.UntilLoadingDisappears(driver);
             var appLocation = String.Concat("//*[contains(text(), '", appNumber, "')]");
-            wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath(appLocation))).Click();
+            driver.ClickElement(wait, appLocation);
             wait.UntilLoadingDisappears(driver);
 
             //Fire Zones and Fire Resistivity
@@ -207,7 +207,7 @@ namespace SeleniumTests
             driver.goToURL("http://192.168.20.71:1027/PermitEvaluation/PermitEvaluationElectrical");
             wait.UntilLoadingDisappears(driver);
             var appLocation = String.Concat("//*[contains(text(), '", appNumber, "')]");
-            wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath(appLocation))).Click();
+            driver.ClickElement(wait, appLocation);
             wait.UntilLoadingDisappears(driver);
 
             driver.EvalGens("AttachmentPole");
@@ -337,7 +337,7 @@ namespace SeleniumTests
             driver.goToURL("http://192.168.20.71:1027/PermitEvaluation/PermitEvaluationStructural");
             wait.UntilLoadingDisappears(driver);
             var appLocation = String.Concat("//*[contains(text(), '", appNumber, "')]");
-            wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath(appLocation))).Click();
+            driver.ClickElement(wait, appLocation);
             wait.UntilLoadingDisappears(driver);
 
             //GDCR
@@ -451,7 +451,7 @@ namespace SeleniumTests
 
             wait.UntilLoadingDisappears(driver);
             var appLocation = String.Concat("//*[contains(text(), '", appNumber, "')]");
-            wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath(appLocation))).Click();
+            driver.ClickElement(wait, appLocation);
             wait.UntilLoadingDisappears(driver);
 
             driver.ClickElement(wait, "//*[@id='collapse1']/div/div[2]/div/div[1]/div[1]/label");
@@ -606,7 +606,7 @@ namespace SeleniumTests
             driver.goToURL("http://192.168.20.71:1027/PermitEvaluation/PermitEvaluationSanitary");
             wait.UntilLoadingDisappears(driver);
             var appLocation = String.Concat("//*[contains(text(), '", appNumber, "')]");
-            wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath(appLocation))).Click();
+            driver.ClickElement(wait, appLocation);
             wait.UntilLoadingDisappears(driver);
 
             driver.selectElement("DSDrainagePipeMaterialExcretaDS", "pvc");
@@ -730,20 +730,20 @@ namespace SeleniumTests
             wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath(appLocation))).Click();
             wait.UntilLoadingDisappears(driver);
 
-            // driver.ClickElement(wait, "//*[@id='collapse1']/div/div[2]/div/div[1]/div[1]/a/label");
-            // driver.ClickElement(wait, "//*[@id='collapse1']/div/div[2]/div/div[2]/div[1]/a/label");
-            // driver.ClickElement(wait, "//*[@id='collapse1']/div/div[2]/div/div[3]/div[1]/a/label");
-            // driver.ClickElement(wait, "//*[@id='collapse1']/div/div[2]/div/div[4]/div[1]/a/label");
-            // driver.ClickElement(wait, "//*[@id='collapse1']/div/div[2]/div/div[1]/div[3]/a/label");
-            // driver.ClickElement(wait, "//*[@id='collapse1']/div/div[2]/div/div[2]/div[3]/a/label");
-            // driver.ClickElement(wait, "//*[@id='btnSaveCompleteness']");
-            // wait.Until(d => d.FindElement(By.XPath("//*[@id='modalbtnSaveB']")).Displayed);
-            // driver.ClickElement(wait, "//*[@id='closemdal']");
-            // driver.ClickElement(wait, "//*[@id='card_one']/div[1]/div/h3/a[1]/label");
+            driver.ClickElement(wait, "//*[@id='collapse1']/div/div[2]/div/div[1]/div[1]/a/label");
+            driver.ClickElement(wait, "//*[@id='collapse1']/div/div[2]/div/div[2]/div[1]/a/label");
+            driver.ClickElement(wait, "//*[@id='collapse1']/div/div[2]/div/div[3]/div[1]/a/label");
+            driver.ClickElement(wait, "//*[@id='collapse1']/div/div[2]/div/div[4]/div[1]/a/label");
+            driver.ClickElement(wait, "//*[@id='collapse1']/div/div[2]/div/div[1]/div[3]/a/label");
+            driver.ClickElement(wait, "//*[@id='collapse1']/div/div[2]/div/div[2]/div[3]/a/label");
+            driver.ClickElement(wait, "//*[@id='btnSaveCompleteness']");
+            wait.Until(d => d.FindElement(By.XPath("//*[@id='modalbtnSaveB']")).Displayed);
+            driver.ClickElement(wait, "//*[@id='closemdal']");
+            driver.ClickElement(wait, "//*[@id='card_one']/div[1]/div/h3/a[1]/label");
 
             //Installations
             // driver.EvalGens("");
-            driver.ClickElement(wait, "//*[@id='`btnSaveAll']");
+            driver.ClickElement(wait, "//*[@id='btnSaveAll']");
             driver.EvalGens("Capacity");
             driver.ClickElement(wait, "//*[@id='btnAddInsElectronics']");
             driver.ClickElement(wait, "//*[@id='closemdal']");

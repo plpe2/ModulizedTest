@@ -38,6 +38,14 @@ namespace SeleniumTests.Helpers
             }
         }
 
+        public static void refactoredSelect(this IWebDriver driver, WebDriverWait wait, By locator, string selectedValue)
+        {
+            wait.Until(ExpectedConditions.ElementToBeSelected(locator));
+            var dropdown = new SelectElement(driver.FindElement(locator));
+            dropdown.SelectByText(selectedValue.Trim());
+            return;
+        }
+
         public static void UntilLoadingDisappears(this WebDriverWait wait, IWebDriver driver)
         {
             wait.Until(d =>

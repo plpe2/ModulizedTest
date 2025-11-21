@@ -5,7 +5,6 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
-using SeleniumExtras.WaitHelpers;
 using SeleniumTests.Helpers;
 using SeleniumTests.Pages;
 using System.Net.Http;
@@ -26,8 +25,9 @@ namespace SeleniumTests
         {
             var options = new ChromeOptions();
             // options.AddArgument("--headless=new");
-            options.AddArguments(["--start-maximized", "--ignore-certificate-errors", "--incognito"]);
+            // options.AddArguments(["--start-maximized", "--ignore-certificate-errors", "--incognito", "--no-sandbox", "--disable-gpu"]);
             driver = new ChromeDriver(options);
+
         }
 
 
@@ -76,7 +76,7 @@ namespace SeleniumTests
 
         [TestMethod]
         [TestCategory("WebPortal")]
-        [Ignore]
+        // [Ignore]
         public void WebPortalTesting()
         {
             var WebPLogin = new WebPLogin(driver, wait);
