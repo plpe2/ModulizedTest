@@ -25,9 +25,8 @@ namespace SeleniumTests
         {
             var options = new ChromeOptions();
             // options.AddArgument("--headless=new");
-            // options.AddArguments(["--start-maximized", "--ignore-certificate-errors", "--incognito", "--no-sandbox", "--disable-gpu"]);
+            options.AddArguments(["--start-maximized", "--ignore-certificate-errors", "--incognito", "--no-sandbox", "--disable-gpu"]);
             driver = new ChromeDriver(options);
-
         }
 
 
@@ -56,33 +55,33 @@ namespace SeleniumTests
         public void RegisterTest()
         {
             var Register = new Register(driver, wait);
-            Register.RegisterTest("http://192.168.20.71:1024", "martin", "uy", "Male", "Individual");
+            Register.RegisterTest("http://192.168.20.71:1024", "gerald", "frances", "Male", "Individual");
         }
 
         [TestMethod]
         [TestCategory("OnlineApplication")]
-        // [Ignore]
+        [Ignore]
         public void OnlineAppTesting()
         {
             var UserLog = new Login(driver, wait);
             var UserAppInfo = new AppProjInfo(driver, wait);
             var ProfDoc = new ProfDocInfo(driver, wait);
             var Submit = new SubmitApp(driver, wait);
-            UserLog.LoginTest("http://192.168.20.71:1024/Account/Login?statusCode=0", "muy", "0000008");
-            UserAppInfo.FillUserAppInfo("JTC", false, "Existing"); //Pending for Testing
+            UserLog.LoginTest("http://192.168.20.71:1024/Account/Login?statusCode=0", "gfrances", "0000028");
+            UserAppInfo.FillUserAppInfo("YTRN", true, "Create"); //Pending for Testing
             ProfDoc.ProfDocTest();
             Submit.SubmitTest();
         }
 
         [TestMethod]
         [TestCategory("WebPortal")]
-        // [Ignore]
+        [Ignore]
         public void WebPortalTesting()
         {
             var WebPLogin = new WebPLogin(driver, wait);
             var PermitApp = new PermitApp(driver, wait);
             WebPLogin.WebPLoginTesting("http://192.168.20.71:1025/");
-            PermitApp.ReceiveApp("NBP2511-00004");
+            PermitApp.ReceiveApp("NBP2512-00011");
         }
 
         [TestMethod]
@@ -91,32 +90,46 @@ namespace SeleniumTests
         public void PTRAXTesting()
         {
             var PTRAXTest = new PTRAXTest(driver, wait);
-            PTRAXTest.AppReceiving("NBP2511-00004");
-            // PTRAXTest.AppEval("NBP2510-00005");
+            PTRAXTest.AppReceiving("NBP2512-00011");
+            // PTRAXTest.AppEval("NBP2510-00010");
             // PTRAXTest.BillingEval();
         }
 
         [TestMethod]
         [TestCategory("BPAS")]
-        [Ignore]
+        // [Ignore]
         public void BPASTesting()
         {
             var BPASLogin = new BPASLogin(driver, wait);
             BPASLogin.BPASLoginTest();
-            BPASLogin.GeodeticTest("NBP2511-00004");
-            BPASLogin.ArchiTest("NBP2511-00004");
-            BPASLogin.ElectricalTest("NBP2511-00004");
-            BPASLogin.StrucuralTest("NBP2511-00004");
+            BPASLogin.GeodeticTest("NBP2512-00011");
+            BPASLogin.ArchiTest("NBP2512-00011");
+            BPASLogin.ElectricalTest("NBP2512-00011");
+            BPASLogin.StrucuralTest("NBP2512-00011");
             // BPASLogin.MEchanicalTest("NBP2510-00016");
-            BPASLogin.SanitaryTest("NBP2511-00004");
+            // BPASLogin.SanitaryTest("NBP2512-00011");
             // BPASLogin.PlumbingTest("NBP2510-00016");
-            // BPASLogin.ElectronicsTest("NBP2511-00004");
+            // BPASLogin.ElectronicsTest("NBP2512-00011");
         }
 
-        // [TestCleanup]
-        // public void Teardown()
-        // {
-        //     driver?.Quit();
-        // }
+        [TestMethod]
+        [TestCategory("Professional")]
+        [Ignore]
+        public void ProfessionalTesting()
+        {
+            var Professionalfunc = new AddProf(driver, wait);
+            var UserLog = new Login(driver, wait);
+            var UserAppInfo = new AppProjInfo(driver, wait);
+            UserLog.LoginTest("http://192.168.20.71:1024/Account/Login?statusCode=0", "ranton", "0000001");
+            Professionalfunc.CreateProf("KLMPS");
+        }
+
+
+        [TestCleanup]
+        [Ignore]
+        public void DriverQuit()
+        {
+            driver?.Quit();
+        }
     }
 }
