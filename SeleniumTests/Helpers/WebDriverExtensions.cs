@@ -40,9 +40,9 @@ namespace SeleniumTests.Helpers
 
         public static void refactoredSelect(this IWebDriver driver, WebDriverWait wait, By locator, string selectedValue)
         {
-            wait.Until(ExpectedConditions.ElementToBeSelected(locator));
-            var dropdown = new SelectElement(driver.FindElement(locator));
-            dropdown.SelectByText(selectedValue.Trim());
+            IWebElement sel_Element = driver.FindElement(locator);
+            var dropdown = new SelectElement(sel_Element);
+            dropdown.SelectByValue(selectedValue);
             return;
         }
 

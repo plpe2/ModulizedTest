@@ -10,6 +10,7 @@ using SeleniumTests.Pages;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Text.Json;
+using SeleniumTests.Pages.BPAS.Records;
 
 namespace SeleniumTests
 {
@@ -101,6 +102,8 @@ namespace SeleniumTests
         public void BPASTesting()
         {
             var BPASLogin = new BPASLogin(driver, wait);
+            var Records_module = new GenAccount(driver, wait);
+
             BPASLogin.BPASLoginTest();
             BPASLogin.GeodeticTest("NBP2512-00011");
             BPASLogin.ArchiTest("NBP2512-00011");
@@ -110,6 +113,8 @@ namespace SeleniumTests
             // BPASLogin.SanitaryTest("NBP2512-00011");
             // BPASLogin.PlumbingTest("NBP2510-00016");
             // BPASLogin.ElectronicsTest("NBP2512-00011");
+
+            // Records_module.MigrateAccount("NEW PACIFIC - SOFIA");
         }
 
         [TestMethod]
@@ -125,11 +130,10 @@ namespace SeleniumTests
         }
 
 
-        [TestCleanup]
-        [Ignore]
-        public void DriverQuit()
-        {
-            driver?.Quit();
-        }
+        // [TestCleanup]
+        // public void DriverQuit()
+        // {
+        //     driver?.Quit();
+        // }
     }
 }
