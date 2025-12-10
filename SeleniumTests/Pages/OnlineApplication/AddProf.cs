@@ -78,11 +78,11 @@ namespace SeleniumTests
             {
                 Console.WriteLine($"Running test for: {profs.Title}");
 
-                // driver.refactoredSelect(wait, By.Name("Person.Title"), profs.Title);
+                driver.refactoredSelect(wait, By.XPath("/html/body/div[1]/div[1]/div[17]/div/div/div[2]/form/div/div/div/div/div[1]/div[1]/select"), profs.Title);
                 driver.FindElement(By.XPath("//*[@id='divModalProf']/div/div/div[1]/div[2]/input[2]")).SendKeys(profs.Fname);
                 driver.FindElement(By.XPath("//*[@id='divModalProf']/div/div/div[1]/div[4]/input")).SendKeys(profs.Lname);
-                // driver.refactoredSelect(wait, By.Name("Person.Gender"), profs.Gender);
-                // driver.refactoredSelect(wait, By.Name("Discipline"), profs.Profession);
+                driver.refactoredSelect(wait, By.XPath("/html/body/div[1]/div[1]/div[17]/div/div/div[2]/form/div/div/div/div/div[2]/div[1]/select"), profs.Gender);
+                driver.refactoredSelect(wait, By.XPath("/html/body/div[1]/div[1]/div[17]/div/div/div[2]/form/div/div/div/div/div[2]/div[2]/select"), profs.Profession);
                 driver.FindElement(By.XPath("//*[@id='divModalProf']/div/div/div[2]/div[3]/div/div[2]/input")).SendKeys(profs.Mobile);
                 //PRC
                 driver.FindElement(By.XPath("//*[@id='divModalProf']/div/div/div[4]/div[1]/input")).SendKeys(profs.PRC);

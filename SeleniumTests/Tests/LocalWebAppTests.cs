@@ -56,7 +56,7 @@ namespace SeleniumTests
         public void RegisterTest()
         {
             var Register = new Register(driver, wait);
-            Register.RegisterTest("http://192.168.20.71:1024", "gerald", "frances", "Male", "Individual");
+            Register.RegisterTest("http://192.168.20.71:1024", "marvin", "reyes", "Male", "Individual");
         }
 
         [TestMethod]
@@ -68,8 +68,8 @@ namespace SeleniumTests
             var UserAppInfo = new AppProjInfo(driver, wait);
             var ProfDoc = new ProfDocInfo(driver, wait);
             var Submit = new SubmitApp(driver, wait);
-            UserLog.LoginTest("http://192.168.20.71:1024/Account/Login?statusCode=0", "gfrances", "0000028");
-            UserAppInfo.FillUserAppInfo("YTRN", true, "Create"); //Pending for Testing
+            UserLog.LoginTest("http://192.168.20.71:1024/Account/Login?statusCode=0", "mreyes", "0000016");
+            UserAppInfo.FillUserAppInfo("TRMBN", true, "Create"); //Pending for Testing
             ProfDoc.ProfDocTest();
             Submit.SubmitTest();
         }
@@ -82,7 +82,7 @@ namespace SeleniumTests
             var WebPLogin = new WebPLogin(driver, wait);
             var PermitApp = new PermitApp(driver, wait);
             WebPLogin.WebPLoginTesting("http://192.168.20.71:1025/");
-            PermitApp.ReceiveApp("NBP2512-00011");
+            PermitApp.ReceiveApp("NBP2512-00013");
         }
 
         [TestMethod]
@@ -91,8 +91,8 @@ namespace SeleniumTests
         public void PTRAXTesting()
         {
             var PTRAXTest = new PTRAXTest(driver, wait);
-            PTRAXTest.AppReceiving("NBP2512-00011");
-            // PTRAXTest.AppEval("NBP2510-00010");
+            PTRAXTest.AppReceiving("NBP2512-00013");
+            // PTRAXTest.AppEval("NBP2510-00013");
             // PTRAXTest.BillingEval();
         }
 
@@ -105,16 +105,16 @@ namespace SeleniumTests
             var Records_module = new GenAccount(driver, wait);
 
             BPASLogin.BPASLoginTest();
-            BPASLogin.GeodeticTest("NBP2512-00011");
-            BPASLogin.ArchiTest("NBP2512-00011");
-            BPASLogin.ElectricalTest("NBP2512-00011");
-            BPASLogin.StrucuralTest("NBP2512-00011");
+            BPASLogin.GeodeticTest("NBP2512-00013");
+            BPASLogin.ArchiTest("NBP2512-00013");
+            BPASLogin.ElectricalTest("NBP2512-00013");
+            BPASLogin.StrucuralTest("NBP2512-00013");
             // BPASLogin.MEchanicalTest("NBP2510-00016");
-            // BPASLogin.SanitaryTest("NBP2512-00011");
+            // BPASLogin.SanitaryTest("NBP2512-00013");
             // BPASLogin.PlumbingTest("NBP2510-00016");
-            // BPASLogin.ElectronicsTest("NBP2512-00011");
+            // BPASLogin.ElectronicsTest("NBP2512-00013");
 
-            // Records_module.MigrateAccount("NEW PACIFIC - SOFIA");
+            // Records_module.MigrateAccount("LOT 13, BLK. 6, PHASE 2, VILLA ARSENIA, MAMBOG III, DISTRICT 1, BACOOR CITY, CAVITE");
         }
 
         [TestMethod]
@@ -125,15 +125,15 @@ namespace SeleniumTests
             var Professionalfunc = new AddProf(driver, wait);
             var UserLog = new Login(driver, wait);
             var UserAppInfo = new AppProjInfo(driver, wait);
-            UserLog.LoginTest("http://192.168.20.71:1024/Account/Login?statusCode=0", "ranton", "0000001");
-            Professionalfunc.CreateProf("KLMPS");
+            UserLog.LoginTest("http://192.168.20.71:1024/Account/Login?statusCode=0", "dpotonia", "0000015");
+            Professionalfunc.CreateProf("SABALBORO");
         }
 
 
-        // [TestCleanup]
-        // public void DriverQuit()
-        // {
-        //     driver?.Quit();
-        // }
+        [TestCleanup]
+        public void DriverQuit()
+        {
+            driver?.Quit();
+        }
     }
 }

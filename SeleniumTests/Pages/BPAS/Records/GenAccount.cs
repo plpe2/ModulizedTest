@@ -21,10 +21,10 @@ namespace SeleniumTests.Pages.BPAS.Records
             var table_Record = String.Concat("//*/table[@id='tblEncodeEdit']/*/tr[1]/td[normalize-space(text()) = '", accName, "']");
 
             driver.goToURL("http://192.168.20.71:1027/Records/EncodeOrEditExistingBuilding");
-            driver.refactoredSelect(wait, By.XPath("/html/body/div[116]/div/section/div[1]/div[2]/div[1]/div[2]/select"), "2");
+            driver.refactoredSelect(wait, By.XPath("/html/body/div[116]/div/section/div[1]/div[2]/div[1]/div[2]/select"), "5");
+            wait.UntilLoadingDisappears(driver);
             driver.FindElement(By.Id("txtEvalKeyword")).SendKeys(accName);
             driver.ClickElement(wait, "/html/body/div[116]/div/section/div[1]/div[2]/div[1]/div[3]/div/div/span/button");
-            wait.UntilLoadingDisappears(driver);
             driver.ClickElement(wait, table_Record);
             driver.selectDropdown(wait, "RightOverLandID", "Owned");
             driver.selectDropdown(wait, "BldgTypeID", "Base");
