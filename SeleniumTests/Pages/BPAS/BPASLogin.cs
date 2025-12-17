@@ -45,6 +45,9 @@ namespace SeleniumTests
             var appLocation = String.Concat("//*[contains(text(), '", appNumber, "')]");
             driver.goToURL("http://192.168.20.71:1027/PermitEvaluation/PermitEvaluationGeodetic");
             wait.UntilLoadingDisappears(driver);
+            driver.FindElement(By.XPath("//*[@id='txtEvalKeyword']")).SendKeys(appNumber);
+            driver.ClickElement(wait, "//*[@id='btnSearchEvalRecord']");
+            wait.UntilLoadingDisappears(driver);
             driver.ClickElement(wait, appLocation);
             wait.UntilLoadingDisappears(driver);
             driver.ClickElement(wait, "//*[@id='frmComplianceGeodetic']/div[1]/div[3]/div/label");
@@ -61,9 +64,14 @@ namespace SeleniumTests
 
         public void ArchiTest(string appNumber)
         {
+            var appLocation = String.Concat("//*[contains(text(), '", appNumber, "')]");
+
             driver.goToURL("http://192.168.20.71:1027/PermitEvaluation/PermitEvaluationArchitectural");
             wait.UntilLoadingDisappears(driver);
-            var appLocation = String.Concat("//*[contains(text(), '", appNumber, "')]");
+            driver.FindElement(By.XPath("//*[@id='txtEvalKeyword']")).SendKeys(appNumber);
+            wait.UntilLoadingDisappears(driver);
+            driver.ClickElement(wait, "//*[@id='btnSearchEvalRecord']");
+            wait.UntilLoadingDisappears(driver);
             driver.ClickElement(wait, appLocation);
             wait.UntilLoadingDisappears(driver);
 
@@ -206,6 +214,10 @@ namespace SeleniumTests
         {
             driver.goToURL("http://192.168.20.71:1027/PermitEvaluation/PermitEvaluationElectrical");
             wait.UntilLoadingDisappears(driver);
+            driver.FindElement(By.XPath("//*[@id='txtEvalKeyword']")).SendKeys(appNumber);
+            wait.UntilLoadingDisappears(driver);
+            driver.ClickElement(wait, "//*[@id='btnSearchEvalRecord']");
+            wait.UntilLoadingDisappears(driver);
             var appLocation = String.Concat("//*[contains(text(), '", appNumber, "')]");
             driver.ClickElement(wait, appLocation);
             wait.UntilLoadingDisappears(driver);
@@ -334,9 +346,15 @@ namespace SeleniumTests
 
         public void StrucuralTest(string appNumber)
         {
+            var appLocation = String.Concat("//*[contains(text(), '", appNumber, "')]");
+
             driver.goToURL("http://192.168.20.71:1027/PermitEvaluation/PermitEvaluationStructural");
             wait.UntilLoadingDisappears(driver);
-            var appLocation = String.Concat("//*[contains(text(), '", appNumber, "')]");
+
+            driver.FindElement(By.XPath("//*[@id='txtEvalKeyword']")).SendKeys(appNumber);
+            wait.UntilLoadingDisappears(driver);
+            driver.ClickElement(wait, "//*[@id='btnSearchEvalRecord']");
+            wait.UntilLoadingDisappears(driver);
             driver.ClickElement(wait, appLocation);
             wait.UntilLoadingDisappears(driver);
 
@@ -449,7 +467,6 @@ namespace SeleniumTests
         {
             driver.goToURL("http://192.168.20.71:1027/PermitEvaluation/PermitEvaluationMechanical");
 
-            wait.UntilLoadingDisappears(driver);
             var appLocation = String.Concat("//*[contains(text(), '", appNumber, "')]");
             driver.ClickElement(wait, appLocation);
             wait.UntilLoadingDisappears(driver);
@@ -603,9 +620,10 @@ namespace SeleniumTests
 
         public void SanitaryTest(string appNumber)
         {
+            var appLocation = String.Concat("//*[contains(text(), '", appNumber, "')]");
+
             driver.goToURL("http://192.168.20.71:1027/PermitEvaluation/PermitEvaluationSanitary");
             wait.UntilLoadingDisappears(driver);
-            var appLocation = String.Concat("//*[contains(text(), '", appNumber, "')]");
             driver.ClickElement(wait, appLocation);
             wait.UntilLoadingDisappears(driver);
 
@@ -679,7 +697,11 @@ namespace SeleniumTests
         {
             driver.goToURL("http://192.168.20.71:1027/PermitEvaluation/PermitEvaluationPlumbing");
             wait.UntilLoadingDisappears(driver);
-            var appLocation = String.Concat("//*[contains(text(), '", appNumber, "')]");
+            var appLocation = String.Concat("//*/table[@id='dataTables-BuildingPermitEval']/*/tr[@class='odd']/td[contains(text(), '", appNumber, "')]");
+            driver.FindElement(By.XPath("//*[@id='txtEvalKeyword']")).SendKeys(appNumber);
+            wait.UntilLoadingDisappears(driver);
+            driver.ClickElement(wait, "//*[@id='btnSearchEvalRecord']");
+            wait.UntilLoadingDisappears(driver);
             wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath(appLocation))).Click();
             wait.UntilLoadingDisappears(driver);
 
@@ -726,7 +748,12 @@ namespace SeleniumTests
         {
             driver.goToURL("http://192.168.20.71:1027/PermitEvaluation/PermitEvaluationElectronics");
             wait.UntilLoadingDisappears(driver);
-            var appLocation = String.Concat("//*[contains(text(), '", appNumber, "')]");
+
+            driver.FindElement(By.XPath("//*[@id='txtEvalKeyword']")).SendKeys(appNumber);
+            wait.UntilLoadingDisappears(driver);
+            driver.ClickElement(wait, "//*[@id='btnSearchEvalRecord']");
+            wait.UntilLoadingDisappears(driver);
+            var appLocation = String.Concat("//*/table[@id='dataTables-BuildingPermitEval']/*/tr[@class='odd']/td[contains(text(), '", appNumber, "')]");
             wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath(appLocation))).Click();
             wait.UntilLoadingDisappears(driver);
 

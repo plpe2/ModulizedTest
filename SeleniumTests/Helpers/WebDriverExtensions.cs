@@ -2,6 +2,7 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using SeleniumExtras.WaitHelpers;
 using System;
+using System.Linq;
 using System.Threading;
 
 namespace SeleniumTests.Helpers
@@ -38,12 +39,16 @@ namespace SeleniumTests.Helpers
             }
         }
 
-        public static void refactoredSelect(this IWebDriver driver, WebDriverWait wait, By locator, string selectedValue)
+        public static void refactoredSelect(this IWebDriver driver, WebDriverWait wait, By locator, string value)
         {
-            IWebElement sel_Element = driver.FindElement(locator);
-            var dropdown = new SelectElement(sel_Element);
-            dropdown.SelectByValue(selectedValue);
-            return;
+            wait.Until(d =>
+            {
+                var select = new SelectElement(d.FindElement(locator));
+                return select.Options.Any(o => o.GetAttribute("value") == value);
+            });
+
+            var dropdown = new SelectElement(driver.FindElement(locator));
+            dropdown.SelectByValue(value);
         }
 
         public static void UntilLoadingDisappears(this WebDriverWait wait, IWebDriver driver)

@@ -41,7 +41,7 @@ namespace SeleniumTests
             wait.Until(d => d.FindElement(By.XPath("//*[@id='gbox_grdMailbox_Procurement']")).Displayed);
             driver.ClickElement(wait, chkBox);
             driver.ClickElement(wait, selColRecord);
-            driver.refactoredSelect(wait, By.XPath("//*[@id='MainContent_ctlDocMgr_OperatorsAdvice1_ddl_JumpTo_Steps']"), "Step 4 : PROCESS APPLICATION (TECHNICAL EVALUATION)");
+            driver.refactoredSelect(wait, By.XPath("//*[@id='MainContent_ctlDocMgr_OperatorsAdvice1_ddl_JumpTo_Steps']"), "542");
             driver.ClickElement(wait, "//*[@id='btnJump']");
             IAlert alertJump = driver.SwitchTo().Alert();
             alertJump.Accept();

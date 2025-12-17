@@ -68,7 +68,8 @@ namespace SeleniumTests.Pages
             //Building Information
             //Building Description
             driver.ProjInfoGens("Building.Project.PIN", "LPIN");
-            driver.ClickElement(wait, "//*[@id='formProjectInfo']/div/div/div/div[2]/div[3]/div[1]/div[1]/div[1]/div/div[2]/button");
+            wait.UntilLoadingDisappears(driver);
+            driver.ClickElement(wait, "/html/body/div[1]/div[1]/section/div/div/div[2]/div/div[2]/form/div/div/div/div[2]/div[3]/div[1]/div[1]/div[1]/div/div[2]/button");
 
             wait.Until(d => d.FindElement(By.XPath("//*[@id='formProjectInfo']/div/div/div/div[2]/div[3]/div[1]/div[1]/div[1]/div/div[2]/div")));
             driver.FindElement(By.XPath("//*[@id='formProjectInfo']/div/div/div/div[2]/div[3]/div[1]/div[1]/div[1]/div/div[2]/div/div[2]/ul/li[2]/a")).Click();
