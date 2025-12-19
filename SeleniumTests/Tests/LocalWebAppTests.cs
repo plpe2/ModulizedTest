@@ -56,7 +56,7 @@ namespace SeleniumTests
         public void RegisterTest()
         {
             var Register = new Register(driver, wait);
-            Register.RegisterTest("http://192.168.20.71:1024", "jonathan", "relyo", "Male", "Individual");
+            Register.RegisterTest("http://192.168.20.71:1024", "hellen", "granda", "Female", "Individual");
         }
 
         [TestMethod]
@@ -68,8 +68,8 @@ namespace SeleniumTests
             var UserAppInfo = new AppProjInfo(driver, wait);
             var ProfDoc = new ProfDocInfo(driver, wait);
             var Submit = new SubmitApp(driver, wait);
-            UserLog.LoginTest("http://192.168.20.71:1024/Account/Login?statusCode=0", "jrelyo", "0000061");
-            UserAppInfo.FillUserAppInfo("THGB", false, "Create"); //Pending for Testing
+            UserLog.LoginTest("http://192.168.20.71:1024/Account/Login?statusCode=0", "hgranda", "0000072");
+            UserAppInfo.FillUserAppInfo("NMTY", false, "Create"); //Pending for Testing
             ProfDoc.ProfDocTest();
             Submit.SubmitTest();
         }
@@ -82,37 +82,37 @@ namespace SeleniumTests
             var WebPLogin = new WebPLogin(driver, wait);
             var PermitApp = new PermitApp(driver, wait);
             WebPLogin.WebPLoginTesting("http://192.168.20.71:1025/");
-            PermitApp.ReceiveApp("NBP2512-00052");
+            PermitApp.ReceiveApp("NBP2512-00060");
         }
 
         [TestMethod]
         [TestCategory("PTRAX")]
-        [Ignore]
+        // [Ignore]
         public void PTRAXTesting()
         {
             var PTRAXTest = new PTRAXTest(driver, wait);
-            // PTRAXTest.AppReceiving("NBP2512-00052");
-            // PTRAXTest.AppEval("NBP2512-00052");
-            PTRAXTest.BillingEval();
+            // PTRAXTest.Receiving_into_Eval("NBP2512-00060");
+            // PTRAXTest.AppEval("NBP2512-00060");
+            PTRAXTest.Eval_into_Billing("NBP2512-00060");
         }
 
         [TestMethod]
         [TestCategory("BPAS")]
-        // [Ignore]
+        [Ignore]
         public void BPASTesting()
         {
             var BPASLogin = new BPASLogin(driver, wait);
             var Records_module = new GenAccount(driver, wait);
 
             BPASLogin.BPASLoginTest();
-            BPASLogin.GeodeticTest("NBP2512-00052");
-            BPASLogin.ArchiTest("NBP2512-00052");
-            BPASLogin.ElectricalTest("NBP2512-00052");
-            BPASLogin.StrucuralTest("NBP2512-00052");
-            // BPASLogin.MEchanicalTest("NBP2512-00052");
-            // BPASLogin.SanitaryTest("NBP2512-00052");
-            // BPASLogin.PlumbingTest("NBP2512-00052");
-            // BPASLogin.ElectronicsTest("NBP2512-00052");
+            BPASLogin.GeodeticTest("NBP2512-00060");
+            BPASLogin.ArchiTest("NBP2512-00060");
+            BPASLogin.ElectricalTest("NBP2512-00060");
+            BPASLogin.StrucuralTest("NBP2512-00060");
+            // BPASLogin.MEchanicalTest("NBP2512-00060");
+            // BPASLogin.SanitaryTest("NBP2512-00060");
+            // BPASLogin.PlumbingTest("NBP2512-00060");
+            // BPASLogin.ElectronicsTest("NBP2512-00060");
 
             // Records_module.MigrateAccount("LOT 13, BLK. 6, PHASE 2, VILLA ARSENIA, MAMBOG III, DISTRICT 1, BACOOR CITY, CAVITE");
         }
@@ -130,10 +130,10 @@ namespace SeleniumTests
         }
 
 
-        // [TestCleanup]
-        // public void DriverQuit()
-        // {
-        //     driver?.Quit();
-        // }
+        [TestCleanup]
+        public void DriverQuit()
+        {
+            driver?.Quit();
+        }
     }
 }
