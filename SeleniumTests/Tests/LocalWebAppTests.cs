@@ -93,7 +93,8 @@ namespace SeleniumTests
             var PTRAXTest = new PTRAXTest(driver, wait);
             // PTRAXTest.Receiving_into_Eval("NBP2512-00060");
             // PTRAXTest.AppEval("NBP2512-00060");
-            PTRAXTest.Eval_into_Billing("NBP2512-00060");
+            // PTRAXTest.Eval_into_Billing("NBP2512-00060");
+            PTRAXTest.Billing_into_Treasy("NBP2512-00059");
         }
 
         [TestMethod]
