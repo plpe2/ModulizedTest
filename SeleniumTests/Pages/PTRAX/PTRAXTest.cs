@@ -47,7 +47,23 @@ namespace SeleniumTests
             alertJump.Accept();
             wait.Until(d => d.FindElement(By.XPath("/html/body/div[12]")).Displayed);
             driver.FindElement(By.XPath("/html/body/div[13]/div[1]/a/span")).Click();
+            
+            // ------------------------------------------------------------------------------------------------------
             wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath("//*[@id='LinkButton1']"))).Click();
+
+            driver.selectElement("ctl00$ContentPlaceHolder1$ctlLogin1$txtUser", "evaluator");
+            driver.selectElement("ctl00$ContentPlaceHolder1$ctlLogin1$txtPass", "P@ssw0rd");
+            driver.FindElement(By.XPath("//*[@id='ContentPlaceHolder1_ctlLogin1_btnLogin']")).Click();
+
+            wait.Until(d => d.FindElement(By.XPath("//*[@id='gbox_grdMailbox_Procurement']")).Displayed);
+            driver.ClickElement(wait, selColRecord);
+            driver.ClickElement(wait, chkBox);
+            driver.ClickElement(wait, "//*[@id='MainContent_btnDocMgr_batchAcceptance']");
+            wait.Until(d => d.FindElement(By.XPath("/html/body/div[12]")).Displayed);
+            driver.ClickElement(wait, "//*[@id='MainContent_btnDocMgr_AcceptOk']");
+            alertReceive.Accept();
+            wait.Until(d => d.FindElement(By.XPath("/html/body/div[12]")).Displayed);
+            driver.FindElement(By.XPath("/html/body/div[13]/div[1]/a/span")).Click();
         }
 
         public void AppEval(string AppNumber)
