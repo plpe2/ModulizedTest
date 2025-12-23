@@ -24,7 +24,7 @@ namespace SeleniumTests
             //Application Preview
             wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath("/html/body/div[1]/div[2]/div/ul/li[4]/a"))).Click();
             wait.Until(d => d.FindElement(By.Id("mdlListAppliedPermit")).Displayed);
-            driver.FindElement(By.XPath("//*[@id='mdlbtnOkayAP']")).Click();
+            driver.ClickElement(wait, "//*[@id='mdlbtnOkayAP']");
             wait.Until(d => d.FindElement(By.Id("ModalSubmit")).Displayed);
             wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath("//*[@id='ModalSubmit']/div/div/div[2]/div[3]/div/div/label"))).Click();
             driver.FindElement(By.Id("btnsavepayment")).Click();

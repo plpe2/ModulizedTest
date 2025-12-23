@@ -190,13 +190,43 @@ namespace SeleniumTests
             driver.ClickElement(wait, "/html/body/div[13]/div[1]/a/span");
         }
 
-        public void ReleaseEval()
+        public void Treasury_into_Releasing(string AppNumber)
         {
+            string selColRecord = String.Concat("//td[contains(text(), '", AppNumber, "')]");
+            string chkBox = String.Concat("//td[contains(text(), '", AppNumber, "')]/parent::tr//input[@type='checkbox']");
+
+            driver.goToURL("http://192.168.20.71:1023/Account/DtraxLogin.aspx");
+
+            driver.selectElement("ctl00$ContentPlaceHolder1$ctlLogin1$txtUser", "treasury");
+            driver.selectElement("ctl00$ContentPlaceHolder1$ctlLogin1$txtPass", "P@ssw0rd");
+            driver.FindElement(By.XPath("//*[@id='ContentPlaceHolder1_ctlLogin1_btnLogin']")).Click();
+
+            wait.Until(d => d.FindElement(By.XPath("//*[@id='gbox_grdMailbox_Procurement']")).Displayed);
+            driver.ClickElement(wait, selColRecord);
+            driver.ClickElement(wait, chkBox);
+            driver.refactoredSelect(wait, By.XPath("//*[@id='MainContent_ctlDocMgr_OperatorsAdvice1_ddl_JumpTo_Steps']"), "549");
+            driver.ClickElement(wait, "//*[@id='btnJump']");
+            IAlert alertJump = driver.SwitchTo().Alert();
+            alertJump.Accept();
+            wait.Until(d => d.FindElement(By.XPath("/html/body/div[12]")).Displayed);
+            driver.FindElement(By.XPath("/html/body/div[13]/div[1]/a/span")).Click();
+            
+            wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath("//*[@id='LinkButton1']"))).Click();
+
             driver.selectElement("ctl00$ContentPlaceHolder1$ctlLogin1$txtUser", "releasingdbo");
             driver.selectElement("ctl00$ContentPlaceHolder1$ctlLogin1$txtPass", "P@ssw0rd");
             driver.FindElement(By.XPath("//*[@id='ContentPlaceHolder1_ctlLogin1_btnLogin']")).Click();
 
-            driver.ClickElement(wait, "/html/body/form/div[3]/table[1]/tbody/tr/td[4]/a[2]");
+            wait.Until(d => d.FindElement(By.XPath("//*[@id='gbox_grdMailbox_Procurement']")).Displayed);
+            driver.ClickElement(wait, selColRecord);
+            driver.ClickElement(wait, chkBox);
+            driver.ClickElement(wait, "//*[@id='MainContent_btnDocMgr_batchAcceptance']");
+            wait.Until(d => d.FindElement(By.XPath("/html/body/div[12]")).Displayed);
+            driver.ClickElement(wait, "//*[@id='MainContent_btnDocMgr_AcceptOk']");
+            IAlert alertReceive = driver.SwitchTo().Alert();
+            alertReceive.Accept();
+            wait.Until(d => d.FindElement(By.XPath("/html/body/div[12]")).Displayed);
+            driver.ClickElement(wait, "/html/body/div[13]/div[1]/a/span");
         }
     }
 }
