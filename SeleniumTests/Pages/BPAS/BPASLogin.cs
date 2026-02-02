@@ -42,12 +42,15 @@ namespace SeleniumTests
 
         public void GeodeticTest(string appNumber)
         {
-            var appLocation = String.Concat("//*[contains(text(), '", appNumber, "')]");
+            var appLocation = String.Concat("//*/td[contains(text(), '", appNumber, "')]");
             driver.goToURL("http://192.168.20.71:1027/PermitEvaluation/PermitEvaluationGeodetic");
             wait.UntilLoadingDisappears(driver);
+            //Search Function (Giving Stale element error)
+            /* wait.Until(d => d.FindElement(By.XPath("//*[@id='dataTables-BuildingPermitEval']/tbody/tr[1]/td[1]")).Displayed);
             driver.FindElement(By.XPath("//*[@id='txtEvalKeyword']")).SendKeys(appNumber);
-            driver.ClickElement(wait, "//*[@id='btnSearchEvalRecord']");
             wait.UntilLoadingDisappears(driver);
+            driver.ClickElement(wait, "//*[@id='btnSearchEvalRecord']");
+            wait.UntilLoadingDisappears(driver); */
             driver.ClickElement(wait, appLocation);
             wait.UntilLoadingDisappears(driver);
             driver.ClickElement(wait, "//*[@id='frmComplianceGeodetic']/div[1]/div[3]/div/label");
@@ -68,28 +71,30 @@ namespace SeleniumTests
 
             driver.goToURL("http://192.168.20.71:1027/PermitEvaluation/PermitEvaluationArchitectural");
             wait.UntilLoadingDisappears(driver);
+            //Search Function (Giving Stale element error)
+            /* wait.Until(d => d.FindElement(By.XPath("//*[@id='dataTables-BuildingPermitEval']/tbody/tr[1]/td[1]")).Displayed);
             driver.FindElement(By.XPath("//*[@id='txtEvalKeyword']")).SendKeys(appNumber);
             wait.UntilLoadingDisappears(driver);
             driver.ClickElement(wait, "//*[@id='btnSearchEvalRecord']");
-            wait.UntilLoadingDisappears(driver);
+            wait.UntilLoadingDisappears(driver); */
             driver.ClickElement(wait, appLocation);
             wait.UntilLoadingDisappears(driver);
 
             //Fire Zones and Fire Resistivity
-            driver.EvalGens("FireAveCover");
-            driver.EvalGens("FireOverAll");
-            driver.EvalGens("SolidAveCover");
-            driver.EvalGens("SolidOverAll");
-            driver.EvalGens("PartitionsSolidConcrete");
-            driver.EvalGens("PartitionsSolidMasonry");
-            driver.EvalGens("PartitionsHollowUnit");
-            driver.EvalGens("ProtectConcrete");
-            driver.EvalGens("ProtectMasonry");
-            driver.EvalGens("ProtectLathPlaster");
-            driver.EvalGens("EWSolidConcrete");
-            driver.EvalGens("EWSolidMasonry");
-            driver.EvalGens("EWHollowUnit");
-            driver.EvalGens("ColumnReinforcedConrete");
+            driver.RefactoredEvalGens(wait, "FireAveCover");
+            driver.RefactoredEvalGens(wait, "FireOverAll");
+            driver.RefactoredEvalGens(wait, "SolidAveCover");
+            driver.RefactoredEvalGens(wait, "SolidOverAll");
+            driver.RefactoredEvalGens(wait, "PartitionsSolidConcrete");
+            driver.RefactoredEvalGens(wait, "PartitionsSolidMasonry");
+            driver.RefactoredEvalGens(wait, "PartitionsHollowUnit");
+            driver.RefactoredEvalGens(wait, "ProtectConcrete");
+            driver.RefactoredEvalGens(wait, "ProtectMasonry");
+            driver.RefactoredEvalGens(wait, "ProtectLathPlaster");
+            driver.RefactoredEvalGens(wait, "EWSolidConcrete");
+            driver.RefactoredEvalGens(wait, "EWSolidMasonry");
+            driver.RefactoredEvalGens(wait, "EWHollowUnit");
+            driver.RefactoredEvalGens(wait, "ColumnReinforcedConrete");
             driver.ClickElement(wait, "//*[@id='btnSaveBldgEvalFire']");
             wait.Until(d => d.FindElement(By.XPath("//*[@id='modalbtnSaveB']")).Displayed);
             driver.ClickElement(wait, "//*[@id='closemdal']");
@@ -98,10 +103,10 @@ namespace SeleniumTests
             //Building Projections
             driver.ClickElement(wait, "/html/body/div[116]/div/section/div/div/div[2]/div/div[2]/div/div/div[2]/form/div[2]/div/div/div[2]/div/div[1]/div/h3/label");
             wait.Until(d => d.FindElement(By.XPath("//*[@id='collapse2']")).Displayed);
-            driver.EvalGens("BPFootings");
-            driver.EvalGens("BPProjection");
-            driver.EvalGens("BPEnroachment");
-            driver.EvalGens("BPStreetWidth");
+            driver.RefactoredEvalGens(wait, "BPFootings");
+            driver.RefactoredEvalGens(wait, "BPProjection");
+            driver.RefactoredEvalGens(wait, "BPEnroachment");
+            driver.RefactoredEvalGens(wait, "BPStreetWidth");
             driver.ClickElement(wait, "//*[@id='btnSaveBldgEvalBP']");
             wait.Until(d => d.FindElement(By.XPath("//*[@id='modalbtnSaveB']")).Displayed);
             driver.ClickElement(wait, "//*[@id='closemdal']");
@@ -110,11 +115,11 @@ namespace SeleniumTests
             // Access Streets
             driver.ClickElement(wait, "/html/body/div[116]/div/section/div/div/div[2]/div/div[2]/div/div/div[2]/form/div[2]/div/div/div[3]/div/div[1]/div/h3/label");
             wait.Until(d => d.FindElement(By.XPath("//*[@id='collapse3']")).Displayed);
-            driver.EvalGens("ASDwellingUnits");
-            driver.EvalGens("ASRoadway");
-            driver.EvalGens("ASSidewalk");
-            driver.EvalGens("ASPlantingStrip");
-            driver.EvalGens("ASTotalRROW");
+            driver.RefactoredEvalGens(wait, "ASDwellingUnits");
+            driver.RefactoredEvalGens(wait, "ASRoadway");
+            driver.RefactoredEvalGens(wait, "ASSidewalk");
+            driver.RefactoredEvalGens(wait, "ASPlantingStrip");
+            driver.RefactoredEvalGens(wait, "ASTotalRROW");
             driver.ClickElement(wait, "//*[@id='btnSaveBldgEvalAS']");
             wait.Until(d => d.FindElement(By.XPath("//*[@id='modalbtnSaveB']")).Displayed);
             driver.ClickElement(wait, "//*[@id='closemdal']");
@@ -124,8 +129,8 @@ namespace SeleniumTests
             driver.ClickElement(wait, "/html/body/div[116]/div/section/div/div/div[2]/div/div[2]/div/div/div[2]/form/div[2]/div/div/div[4]/div/div[1]/div/h3/label");
             wait.Until(d => d.FindElement(By.XPath("//*[@id='collapse4']")).Displayed);
             driver.selectDropdown(wait, "TypeOfBuildingStructureID", "Residential(R-1) Basic");
-            driver.EvalGens("MHoBBHL");
-            // driver.EvalGens("TowerHeight"); for not duplicating the table
+            driver.RefactoredEvalGens(wait, "MHoBBHL");
+            // driver.RefactoredEvalGens(wait, "TowerHeight"); for not duplicating the table
             driver.ClickElement(wait, "//*[@id='btnSaveBldgEvalMHoB']");
             wait.Until(d => d.FindElement(By.XPath("//*[@id='modalbtnSaveB']")).Displayed);
             driver.ClickElement(wait, "//*[@id='closemdal']");
@@ -134,7 +139,7 @@ namespace SeleniumTests
             //Parking Space
             driver.ClickElement(wait, "/html/body/div[116]/div/section/div/div/div[2]/div/div[2]/div/div/div[2]/form/div[2]/div/div/div[5]/div/div[1]/div/h3/label");
             wait.Until(d => d.FindElement(By.XPath("//*[@id='collapse5']")).Displayed);
-            driver.EvalGens("PSParkingSlot");
+            driver.RefactoredEvalGens(wait, "PSParkingSlot");
             driver.ClickElement(wait, "//*[@id='btnSaveBldgEvalPS']");
             wait.Until(d => d.FindElement(By.XPath("//*[@id='modalbtnSaveB']")).Displayed);
             driver.ClickElement(wait, "//*[@id='closemdal']");
@@ -143,20 +148,20 @@ namespace SeleniumTests
             //Occupant Load
             driver.ClickElement(wait, "/html/body/div[116]/div/section/div/div/div[2]/div/div[2]/div/div/div[2]/form/div[2]/div/div/div[6]/div/div[1]/div/h3/label");
             wait.Until(d => d.FindElement(By.XPath("//*[@id='collapse6']")).Displayed);
-            driver.EvalGens("OLUnitArea");
-            driver.EvalGens("OLNoOfOccupant");
-            driver.EvalGens("OLNoOfExits");
+            driver.RefactoredEvalGens(wait, "OLUnitArea");
+            driver.RefactoredEvalGens(wait, "OLNoOfOccupant");
+            driver.RefactoredEvalGens(wait, "OLNoOfExits");
             driver.ClickElement(wait, "//*[@id='btnSaveBldgEvalOL']");
             wait.Until(d => d.FindElement(By.XPath("//*[@id='modalbtnSaveB']")).Displayed);
             driver.ClickElement(wait, "//*[@id='closemdal']");
             driver.ClickElement(wait, "/html/body/div[116]/div/section/div/div/div[2]/div/div[2]/div/div/div[2]/form/div[2]/div/div/div[6]/div/div[1]/div/h3/a[1]/label");
 
-            //Glazing and Opening
+            // //Glazing and Opening
             driver.ClickElement(wait, "/html/body/div[116]/div/section/div/div/div[2]/div/div[2]/div/div/div[2]/form/div[2]/div/div/div[7]/div/div[1]/div/h3/label");
             wait.Until(d => d.FindElement(By.XPath("//*[@id='collapse7']")).Displayed);
-            driver.EvalGens("GaOOpeningMaterial");
-            driver.EvalGens("GaODimension");
-            driver.EvalGens("GaOSpacing");
+            driver.RefactoredEvalGens(wait, "GaOOpeningMaterial");
+            driver.RefactoredEvalGens(wait, "GaODimension");
+            driver.RefactoredEvalGens(wait, "GaOSpacing");
             driver.ClickElement(wait, "//*[@id='btnSaveBldgEvalGaO']");
             wait.Until(d => d.FindElement(By.XPath("//*[@id='modalbtnSaveB']")).Displayed);
             driver.ClickElement(wait, "//*[@id='closemdal']");
@@ -181,11 +186,11 @@ namespace SeleniumTests
             //Light and Ventilation
             driver.ClickElement(wait, "/html/body/div[116]/div/section/div/div/div[2]/div/div[2]/div/div/div[2]/form/div[2]/div/div/div[9]/div/div[1]/div/h3/label");
             wait.Until(d => d.FindElement(By.XPath("//*[@id='collapse9']")).Displayed);
-            driver.EvalGens("LVCeilingHeight");
-            driver.EvalGens("LVRoomWindow");
-            driver.EvalGens("LVMinorWindow");
-            driver.EvalGens("LVVentShaft");
-            driver.EvalGens("LVAirDuct");
+            driver.RefactoredEvalGens(wait, "LVCeilingHeight");
+            driver.RefactoredEvalGens(wait, "LVRoomWindow");
+            driver.RefactoredEvalGens(wait, "LVMinorWindow");
+            driver.RefactoredEvalGens(wait, "LVVentShaft");
+            driver.RefactoredEvalGens(wait, "LVAirDuct");
             driver.ClickElement(wait, "//*[@id='btnSaveBldgEvalLV']");
             wait.Until(d => d.FindElement(By.XPath("//*[@id='modalbtnSaveB']")).Displayed);
             driver.ClickElement(wait, "//*[@id='closemdal']");
@@ -194,12 +199,12 @@ namespace SeleniumTests
             //Line and Grade
             driver.ClickElement(wait, "/html/body/div[116]/div/section/div/div/div[2]/div/div[2]/div/div/div[2]/form/div[2]/div/div/div[10]/div/div[1]/div/h3/label");
             wait.Until(d => d.FindElement(By.XPath("//*[@id='collapse10']")).Displayed);
-            driver.EvalGens("LGFrontage");
-            driver.EvalGens("LGFrontageExcess");
-            driver.EvalGens("LGLeft");
-            driver.EvalGens("LGRight");
-            driver.EvalGens("LGBack");
-            driver.EvalGens("LGOtherSides");
+            driver.RefactoredEvalGens(wait, "LGFrontage");
+            driver.RefactoredEvalGens(wait, "LGFrontageExcess");
+            driver.RefactoredEvalGens(wait, "LGLeft");
+            driver.RefactoredEvalGens(wait, "LGRight");
+            driver.RefactoredEvalGens(wait, "LGBack");
+            driver.RefactoredEvalGens(wait, "LGOtherSides");
             driver.ClickElement(wait, "//*[@id='btnComputeLandG']");
             wait.UntilLoadingDisappears(driver);
             driver.ClickElement(wait, "//*[@id='btnSaveBldgEvalLG']");
@@ -214,18 +219,20 @@ namespace SeleniumTests
         {
             driver.goToURL("http://192.168.20.71:1027/PermitEvaluation/PermitEvaluationElectrical");
             wait.UntilLoadingDisappears(driver);
+            //Search Function (Giving Stale element error)
+            /* wait.Until(d => d.FindElement(By.XPath("//*[@id='dataTables-BuildingPermitEval']/tbody/tr[1]/td[1]")).Displayed);
             driver.FindElement(By.XPath("//*[@id='txtEvalKeyword']")).SendKeys(appNumber);
             wait.UntilLoadingDisappears(driver);
             driver.ClickElement(wait, "//*[@id='btnSearchEvalRecord']");
-            wait.UntilLoadingDisappears(driver);
+            wait.UntilLoadingDisappears(driver); */
             var appLocation = String.Concat("//*[contains(text(), '", appNumber, "')]");
             driver.ClickElement(wait, appLocation);
             wait.UntilLoadingDisappears(driver);
 
-            driver.EvalGens("AttachmentPole");
-            driver.EvalGens("AttachementGuyWire");
-            driver.EvalGens("AttachmentTransformer");
-            driver.EvalGens("AttachmentClearSpace");
+            driver.RefactoredEvalGens(wait, "AttachmentPole");
+            driver.RefactoredEvalGens(wait, "AttachementGuyWire");
+            driver.RefactoredEvalGens(wait, "AttachmentTransformer");
+            driver.RefactoredEvalGens(wait, "AttachmentClearSpace");
             driver.ClickElement(wait, "//*[@id='btnAttachment']");
             wait.Until(d => d.FindElement(By.XPath("//*[@id='modalbtnSaveB']")).Displayed);
             driver.ClickElement(wait, "//*[@id='closemdal']");
@@ -233,10 +240,10 @@ namespace SeleniumTests
 
             driver.ClickElement(wait, "/html/body/div[116]/div/section/div/div/div/div[2]/div/div[2]/div/div/div[2]/div[2]/div/form/div/div[2]/div/div[1]/div/h3/label");
             wait.Until(d => d.FindElement(By.XPath("//*[@id='collapse2']")).Displayed);
-            driver.EvalGens("BldgProjVerticalClearance");
-            driver.EvalGens("BldgProjHrzntlClearance");
-            driver.EvalGens("BldgProjRoofSlope");
-            driver.EvalGens("BldgProjConductorVolt");
+            driver.RefactoredEvalGens(wait, "BldgProjVerticalClearance");
+            driver.RefactoredEvalGens(wait, "BldgProjHrzntlClearance");
+            driver.RefactoredEvalGens(wait, "BldgProjRoofSlope");
+            driver.RefactoredEvalGens(wait, "BldgProjConductorVolt");
             driver.ClickElement(wait, "//*[@id='btnBldgProj']");
             wait.Until(d => d.FindElement(By.XPath("//*[@id='modalbtnSaveB']")).Displayed);
             driver.ClickElement(wait, "//*[@id='closemdal']");
@@ -244,9 +251,9 @@ namespace SeleniumTests
 
             driver.ClickElement(wait, "/html/body/div[116]/div/section/div/div/div/div[2]/div/div[2]/div/div/div[2]/div[2]/div/form/div/div[3]/div/div[1]/div/h3/label");
             wait.Until(d => d.FindElement(By.XPath("//*[@id='collapse3']")).Displayed);
-            driver.EvalGens("CapacitorVoltage");
+            driver.RefactoredEvalGens(wait, "CapacitorVoltage");
             driver.selectDropdown(wait, "CapacitorEnclosure", "Vault");
-            driver.EvalGens("CapacitorFlammable");
+            driver.RefactoredEvalGens(wait, "CapacitorFlammable");
             driver.ClickElement(wait, "//*[@id='btnCapacitor']");
             wait.Until(d => d.FindElement(By.XPath("//*[@id='modalbtnSaveB']")).Displayed);
             driver.ClickElement(wait, "//*[@id='closemdal']");
@@ -255,8 +262,8 @@ namespace SeleniumTests
 
             driver.ClickElement(wait, "/html/body/div[116]/div/section/div/div/div/div[2]/div/div[2]/div/div/div[2]/div[2]/div/form/div/div[4]/div/div[1]/div/h3/label");
             wait.Until(d => d.FindElement(By.XPath("//*[@id='collapse4']")).Displayed);
-            driver.EvalGens("ConductorsVoltage");
-            driver.EvalGens("ConductorsClearance");
+            driver.RefactoredEvalGens(wait, "ConductorsVoltage");
+            driver.RefactoredEvalGens(wait, "ConductorsClearance");
             driver.ClickElement(wait, "//*[@id='btnConductors']");
             wait.Until(d => d.FindElement(By.XPath("//*[@id='modalbtnSaveB']")).Displayed);
             driver.ClickElement(wait, "//*[@id='closemdal']");
@@ -265,8 +272,8 @@ namespace SeleniumTests
 
             driver.ClickElement(wait, "/html/body/div[116]/div/section/div/div/div/div[2]/div/div[2]/div/div/div[2]/div[2]/div/form/div/div[5]/div/div[1]/div/h3/label");
             wait.Until(d => d.FindElement(By.XPath("//*[@id='collapse5']")).Displayed);
-            driver.EvalGens("EmergencyCapacity");
-            driver.EvalGens("EmergencyTransitionTime");
+            driver.RefactoredEvalGens(wait, "EmergencyCapacity");
+            driver.RefactoredEvalGens(wait, "EmergencyTransitionTime");
             driver.ClickElement(wait, "//*[@id='btnEmergency']");
             wait.Until(d => d.FindElement(By.XPath("//*[@id='modalbtnSaveB']")).Displayed);
             driver.ClickElement(wait, "//*[@id='closemdal']");
@@ -275,7 +282,7 @@ namespace SeleniumTests
 
             driver.ClickElement(wait, "/html/body/div[116]/div/section/div/div/div/div[2]/div/div[2]/div/div/div[2]/div[2]/div/form/div/div[6]/div/div[1]/div/h3/label");
             wait.Until(d => d.FindElement(By.XPath("//*[@id='collapse6']")).Displayed);
-            driver.EvalGens("MeteringMeteringSpace");
+            driver.RefactoredEvalGens(wait, "MeteringMeteringSpace");
             driver.ClickElement(wait, "//*[@id='btnMetering']");
             wait.Until(d => d.FindElement(By.XPath("//*[@id='modalbtnSaveB']")).Displayed);
             driver.ClickElement(wait, "//*[@id='closemdal']");
@@ -284,8 +291,8 @@ namespace SeleniumTests
 
             driver.ClickElement(wait, "/html/body/div[116]/div/section/div/div/div/div[2]/div/div[2]/div/div/div[2]/div[2]/div/form/div/div[7]/div/div[1]/div/h3/label");
             wait.Until(d => d.FindElement(By.XPath("//*[@id='collapse7']")).Displayed);
-            driver.EvalGens("OpenSupplyVoltage");
-            driver.EvalGens("OpenSupplyClearance");
+            driver.RefactoredEvalGens(wait, "OpenSupplyVoltage");
+            driver.RefactoredEvalGens(wait, "OpenSupplyClearance");
             driver.ClickElement(wait, "//*[@id='collapse7']/div/div[1]/div/div/div[4]/div[2]/label");
             driver.ClickElement(wait, "//*[@id='btnOpenSupply']");
             wait.Until(d => d.FindElement(By.XPath("//*[@id='modalbtnSaveB']")).Displayed);
@@ -306,7 +313,7 @@ namespace SeleniumTests
 
             driver.ClickElement(wait, "/html/body/div[116]/div/section/div/div/div/div[2]/div/div[2]/div/div/div[2]/div[2]/div/form/div/div[9]/div/div[1]/div/h3/label");
             wait.Until(d => d.FindElement(By.XPath("//*[@id='collapse9']")).Displayed);
-            driver.EvalGens("ElectricalArea");
+            driver.RefactoredEvalGens(wait, "ElectricalArea");
             driver.ClickElement(wait, "//*[@id='collapse9']/div/div[2]/div/div/div/div[2]/fieldset/div/div[1]/div/label");
             driver.ClickElement(wait, "//*[@id='collapse9']/div/div[2]/div/div/div/div[2]/fieldset/div/div[2]/div/label");
             driver.ClickElement(wait, "//*[@id='collapse9']/div/div[2]/div/div/div/div[2]/fieldset/div/div[3]/div/label");
@@ -327,8 +334,8 @@ namespace SeleniumTests
 
             driver.ClickElement(wait, "/html/body/div[116]/div/section/div/div/div/div[2]/div/div[2]/div/div/div[2]/div[2]/div/form/div/div[11]/div/div[1]/div/h3/label");
             wait.Until(d => d.FindElement(By.XPath("//*[@id='collapse11']")).Displayed);
-            driver.EvalGens("TransformerCapacity");
-            driver.EvalGens("TransformerVoltage");
+            driver.RefactoredEvalGens(wait, "TransformerCapacity");
+            driver.RefactoredEvalGens(wait, "TransformerVoltage");
             driver.ClickElement(wait, "//*[@id='btnTransformer']");
             wait.Until(d => d.FindElement(By.XPath("//*[@id='modalbtnSaveB']")).Displayed);
             driver.ClickElement(wait, "//*[@id='closemdal']");
@@ -350,11 +357,12 @@ namespace SeleniumTests
 
             driver.goToURL("http://192.168.20.71:1027/PermitEvaluation/PermitEvaluationStructural");
             wait.UntilLoadingDisappears(driver);
-
+            //Search Function (Giving Stale element error)
+            /* wait.Until(d => d.FindElement(By.XPath("//*[@id='dataTables-BuildingPermitEval']/tbody/tr[1]/td[1]")).Displayed);
             driver.FindElement(By.XPath("//*[@id='txtEvalKeyword']")).SendKeys(appNumber);
             wait.UntilLoadingDisappears(driver);
             driver.ClickElement(wait, "//*[@id='btnSearchEvalRecord']");
-            wait.UntilLoadingDisappears(driver);
+            wait.UntilLoadingDisappears(driver); */
             driver.ClickElement(wait, appLocation);
             wait.UntilLoadingDisappears(driver);
 
@@ -371,8 +379,9 @@ namespace SeleniumTests
             //SDR
             driver.ClickElement(wait, "/html/body/div[116]/div/section/div/div/div[2]/div/div[2]/div/div[1]/div[2]/form/div/div/div/div[2]/div/div[1]/div/h3/label");
             wait.Until(d => d.FindElement(By.XPath("//*[@id='collapse2']")).Displayed);
+            wait.Until(d => d.FindElement(By.Name("SDRTypeofMaterialV")).Displayed);
             driver.selectElement("SDRTypeofMaterialV", "metal");
-            driver.EvalGens("SDRVeneerWeightV");
+            driver.RefactoredEvalGens(wait, "SDRVeneerWeightV");
             driver.ClickElement(wait, "//*[@id='btnSaveBldgEvalStructuralSDR']");
             wait.Until(d => d.FindElement(By.XPath("//*[@id='modalbtnSaveB']")).Displayed);
             driver.ClickElement(wait, "//*[@id='closemdal']");
@@ -381,9 +390,9 @@ namespace SeleniumTests
             //EFRW
             driver.ClickElement(wait, "/html/body/div[116]/div/section/div/div/div[2]/div/div[2]/div/div[1]/div[2]/form/div/div/div/div[3]/div/div[1]/div/h3/label");
             wait.Until(d => d.FindElement(By.XPath("//*[@id='collapse3']")).Displayed);
-            driver.EvalGens("EFRWThickness");
-            driver.EvalGens("EFRWDepth");
-            driver.EvalGens("EFRWNoofColumn");
+            driver.RefactoredEvalGens(wait, "EFRWThickness");
+            driver.RefactoredEvalGens(wait, "EFRWDepth");
+            driver.RefactoredEvalGens(wait, "EFRWNoofColumn");
             driver.ClickElement(wait, "//*[@id='collapse3']/div[1]/div[2]/div/div[2]/div[2]/div/div[2]/div/label");
             driver.ClickElement(wait, "//*[@id='btnSaveBldgEvalStructuralEFRW']");
             wait.Until(d => d.FindElement(By.XPath("//*[@id='modalbtnSaveB']")).Displayed);
@@ -405,11 +414,11 @@ namespace SeleniumTests
             //PSRCDE
             driver.ClickElement(wait, "/html/body/div[116]/div/section/div/div/div[2]/div/div[2]/div/div[1]/div[2]/form/div/div/div/div[5]/div/div[1]/div/h3/label");
             wait.Until(d => d.FindElement(By.XPath("//*[@id='collapse5']")).Displayed);
-            driver.EvalGens("PSRCDERailingHeight");
-            driver.EvalGens("PSRCDEFenceHeight");
-            driver.EvalGens("PSRCDEFenceMaterial");
-            driver.EvalGens("PSRCDEPassageWays");
-            driver.EvalGens("PSRCDEToolsLocation");
+            driver.RefactoredEvalGens(wait, "PSRCDERailingHeight");
+            driver.RefactoredEvalGens(wait, "PSRCDEFenceHeight");
+            driver.RefactoredEvalGens(wait, "PSRCDEFenceMaterial");
+            driver.RefactoredEvalGens(wait, "PSRCDEPassageWays");
+            driver.RefactoredEvalGens(wait, "PSRCDEToolsLocation");
             driver.ClickElement(wait, "//*[@id='collapse5']/div[1]/div[2]/div/div[6]/div[1]/label");
             driver.ClickElement(wait, "//*[@id='collapse5']/div[1]/div[2]/div/div[6]/div[2]/label");
             driver.ClickElement(wait, "//*[@id='btnSaveBldgEvalStructuralPSRCDE']");
@@ -435,7 +444,7 @@ namespace SeleniumTests
             // driver.ClickElement(wait, "/html/body/div[116]/div/section/div/div/div[2]/div/div[2]/div/div[1]/div[2]/form/div/div/div/div[7]/div/div[1]/div/h3/label");
             // wait.Until(d => d.FindElement(By.XPath("//*[@id='collapse7']")).Displayed);
             // driver.selectElement("SDRTypeofMaterialV", "metal");
-            // driver.EvalGens("SDRVeneerWeightV");
+            // driver.RefactoredEvalGens(wait, "SDRVeneerWeightV");
             // driver.ClickElement(wait, "//*[@id='btnSaveBldgEvalStructuralSDR']");
             // wait.Until(d => d.FindElement(By.XPath("//*[@id='modalbtnSaveB']")).Displayed);
             // driver.ClickElement(wait, "//*[@id='closemdal']");
@@ -460,7 +469,7 @@ namespace SeleniumTests
             //SIR
             driver.ClickElement(wait, "/html/body/div[116]/div/section/div/div/div[2]/div/div[2]/div/div[1]/div[2]/form/div/div/div/div[9]/div/div[1]/div/h3/a[1]/label");
 
-            driver.ClickElement(wait, "//*[@id='btnSaveBldgEvalStructural']");
+            driver.ClickElement(wait, "/html/body/div[116]/div/section/div/div/div[2]/div/div[4]/div/button[2]");
         }
 
         public void MEchanicalTest(string appNumber)
@@ -470,11 +479,12 @@ namespace SeleniumTests
             var appLocation = String.Concat("//*[contains(text(), '", appNumber, "')]");
             driver.ClickElement(wait, appLocation);
             wait.UntilLoadingDisappears(driver);
+            wait.Until(d => d.FindElement(By.XPath("//*[@id='dataTables-BuildingPermitEval']/tbody/tr[1]/td[1]")).Displayed);
 
             driver.ClickElement(wait, "//*[@id='collapse1']/div/div[2]/div/div[1]/div[1]/label");
             driver.ClickElement(wait, "//*[@id='collapse1']/div/div[2]/div/div[1]/div[2]/label");
-            driver.EvalGens("GuardFenceQty");
-            driver.EvalGens("GuardArea");
+            driver.RefactoredEvalGens(wait, "GuardFenceQty");
+            driver.RefactoredEvalGens(wait, "GuardArea");
             driver.ClickElement(wait, "//*[@id='btnSaveGuardings']");
             wait.Until(d => d.FindElement(By.XPath("//*[@id='modalbtnSaveB']")).Displayed);
             driver.ClickElement(wait, "//*[@id='closemdal']");
@@ -484,11 +494,11 @@ namespace SeleniumTests
             driver.ClickElement(wait, "/html/body/div[116]/div/section/div/div/div[2]/div/div[2]/div/div[1]/div[2]/form/div/div/div/div[2]/div/div[1]/div/h3/label");
             wait.Until(d => d.FindElement(By.XPath("//*[@id='collapse2']")).Displayed);
             driver.ClickElement(wait, "//*[@id='collapse2']/div/div[2]/div/div[1]/div/label");
-            driver.EvalGens("CranesHoistQty");
-            driver.EvalGens("CranesCrnQty");
-            driver.EvalGens("CranesWidth");
-            driver.EvalGens("CranesHeight");
-            driver.EvalGens("CranesGap");
+            driver.RefactoredEvalGens(wait, "CranesHoistQty");
+            driver.RefactoredEvalGens(wait, "CranesCrnQty");
+            driver.RefactoredEvalGens(wait, "CranesWidth");
+            driver.RefactoredEvalGens(wait, "CranesHeight");
+            driver.RefactoredEvalGens(wait, "CranesGap");
             driver.ClickElement(wait, "//*[@id='btnSaveCranes']");
             wait.Until(d => d.FindElement(By.XPath("//*[@id='modalbtnSaveB']")).Displayed);
             driver.ClickElement(wait, "//*[@id='closemdal']");
@@ -498,9 +508,9 @@ namespace SeleniumTests
             driver.ClickElement(wait, "/html/body/div[116]/div/section/div/div/div[2]/div/div[2]/div/div[1]/div[2]/form/div/div/div/div[3]/div/div[1]/div/h3/label");
             wait.Until(d => d.FindElement(By.XPath("//*[@id='collapse3']")).Displayed);
             driver.ClickElement(wait, "//*[@id='collapse3']/div/div[2]/div/div[1]/div/label");
-            driver.EvalGens("HoistHstQty");
-            driver.EvalGens("HoistLoad");
-            driver.EvalGens("HoistLength");
+            driver.RefactoredEvalGens(wait, "HoistHstQty");
+            driver.RefactoredEvalGens(wait, "HoistLoad");
+            driver.RefactoredEvalGens(wait, "HoistLength");
             driver.ClickElement(wait, "//*[@id='btnSaveHoist']");
             wait.Until(d => d.FindElement(By.XPath("//*[@id='modalbtnSaveB']")).Displayed);
             driver.ClickElement(wait, "//*[@id='closemdal']");
@@ -509,12 +519,12 @@ namespace SeleniumTests
             //E
             driver.ClickElement(wait, "/html/body/div[116]/div/section/div/div/div[2]/div/div[2]/div/div[1]/div[2]/form/div/div/div/div[4]/div/div[1]/div/h3/label");
             wait.Until(d => d.FindElement(By.XPath("//*[@id='collapse4']")).Displayed);
-            driver.EvalGens("ElevatorQty");
-            driver.EvalGens("ElevatorArea");
-            driver.EvalGens("ElevatorPits");
-            driver.EvalGens("ElevatorHoist");
-            driver.EvalGens("ElevatorRopes");
-            driver.EvalGens("ElevatorCounterWeight");
+            driver.RefactoredEvalGens(wait, "ElevatorQty");
+            driver.RefactoredEvalGens(wait, "ElevatorArea");
+            driver.RefactoredEvalGens(wait, "ElevatorPits");
+            driver.RefactoredEvalGens(wait, "ElevatorHoist");
+            driver.RefactoredEvalGens(wait, "ElevatorRopes");
+            driver.RefactoredEvalGens(wait, "ElevatorCounterWeight");
             driver.ClickElement(wait, "//*[@id='collapse4']/div/div[2]/div/div[7]/div/div[1]/div[1]/label");
             driver.ClickElement(wait, "//*[@id='collapse4']/div/div[2]/div/div[7]/div/div[1]/div[2]/label");
             driver.ClickElement(wait, "//*[@id='collapse4']/div/div[2]/div/div[7]/div/div[2]/div[1]/label");
@@ -527,13 +537,13 @@ namespace SeleniumTests
             //Esc
             driver.ClickElement(wait, "/html/body/div[116]/div/section/div/div/div[2]/div/div[2]/div/div[1]/div[2]/form/div/div/div/div[5]/div/div[1]/div/h3/label");
             wait.Until(d => d.FindElement(By.XPath("//*[@id='collapse5']")).Displayed);
-            driver.EvalGens("EscalatorFloor");
-            driver.EvalGens("EscalatorWidth");
-            driver.EvalGens("EscalatorSteps");
-            driver.EvalGens("EscalatorSpeed");
-            driver.EvalGens("EscalatorBalustrades");
-            driver.EvalGens("EscalatorSize");
-            driver.EvalGens("EscalatorQty");
+            driver.RefactoredEvalGens(wait, "EscalatorFloor");
+            driver.RefactoredEvalGens(wait, "EscalatorWidth");
+            driver.RefactoredEvalGens(wait, "EscalatorSteps");
+            driver.RefactoredEvalGens(wait, "EscalatorSpeed");
+            driver.RefactoredEvalGens(wait, "EscalatorBalustrades");
+            driver.RefactoredEvalGens(wait, "EscalatorSize");
+            driver.RefactoredEvalGens(wait, "EscalatorQty");
             driver.ClickElement(wait, "//*[@id='btnSaveEscalators']");
             wait.Until(d => d.FindElement(By.XPath("//*[@id='modalbtnSaveB']")).Displayed);
             driver.ClickElement(wait, "//*[@id='closemdal']");
@@ -545,11 +555,11 @@ namespace SeleniumTests
             // //RAC
             driver.ClickElement(wait, "/html/body/div[116]/div/section/div/div/div[2]/div/div[2]/div/div[1]/div[2]/form/div/div/div/div[7]/div/div[1]/div/h3/label");
             wait.Until(d => d.FindElement(By.XPath("//*[@id='collapse7']")).Displayed);
-            driver.EvalGens("RefTemp");
-            driver.EvalGens("RefMovt");
-            driver.EvalGens("RefAmmonial");
-            driver.EvalGens("RefWater");
-            driver.EvalGens("RefLoadContainer");
+            driver.RefactoredEvalGens(wait, "RefTemp");
+            driver.RefactoredEvalGens(wait, "RefMovt");
+            driver.RefactoredEvalGens(wait, "RefAmmonial");
+            driver.RefactoredEvalGens(wait, "RefWater");
+            driver.RefactoredEvalGens(wait, "RefLoadContainer");
             driver.ClickElement(wait, "//*[@id='collapse7']/div/div[2]/div/div[7]/div[1]/label");
             driver.ClickElement(wait, "//*[@id='collapse7']/div/div[2]/div/div[7]/div[2]/label");
             driver.ClickElement(wait, "//*[@id='collapse7']/div/div[2]/div/div[7]/div[3]/label");
@@ -568,15 +578,15 @@ namespace SeleniumTests
             driver.ClickElement(wait, "//*[@id='collapse8']/div/div[2]/div[1]/div/div[2]/label");
             driver.ClickElement(wait, "//*[@id='collapse8']/div/div[2]/div[2]/div/div[1]/label");
             driver.ClickElement(wait, "//*[@id='collapse8']/div/div[2]/div[2]/div[2]/div/label");
-            driver.EvalGens("WaterOTQty");
-            driver.EvalGens("WaterOTArea");
-            driver.EvalGens("WaterOTHeight");
+            driver.RefactoredEvalGens(wait, "WaterOTQty");
+            driver.RefactoredEvalGens(wait, "WaterOTArea");
+            driver.RefactoredEvalGens(wait, "WaterOTHeight");
             driver.ClickElement(wait, "//*[@id='fd1']/div/div[4]/div[1]/label");
             driver.ClickElement(wait, "//*[@id='fd1']/div/div[4]/div[2]/label");
             driver.ClickElement(wait, "//*[@id='fd1']/div/div[4]/div[3]/label");
-            driver.EvalGens("WaterPTQty");
-            driver.EvalGens("WaterPTArea");
-            driver.EvalGens("WaterPTHeight");
+            driver.RefactoredEvalGens(wait, "WaterPTQty");
+            driver.RefactoredEvalGens(wait, "WaterPTArea");
+            driver.RefactoredEvalGens(wait, "WaterPTHeight");
             driver.ClickElement(wait, "//*[@id='fd2']/div/div[4]/div[1]/label");
             driver.ClickElement(wait, "//*[@id='fd2']/div/div[4]/div[2]/label");
             driver.ClickElement(wait, "//*[@id='btnSaveWaterPump']");
@@ -587,9 +597,9 @@ namespace SeleniumTests
             //PFGS
             driver.ClickElement(wait, "/html/body/div[116]/div/section/div/div/div[2]/div/div[2]/div/div[1]/div[2]/form/div/div/div/div[9]/div/div[1]/div/h3/label");
             wait.Until(d => d.FindElement(By.XPath("//*[@id='collapse9']")).Displayed);
-            driver.EvalGens("PipeQty");
+            driver.RefactoredEvalGens(wait, "PipeQty");
             driver.selectDropdown(wait, "PipeSizeID", "Large");
-            driver.EvalGens("PipeMeasure");
+            driver.RefactoredEvalGens(wait, "PipeMeasure");
             driver.ClickElement(wait, "//*[@id='btnSavePipings']");
             wait.Until(d => d.FindElement(By.XPath("//*[@id='modalbtnSaveB']")).Displayed);
             driver.ClickElement(wait, "//*[@id='closemdal']");
@@ -624,20 +634,26 @@ namespace SeleniumTests
 
             driver.goToURL("http://192.168.20.71:1027/PermitEvaluation/PermitEvaluationSanitary");
             wait.UntilLoadingDisappears(driver);
+            // wait.Until(d => d.FindElement(By.XPath("//*[@id='dataTables-BuildingPermitEval']/tbody/tr[1]/td[1]")).Displayed);
+
+            // driver.FindElement(By.XPath("//*[@id='txtEvalKeyword']")).SendKeys(appNumber);
+            // wait.UntilLoadingDisappears(driver);
+            // driver.ClickElement(wait, "//*[@id='btnSearchEvalRecord']");
+            // wait.UntilLoadingDisappears(driver);
             driver.ClickElement(wait, appLocation);
             wait.UntilLoadingDisappears(driver);
 
             driver.selectElement("DSDrainagePipeMaterialExcretaDS", "pvc");
-            driver.EvalGens("DSDrainagePipeSizeExcretaDS");
+            driver.RefactoredEvalGens(wait, "DSDrainagePipeSizeExcretaDS");
             driver.selectElement("DSFittingMaterialExcretaDS", "pvc");
             driver.selectElement("DSDrainagePipeMaterialSanitaryDS", "pvc");
-            driver.EvalGens("DSDrainagePipeSizeSanitaryDS");
+            driver.RefactoredEvalGens(wait, "DSDrainagePipeSizeSanitaryDS");
             driver.selectElement("DSFittingMaterialSanitaryDS", "pvc");
             driver.selectElement("DSRoofDrianMaterialStormDS", "pvc");
-            driver.EvalGens("DSDrainagePipeSizeStormDS");
+            driver.RefactoredEvalGens(wait, "DSDrainagePipeSizeStormDS");
             driver.selectElement("DSFittingMaterialStormDS", "pvc");
             driver.selectElement("DSDrainagePipeMaterialVentS", "pvc");
-            driver.EvalGens("DSDrainagePipeSizeVentS");
+            driver.RefactoredEvalGens(wait, "DSDrainagePipeSizeVentS");
             driver.selectElement("DSVentStackMaterialVentS", "pvc");
             driver.selectElement("DSFittingMaterialVentS", "pvc");
             driver.ClickElement(wait, "//*[@id='btnSaveBldgEvalPlumbingDS']");
@@ -769,9 +785,9 @@ namespace SeleniumTests
             driver.ClickElement(wait, "//*[@id='card_one']/div[1]/div/h3/a[1]/label");
 
             //Installations
-            // driver.EvalGens("");
+            // driver.RefactoredEvalGens(wait, "");
             driver.ClickElement(wait, "//*[@id='btnSaveAll']");
-            driver.EvalGens("Capacity");
+            driver.RefactoredEvalGens(wait, "Capacity");
             driver.ClickElement(wait, "//*[@id='btnAddInsElectronics']");
             driver.ClickElement(wait, "//*[@id='closemdal']");
 

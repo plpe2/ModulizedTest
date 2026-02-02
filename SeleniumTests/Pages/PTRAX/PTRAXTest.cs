@@ -41,13 +41,13 @@ namespace SeleniumTests
             wait.Until(d => d.FindElement(By.XPath("//*[@id='gbox_grdMailbox_Procurement']")).Displayed);
             driver.ClickElement(wait, chkBox);
             driver.ClickElement(wait, selColRecord);
-            driver.refactoredSelect(wait, By.XPath("//*[@id='MainContent_ctlDocMgr_OperatorsAdvice1_ddl_JumpTo_Steps']"), "542");
+            driver.refactoredSelect(wait, By.XPath("//*[@id='MainContent_ctlDocMgr_OperatorsAdvice1_ddl_JumpTo_Steps']"), "257");
             driver.ClickElement(wait, "//*[@id='btnJump']");
             IAlert alertJump = driver.SwitchTo().Alert();
             alertJump.Accept();
             wait.Until(d => d.FindElement(By.XPath("/html/body/div[12]")).Displayed);
             driver.FindElement(By.XPath("/html/body/div[13]/div[1]/a/span")).Click();
-            
+
             // ------------------------------------------------------------------------------------------------------
             wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath("//*[@id='LinkButton1']"))).Click();
 
@@ -61,9 +61,12 @@ namespace SeleniumTests
             driver.ClickElement(wait, "//*[@id='MainContent_btnDocMgr_batchAcceptance']");
             wait.Until(d => d.FindElement(By.XPath("/html/body/div[12]")).Displayed);
             driver.ClickElement(wait, "//*[@id='MainContent_btnDocMgr_AcceptOk']");
-            alertReceive.Accept();
+            IAlert alertReceive2 = driver.SwitchTo().Alert();
+            alertReceive2.Accept();
             wait.Until(d => d.FindElement(By.XPath("/html/body/div[12]")).Displayed);
             driver.FindElement(By.XPath("/html/body/div[13]/div[1]/a/span")).Click();
+
+            wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath("//*[@id='LinkButton1']"))).Click();
         }
 
         public void AppEval(string AppNumber)
@@ -113,14 +116,14 @@ namespace SeleniumTests
             driver.FindElement(By.XPath("//*[@id='ContentPlaceHolder1_ctlLogin1_btnLogin']")).Click();
 
             wait.Until(d => d.FindElement(By.Name("ctl00$MainContent$ctlDocMgr_Inc_SanPedro1$txtDocMgr_Inc_DIN")).Displayed);
-            driver.selectElement("ctl00$MainContent$ctlDocMgr_Inc_SanPedro1$txtDocMgr_Inc_DIN", AppNumber);
+            // driver.selectElement("ctl00$MainContent$ctlDocMgr_Inc_SanPedro1$txtDocMgr_Inc_DIN", AppNumber);
             driver.ClickElement(wait, "//*[@id='MainContent_ctlDocMgr_Inc_SanPedro1_btnDocMgr_Search']");
 
             wait.Until(d => d.FindElement(By.XPath("//*[@id='gbox_grdMailbox_Procurement']")).Displayed);
             driver.ClickElement(wait, selColRecord);
             driver.ClickElement(wait, chkBox);
 
-            driver.refactoredSelect(wait, By.XPath("//*[@id='MainContent_ctlDocMgr_OperatorsAdvice1_ddl_JumpTo_Steps']"), "546");
+            driver.refactoredSelect(wait, By.XPath("//*[@id='MainContent_ctlDocMgr_OperatorsAdvice1_ddl_JumpTo_Steps']"), "261");
             driver.ClickElement(wait, "//*[@id='btnJump']");
             IAlert alertJump = driver.SwitchTo().Alert();
             alertJump.Accept();
@@ -159,14 +162,14 @@ namespace SeleniumTests
             driver.FindElement(By.XPath("//*[@id='ContentPlaceHolder1_ctlLogin1_btnLogin']")).Click();
 
             wait.Until(d => d.FindElement(By.Name("ctl00$MainContent$ctlDocMgr_Inc_SanPedro1$txtDocMgr_Inc_DIN")).Displayed);
-            driver.selectElement("ctl00$MainContent$ctlDocMgr_Inc_SanPedro1$txtDocMgr_Inc_DIN", AppNumber);
-            driver.ClickElement(wait, "//*[@id='MainContent_ctlDocMgr_Inc_SanPedro1_btnDocMgr_Search']");
+            // driver.selectElement("ctl00$MainContent$ctlDocMgr_Inc_SanPedro1$txtDocMgr_Inc_DIN", AppNumber);
+            // driver.ClickElement(wait, "//*[@id='MainContent_ctlDocMgr_Inc_SanPedro1_btnDocMgr_Search']");
 
             wait.Until(d => d.FindElement(By.XPath("//*[@id='gbox_grdMailbox_Procurement']")).Displayed);
             driver.ClickElement(wait, selColRecord);
             driver.ClickElement(wait, chkBox);
 
-            driver.refactoredSelect(wait, By.XPath("//*[@id='MainContent_ctlDocMgr_OperatorsAdvice1_ddl_JumpTo_Steps']"), "547");
+            driver.refactoredSelect(wait, By.XPath("//*[@id='MainContent_ctlDocMgr_OperatorsAdvice1_ddl_JumpTo_Steps']"), "262");
             driver.ClickElement(wait, "//*[@id='btnJump']");
             IAlert alertJump = driver.SwitchTo().Alert();
             alertJump.Accept();
@@ -204,13 +207,13 @@ namespace SeleniumTests
             wait.Until(d => d.FindElement(By.XPath("//*[@id='gbox_grdMailbox_Procurement']")).Displayed);
             driver.ClickElement(wait, selColRecord);
             driver.ClickElement(wait, chkBox);
-            driver.refactoredSelect(wait, By.XPath("//*[@id='MainContent_ctlDocMgr_OperatorsAdvice1_ddl_JumpTo_Steps']"), "549");
+            driver.refactoredSelect(wait, By.XPath("//*[@id='MainContent_ctlDocMgr_OperatorsAdvice1_ddl_JumpTo_Steps']"), "264");
             driver.ClickElement(wait, "//*[@id='btnJump']");
             IAlert alertJump = driver.SwitchTo().Alert();
             alertJump.Accept();
             wait.Until(d => d.FindElement(By.XPath("/html/body/div[12]")).Displayed);
             driver.FindElement(By.XPath("/html/body/div[13]/div[1]/a/span")).Click();
-            
+
             wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath("//*[@id='LinkButton1']"))).Click();
 
             driver.selectElement("ctl00$ContentPlaceHolder1$ctlLogin1$txtUser", "releasingdbo");

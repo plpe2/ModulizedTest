@@ -39,7 +39,19 @@ namespace SeleniumTests
             driver.selectDropdown(wait, "cmbApplicationKind", "Complex");
             driver.ClickElement(wait, "//*[@id='btnVerifySelectedApplication']");
 
-            wait.Until(d => d.FindElement(By.XPath("//*[@id='ModalMessage']")).Displayed);
+            //Generic Container of Success and Failed modal message
+            var modalContainer = wait.Until(d => d.FindElement(By.XPath("/html/body/div/div[4]/div/div/div[2]")).Displayed);
+            // if (modalContainer)
+            // {
+            //     var msgBody = driver.FindElement(By.XPath("//*[@id='ModalMessage']/div/div/div[2]"));
+            //     var txt_MsgBOdy = msgBody.Text;
+            //     if (txt_MsgBOdy == "")
+            //     {
+            //     }
+            //     else
+            //     {
+            //     }
+            // }
             driver.FindElement(By.XPath("//*[@id='ModalMessage']/div/div/div[3]/button")).Click();
         }
     }

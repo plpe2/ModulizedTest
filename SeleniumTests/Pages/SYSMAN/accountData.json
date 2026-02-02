@@ -1,0 +1,18 @@
+{
+  "accounts": [
+    {
+      "LastName": "robles",
+      "FirstName": "john",
+      "MiddleName": "santos",
+      "Department": "OBO",
+      "Position": "Engineer"
+    },
+    {
+      "LastName": "rosales",
+      "FirstName": "julio",
+      "MiddleName": "klaro",
+      "Department": "OBO",
+      "Position": "Admin Aide"
+    }
+  ]
+}

@@ -13,14 +13,14 @@ namespace SeleniumTests
         public Register(IWebDriver driver, WebDriverWait wait)
         {
             this.driver = driver;
-            this.wait = wait = new WebDriverWait(driver, TimeSpan.FromSeconds(20));
+            this.wait = wait = new WebDriverWait(driver, TimeSpan.FromMinutes(1));
         }
 
         public void RegisterTest(string url, string fName, string lName, string genderSelect, string regType)
         {
             char[] fUsername = fName.ToCharArray();
             var credential = String.Concat(fUsername[0], lName);
-            var emailVal = String.Concat(credential, "@gmail.com");
+            var emailVal = String.Concat("pvillanueva", "@geosolutions.com.ph");
             string[] brgyList = ["MOLINO HOMES MOLINO IV", "ANIBAN III"];
 
             Random rand = new Random();
@@ -93,6 +93,8 @@ namespace SeleniumTests
             wait.Until(d => d.FindElement(By.Id("ModalConfirmMessage")).Displayed);
 
             driver.FindElement(By.XPath("//*[@id='ModalConfirmMessage']/div/div/div[3]/button[2]")).Click();
+
+            wait.Until(d => d.FindElement(By.XPath("/html/body/div/div[1]/section/div/div[2]/div[1]/div")).Displayed);
         }
     }
 }

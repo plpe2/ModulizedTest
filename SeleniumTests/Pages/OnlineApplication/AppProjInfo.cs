@@ -72,7 +72,7 @@ namespace SeleniumTests.Pages
             driver.ClickElement(wait, "/html/body/div[1]/div[1]/section/div/div/div[2]/div/div[2]/form/div/div/div/div[2]/div[3]/div[1]/div[1]/div[1]/div/div[2]/button");
 
             wait.Until(d => d.FindElement(By.XPath("//*[@id='formProjectInfo']/div/div/div/div[2]/div[3]/div[1]/div[1]/div[1]/div/div[2]/div")));
-            driver.FindElement(By.XPath("//*[@id='formProjectInfo']/div/div/div/div[2]/div[3]/div[1]/div[1]/div[1]/div/div[2]/div/div[2]/ul/li[2]/a")).Click();
+            driver.ClickElement(wait, "//*[@id='formProjectInfo']/div/div/div/div[2]/div[3]/div[1]/div[1]/div[1]/div/div[2]/div/div[2]/ul/li[2]/a");
             driver.selectElement("Building.Project.BaseBuildingName", appName);
             driver.ProjInfoGens("Building.Project.TDN", "TDN");
             driver.ProjInfoGens("Building.Project.TCTNo", "TCT");

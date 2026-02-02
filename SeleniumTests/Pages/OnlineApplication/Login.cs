@@ -24,7 +24,7 @@ namespace SeleniumTests.Pages
             //Initialize variables Selecting elements 
             driver.selectElement("Prefix", "BLG");
             driver.selectElement("pincode", "1234");
-            driver.selectElement("year", "25");
+            driver.selectElement("year", "26");
             driver.selectElement("SeriesNo", cNum);
             driver.selectElement("Username", Username);
             driver.selectElement("Password", "P@ssw0rd");
@@ -37,14 +37,7 @@ namespace SeleniumTests.Pages
             var otpCode = driver.FindElement(By.Id("hidVerCode")).GetAttribute("value");
             driver.selectElement("VerificationCode", otpCode);
 
-            IWebElement submitButton = wait.Until(
-                ExpectedConditions.ElementToBeClickable(
-                    By.CssSelector("button.form-control.btn.btn-success")
-                )
-            );
-
-            // Click the submit button
-            submitButton.Click();
+            driver.ClickElement(wait, "/html/body/section/div[2]/div[1]/div[1]/div/div/div/form/div/div[2]/div[1]/div[2]/button");
         }
     }
 }

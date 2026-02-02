@@ -90,6 +90,17 @@ namespace SeleniumTests.Helpers
             return;
         }
 
+        public static void RefactoredEvalGens(this IWebDriver driver, WebDriverWait wait, string elementName)
+        {
+            Random rand = new Random();
+            var addressRand = rand.Next(150, 250);
+            var element = driver.FindElement(By.Name(elementName));
+            wait.Until(d => element.Displayed);
+            element.Clear();
+            element.SendKeys("" + addressRand);
+            return;
+        }
+
         public static void ProjInfoGens(this IWebDriver driver, string elementName, string field)
         {
             Random rand = new Random();

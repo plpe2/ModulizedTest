@@ -11,6 +11,9 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Text.Json;
 using SeleniumTests.Pages.BPAS.Records;
+using System.IO;
+using OpenQA.Selenium.DevTools.V125.Database;
+using SeleniumTests.Pages.SYSMAN;
 
 namespace SeleniumTests
 {
@@ -20,6 +23,9 @@ namespace SeleniumTests
         private IWebDriver driver;
         private WebDriverWait wait;
         private HttpClient httpClient = new HttpClient();
+
+        public TestContext TestContext { get; set; }
+
 
         [TestInitialize]
         public void Setup()
@@ -52,11 +58,11 @@ namespace SeleniumTests
 
         [TestMethod]
         [TestCategory("Register")]
-        [Ignore]
+        // [Ignore]
         public void RegisterTest()
         {
             var Register = new Register(driver, wait);
-            Register.RegisterTest("http://192.168.20.71:1024", "ronald", "reyes", "Male", "Individual");
+            Register.RegisterTest("http://192.168.20.71:1024", "jonas", "mutol", "Male", "Individual");
         }
 
         [TestMethod]
@@ -68,8 +74,8 @@ namespace SeleniumTests
             var UserAppInfo = new AppProjInfo(driver, wait);
             var ProfDoc = new ProfDocInfo(driver, wait);
             var Submit = new SubmitApp(driver, wait);
-            UserLog.LoginTest("http://192.168.20.71:1024/Account/Login?statusCode=0", "rreyes", "0000082");
-            UserAppInfo.FillUserAppInfo("RQDS", false, "Existing"); //Pending for Testing
+            UserLog.LoginTest("http://192.168.20.71:1024/Account/Login?statusCode=0", "emartines", "0000034");
+            UserAppInfo.FillUserAppInfo("QRTN", true, "Create"); //Pending for Testing
             ProfDoc.ProfDocTest();
             Submit.SubmitTest();
         }
@@ -82,20 +88,20 @@ namespace SeleniumTests
             var WebPLogin = new WebPLogin(driver, wait);
             var PermitApp = new PermitApp(driver, wait);
             WebPLogin.WebPLoginTesting("http://192.168.20.71:1025/");
-            PermitApp.ReceiveApp("NBP2512-00064");
+            PermitApp.ReceiveApp("NBP2601-00022");
         }
 
         [TestMethod]
         [TestCategory("PTRAX")]
-        // [Ignore]
+        [Ignore]
         public void PTRAXTesting()
         {
             var PTRAXTest = new PTRAXTest(driver, wait);
-            // PTRAXTest.Receiving_into_Eval("NBP2512-00064");
-            // PTRAXTest.AppEval("NBP2512-00064");
-            // PTRAXTest.Eval_into_Billing("NBP2512-00064");
-            // PTRAXTest.Billing_into_Treasy("NBP2512-00064");
-            PTRAXTest.Treasury_into_Releasing("NBP2512-00064");
+            PTRAXTest.Receiving_into_Eval("NBP2601-00022");
+            // PTRAXTest.AppEval("NBP2601-00022");
+            // PTRAXTest.Eval_into_Billing("NBP2601-00022");
+            // PTRAXTest.Billing_into_Treasy("NBP2601-00022");
+            // PTRAXTest.Treasury_into_Releasing("NBP2601-00022");
         }
 
         [TestMethod]
@@ -107,16 +113,16 @@ namespace SeleniumTests
             var Records_module = new GenAccount(driver, wait);
 
             BPASLogin.BPASLoginTest();
-            BPASLogin.GeodeticTest("NBP2512-00064");
-            BPASLogin.ArchiTest("NBP2512-00064");
-            BPASLogin.ElectricalTest("NBP2512-00064");
-            BPASLogin.StrucuralTest("NBP2512-00064");
-            // BPASLogin.MEchanicalTest("NBP2512-00064");
-            // BPASLogin.SanitaryTest("NBP2512-00064");
-            // BPASLogin.PlumbingTest("NBP2512-00064");
-            // BPASLogin.ElectronicsTest("NBP2512-00064");
+            BPASLogin.GeodeticTest("NBP2601-00022");
+            BPASLogin.ArchiTest("NBP2601-00022");
+            BPASLogin.ElectricalTest("NBP2601-00022");
+            BPASLogin.StrucuralTest("NBP2601-00022");
+            // BPASLogin.MEchanicalTest("NBP2601-00022");
+            // BPASLogin.SanitaryTest("NBP2601-00022");
+            // BPASLogin.PlumbingTest("NBP2601-00022");
+            // BPASLogin.ElectronicsTest("NBP2601-00022");
 
-            // Records_module.MigrateAccount("LOT 13, BLK. 6, PHASE 2, VILLA ARSENIA, MAMBOG III, DISTRICT 1, BACOOR CITY, CAVITE");
+            // Records_module.MigrateAccount("Lot1, Blk30, Brgy. MAMBOG IV, District 2, Bacoor City, Cavite");
         }
 
         [TestMethod]
@@ -129,6 +135,15 @@ namespace SeleniumTests
             var UserAppInfo = new AppProjInfo(driver, wait);
             UserLog.LoginTest("http://192.168.20.71:1024/Account/Login?statusCode=0", "vbote", "0000029");
             Professionalfunc.CreateProf("BOTE");
+        }
+
+        [TestMethod]
+        [TestCategory("SYSMAN")]
+        [Ignore]
+        public void sysmanTesting()
+        {
+            var SysmanFunc = new accAdd(driver, wait);
+            SysmanFunc.CreateACcount();
         }
 
 
