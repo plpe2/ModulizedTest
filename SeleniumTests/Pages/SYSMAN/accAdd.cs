@@ -47,16 +47,18 @@ namespace SeleniumTests.Pages.SYSMAN
             driver.ClickElement(wait, "//*[@id='btnLoginUser']");
 
             //--------------------------------------------------------------------------------
-            driver.goToURL("http://192.168.20.71:1026/UserProfile/Index");
+            driver.ClickElement(wait, "/html/body/div[13]/nav/div[2]/div/nav/ul/li[3]/a");
+            driver.ClickElement(wait, "//*[@id='linkUserProfile']");
+            // driver.Navigate().GoToUrl("http://192.168.20.71:1026/UserProfile/Index");
 
             foreach (var account in FetchedAccounts.Accounts)
             {
                 wait.Until(d => d.FindElement(By.Id("txtLastName")).Displayed);
-                driver.FindElement(By.Id("txtLastName")).SendKeys(account.LastName);
-                driver.FindElement(By.Id("txtFirstName")).SendKeys(account.FirstName);
-                driver.FindElement(By.Id("txtMiddleName")).SendKeys(account.MiddleName);
-                driver.FindElement(By.Id("txtDepartment")).SendKeys(account.Department);
-                driver.FindElement(By.Id("txtPositionUser")).SendKeys(account.Position);
+                driver.refactoredSendKey(wait, By.Id("txtFirstName"), account.FirstName);
+                driver.refactoredSendKey(wait, By.Id("txtLastName"), account.LastName);
+                driver.refactoredSendKey(wait, By.Id("txtMiddleName"), account.MiddleName);
+                driver.refactoredSendKey(wait, By.Id("txtDepartment"), account.Department);
+                driver.refactoredSendKey(wait, By.Id("txtPositionUser"), account.Position);
                 driver.ClickElement(wait, "//*[@id='btnProfSubmit']");
                 wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.AlertIsPresent());
 

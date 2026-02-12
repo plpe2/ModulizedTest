@@ -53,16 +53,16 @@ namespace SeleniumTests
             string appName = users[1].GetProperty("firstName").GetString();
 
             //Initialize variables Selecting elements 
-            driver.selectElement("Username", appName);
+            driver.selectElement(wait, "Username", appName);
         }
 
         [TestMethod]
         [TestCategory("Register")]
-        // [Ignore]
+        [Ignore]
         public void RegisterTest()
         {
             var Register = new Register(driver, wait);
-            Register.RegisterTest("http://192.168.20.71:1024", "jonas", "mutol", "Male", "Individual");
+            Register.RegisterTest("http://192.168.20.71:1024", "martin", "robles", "Male", "Individual");
         }
 
         [TestMethod]
@@ -74,8 +74,8 @@ namespace SeleniumTests
             var UserAppInfo = new AppProjInfo(driver, wait);
             var ProfDoc = new ProfDocInfo(driver, wait);
             var Submit = new SubmitApp(driver, wait);
-            UserLog.LoginTest("http://192.168.20.71:1024/Account/Login?statusCode=0", "emartines", "0000034");
-            UserAppInfo.FillUserAppInfo("QRTN", true, "Create"); //Pending for Testing
+            UserLog.LoginTest("http://192.168.20.71:1024/Account/Login?statusCode=0", "mrobles", "0000007");
+            UserAppInfo.FillUserAppInfo("VNLK", true, "Create"); //Pending for Testing
             ProfDoc.ProfDocTest();
             Submit.SubmitTest();
         }
@@ -88,7 +88,7 @@ namespace SeleniumTests
             var WebPLogin = new WebPLogin(driver, wait);
             var PermitApp = new PermitApp(driver, wait);
             WebPLogin.WebPLoginTesting("http://192.168.20.71:1025/");
-            PermitApp.ReceiveApp("NBP2601-00022");
+            PermitApp.ReceiveApp("NBP2602-00005");
         }
 
         [TestMethod]
@@ -97,11 +97,11 @@ namespace SeleniumTests
         public void PTRAXTesting()
         {
             var PTRAXTest = new PTRAXTest(driver, wait);
-            PTRAXTest.Receiving_into_Eval("NBP2601-00022");
-            // PTRAXTest.AppEval("NBP2601-00022");
-            // PTRAXTest.Eval_into_Billing("NBP2601-00022");
-            // PTRAXTest.Billing_into_Treasy("NBP2601-00022");
-            // PTRAXTest.Treasury_into_Releasing("NBP2601-00022");
+            // PTRAXTest.Receiving_into_Eval("NBP2602-00005");
+            // PTRAXTest.AppEval("NBP2602-00005");
+            // PTRAXTest.Eval_into_Billing("NBP2602-00005");
+            // PTRAXTest.Billing_into_Treasy("NBP2602-00005");
+            PTRAXTest.Treasury_into_Releasing("NBP2602-00005");
         }
 
         [TestMethod]
@@ -113,14 +113,14 @@ namespace SeleniumTests
             var Records_module = new GenAccount(driver, wait);
 
             BPASLogin.BPASLoginTest();
-            BPASLogin.GeodeticTest("NBP2601-00022");
-            BPASLogin.ArchiTest("NBP2601-00022");
-            BPASLogin.ElectricalTest("NBP2601-00022");
-            BPASLogin.StrucuralTest("NBP2601-00022");
-            // BPASLogin.MEchanicalTest("NBP2601-00022");
-            // BPASLogin.SanitaryTest("NBP2601-00022");
-            // BPASLogin.PlumbingTest("NBP2601-00022");
-            // BPASLogin.ElectronicsTest("NBP2601-00022");
+            BPASLogin.GeodeticTest("NBP2602-00005");
+            BPASLogin.ArchiTest("NBP2602-00005");
+            BPASLogin.ElectricalTest("NBP2602-00005");
+            BPASLogin.StrucuralTest("NBP2602-00005");
+            // BPASLogin.MEchanicalTest("NBP2602-00005");
+            // BPASLogin.SanitaryTest("NBP2602-00005");
+            // BPASLogin.PlumbingTest("NBP2602-00005");
+            // BPASLogin.ElectronicsTest("NBP2602-00005");
 
             // Records_module.MigrateAccount("Lot1, Blk30, Brgy. MAMBOG IV, District 2, Bacoor City, Cavite");
         }
@@ -133,7 +133,7 @@ namespace SeleniumTests
             var Professionalfunc = new AddProf(driver, wait);
             var UserLog = new Login(driver, wait);
             var UserAppInfo = new AppProjInfo(driver, wait);
-            UserLog.LoginTest("http://192.168.20.71:1024/Account/Login?statusCode=0", "vbote", "0000029");
+            UserLog.LoginTest("http://192.168.20.71:1024/Account/Login?statusCode=0", "vbote", "0000059");
             Professionalfunc.CreateProf("BOTE");
         }
 

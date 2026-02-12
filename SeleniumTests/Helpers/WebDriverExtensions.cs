@@ -9,9 +9,18 @@ namespace SeleniumTests.Helpers
 {
     public static class WebDriverExtension
     {
-        public static void selectElement(this IWebDriver driver, string elementId, string tvalue)
+        public static void selectElement(this IWebDriver driver, WebDriverWait wait, string elementId, string tvalue)
         {
             var element = driver.FindElement(By.Name(elementId));
+            wait.Until(d => element.Displayed && element.Enabled);
+            element.Clear();
+            element.SendKeys(tvalue);
+            return;
+        }
+        public static void refactoredSendKey(this IWebDriver driver, WebDriverWait wait, By elementId, string tvalue)
+        {
+            var element = driver.FindElement(elementId);
+            wait.Until(d => element.Displayed && element.Enabled);
             element.Clear();
             element.SendKeys(tvalue);
             return;

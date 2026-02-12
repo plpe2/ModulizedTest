@@ -1,3 +1,4 @@
+using Microsoft.VisualBasic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
@@ -46,11 +47,12 @@ namespace SeleniumTests
             driver.goToURL("http://192.168.20.71:1027/PermitEvaluation/PermitEvaluationGeodetic");
             wait.UntilLoadingDisappears(driver);
             //Search Function (Giving Stale element error)
-            /* wait.Until(d => d.FindElement(By.XPath("//*[@id='dataTables-BuildingPermitEval']/tbody/tr[1]/td[1]")).Displayed);
-            driver.FindElement(By.XPath("//*[@id='txtEvalKeyword']")).SendKeys(appNumber);
-            wait.UntilLoadingDisappears(driver);
-            driver.ClickElement(wait, "//*[@id='btnSearchEvalRecord']");
-            wait.UntilLoadingDisappears(driver); */
+            // wait.Until(d => d.FindElement(By.XPath("//*[@id='dataTables-BuildingPermitEval']/tbody/tr[1]/td[1]")).Displayed);
+            // driver.FindElement(By.XPath("//*[@id='txtEvalKeyword']")).SendKeys(appNumber);
+            // wait.UntilLoadingDisappears(driver);
+            // driver.ClickElement(wait, "//*[@id='btnSearchEvalRecord']");
+            // wait.UntilLoadingDisappears(driver);
+            // -------------------------------------------------
             driver.ClickElement(wait, appLocation);
             wait.UntilLoadingDisappears(driver);
             driver.ClickElement(wait, "//*[@id='frmComplianceGeodetic']/div[1]/div[3]/div/label");
@@ -380,7 +382,7 @@ namespace SeleniumTests
             driver.ClickElement(wait, "/html/body/div[116]/div/section/div/div/div[2]/div/div[2]/div/div[1]/div[2]/form/div/div/div/div[2]/div/div[1]/div/h3/label");
             wait.Until(d => d.FindElement(By.XPath("//*[@id='collapse2']")).Displayed);
             wait.Until(d => d.FindElement(By.Name("SDRTypeofMaterialV")).Displayed);
-            driver.selectElement("SDRTypeofMaterialV", "metal");
+            driver.selectElement(wait, "SDRTypeofMaterialV", "metal");
             driver.RefactoredEvalGens(wait, "SDRVeneerWeightV");
             driver.ClickElement(wait, "//*[@id='btnSaveBldgEvalStructuralSDR']");
             wait.Until(d => d.FindElement(By.XPath("//*[@id='modalbtnSaveB']")).Displayed);
@@ -405,7 +407,7 @@ namespace SeleniumTests
             driver.ClickElement(wait, "//*[@id='collapse4']/div[1]/div[2]/div[2]/div[1]/div/label");
             driver.ClickElement(wait, "//*[@id='collapse4']/div[1]/div[2]/div[2]/div[2]/div/label");
             driver.ClickElement(wait, "//*[@id='collapse4']/div[1]/div[2]/div[2]/div[3]/div/label");
-            driver.selectElement("PCOthers", "Complied");
+            driver.selectElement(wait, "PCOthers", "Complied");
             driver.ClickElement(wait, "//*[@id='btnSaveBldgEvalStructuralPC']");
             wait.Until(d => d.FindElement(By.XPath("//*[@id='modalbtnSaveB']")).Displayed);
             driver.ClickElement(wait, "//*[@id='closemdal']");
@@ -443,7 +445,7 @@ namespace SeleniumTests
             // //P
             // driver.ClickElement(wait, "/html/body/div[116]/div/section/div/div/div[2]/div/div[2]/div/div[1]/div[2]/form/div/div/div/div[7]/div/div[1]/div/h3/label");
             // wait.Until(d => d.FindElement(By.XPath("//*[@id='collapse7']")).Displayed);
-            // driver.selectElement("SDRTypeofMaterialV", "metal");
+            // driver.selectElement(wait, "SDRTypeofMaterialV", "metal");
             // driver.RefactoredEvalGens(wait, "SDRVeneerWeightV");
             // driver.ClickElement(wait, "//*[@id='btnSaveBldgEvalStructuralSDR']");
             // wait.Until(d => d.FindElement(By.XPath("//*[@id='modalbtnSaveB']")).Displayed);
@@ -643,19 +645,19 @@ namespace SeleniumTests
             driver.ClickElement(wait, appLocation);
             wait.UntilLoadingDisappears(driver);
 
-            driver.selectElement("DSDrainagePipeMaterialExcretaDS", "pvc");
+            driver.selectElement(wait, "DSDrainagePipeMaterialExcretaDS", "pvc");
             driver.RefactoredEvalGens(wait, "DSDrainagePipeSizeExcretaDS");
-            driver.selectElement("DSFittingMaterialExcretaDS", "pvc");
-            driver.selectElement("DSDrainagePipeMaterialSanitaryDS", "pvc");
+            driver.selectElement(wait, "DSFittingMaterialExcretaDS", "pvc");
+            driver.selectElement(wait, "DSDrainagePipeMaterialSanitaryDS", "pvc");
             driver.RefactoredEvalGens(wait, "DSDrainagePipeSizeSanitaryDS");
-            driver.selectElement("DSFittingMaterialSanitaryDS", "pvc");
-            driver.selectElement("DSRoofDrianMaterialStormDS", "pvc");
+            driver.selectElement(wait, "DSFittingMaterialSanitaryDS", "pvc");
+            driver.selectElement(wait, "DSRoofDrianMaterialStormDS", "pvc");
             driver.RefactoredEvalGens(wait, "DSDrainagePipeSizeStormDS");
-            driver.selectElement("DSFittingMaterialStormDS", "pvc");
-            driver.selectElement("DSDrainagePipeMaterialVentS", "pvc");
+            driver.selectElement(wait, "DSFittingMaterialStormDS", "pvc");
+            driver.selectElement(wait, "DSDrainagePipeMaterialVentS", "pvc");
             driver.RefactoredEvalGens(wait, "DSDrainagePipeSizeVentS");
-            driver.selectElement("DSVentStackMaterialVentS", "pvc");
-            driver.selectElement("DSFittingMaterialVentS", "pvc");
+            driver.selectElement(wait, "DSVentStackMaterialVentS", "pvc");
+            driver.selectElement(wait, "DSFittingMaterialVentS", "pvc");
             driver.ClickElement(wait, "//*[@id='btnSaveBldgEvalPlumbingDS']");
             wait.Until(d => d.FindElement(By.XPath("//*[@id='modalbtnSaveB']")).Displayed);
             driver.ClickElement(wait, "//*[@id='closemdal']");
@@ -677,7 +679,12 @@ namespace SeleniumTests
             //SDS
             driver.ClickElement(wait, "/html/body/div[116]/div/section/div/div/div/div[2]/div/div[2]/div/div/div[2]/div[2]/div/form/div/div[3]/div/div[1]/div/h3/label");
             wait.Until(d => d.FindElement(By.XPath("//*[@id='collapse3']")).Displayed);
-            driver.selectElement("StormDrainageRDL", "Near");
+            wait.Until(d =>
+            {
+                var element = d.FindElement(By.Name("StormDrainageRDL"));
+                return element.Displayed && element.Enabled;
+            });
+            driver.selectElement(wait, "StormDrainageRDL", "Near");
             driver.ClickElement(wait, "//*[@id='collapse3']/div[2]/div/div/div/div[2]/div/label");
             driver.ClickElement(wait, "//*[@id='btnSaveStormDrainage']");
             wait.Until(d => d.FindElement(By.XPath("//*[@id='modalbtnSaveB']")).Displayed);
@@ -718,12 +725,12 @@ namespace SeleniumTests
             wait.UntilLoadingDisappears(driver);
             driver.ClickElement(wait, "//*[@id='btnSearchEvalRecord']");
             wait.UntilLoadingDisappears(driver);
-            wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath(appLocation))).Click();
+            driver.ClickElement(wait, appLocation);
             wait.UntilLoadingDisappears(driver);
 
-            driver.selectElement("WSWDSPressurePipesMaterial", "pvc");
-            driver.selectElement("WSWDSFittingMaterial", "pvc");
-            driver.selectElement("WSWDSValveMaterial", "pvc");
+            driver.selectElement(wait, "WSWDSPressurePipesMaterial", "pvc");
+            driver.selectElement(wait, "WSWDSFittingMaterial", "pvc");
+            driver.selectElement(wait, "WSWDSValveMaterial", "pvc");
             driver.ClickElement(wait, "//*[@id='collapse1']/div[2]/div[2]/div/div/label");
             driver.ClickElement(wait, "//*[@id='btnSaveBldgEvalPlumbingWSWDS']");
             wait.Until(d => d.FindElement(By.XPath("//*[@id='modalbtnSaveB']")).Displayed);

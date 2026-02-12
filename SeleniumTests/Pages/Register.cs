@@ -45,48 +45,48 @@ namespace SeleniumTests
 
                     //Owner Information
                     driver.FindElement(By.Name("Application.IsOwner")).Click();
-                    driver.selectElement("Owner.FirstName", fName);
-                    driver.selectElement("Owner.LastName", lName);
+                    driver.selectElement(wait, "Owner.FirstName", fName);
+                    driver.selectElement(wait, "Owner.LastName", lName);
                     driver.selectDropdown(wait, "Owner.Gender", genderSelect);
-                    driver.selectElement("Owner.MobileNo", "9391873976");
+                    driver.selectElement(wait, "Owner.MobileNo", "9391873976");
                     driver.FindElement(By.Name("Owner.DateOfBirth")).SendKeys("11152000");
-                    driver.selectElement("Owner.Email", emailVal);
-                    driver.selectElement("OwnerAddress.FullAddress", addressVal);
-                    driver.selectElement("OwnerAddress.Zipcode", "4102");
+                    driver.selectElement(wait, "Owner.Email", emailVal);
+                    driver.selectElement(wait, "OwnerAddress.FullAddress", addressVal);
+                    driver.selectElement(wait, "OwnerAddress.Zipcode", "4102");
                     break;
                 case "Company":
                     driver.selectDropdown(wait, "OwnershipTypeID", "Company/Corporation");
                     //Company Info
-                    driver.selectElement("Company.Name", credential);
-                    driver.selectElement("Company.MobileNo", "9391873976");
-                    driver.selectElement("Company.Email", emailVal);
-                    driver.selectElement("CompanyAddress.FullAddress", addressVal);
-                    driver.selectElement("CompanyAddress.Zipcode", "4102");
+                    driver.selectElement(wait, "Company.Name", credential);
+                    driver.selectElement(wait, "Company.MobileNo", "9391873976");
+                    driver.selectElement(wait, "Company.Email", emailVal);
+                    driver.selectElement(wait, "CompanyAddress.FullAddress", addressVal);
+                    driver.selectElement(wait, "CompanyAddress.Zipcode", "4102");
 
                     //Representative Info
                     driver.selectDropdown(wait, "Representative.Title", "Mr.");
-                    driver.selectElement("Representative.FirstName", fName);
-                    driver.selectElement("Representative.LastName", lName);
+                    driver.selectElement(wait, "Representative.FirstName", fName);
+                    driver.selectElement(wait, "Representative.LastName", lName);
                     driver.selectDropdown(wait, "Representative.Gender", genderSelect);
                     driver.FindElement(By.Name("Owner.DateOfBirth")).SendKeys("11152000");
-                    driver.selectElement("Representative.MobileNo", "9391873976");
-                    driver.selectElement("Representative.Email", emailVal);
-                    driver.selectElement("RepresentativeAddress.FullAddress", addressVal);
-                    driver.selectElement("RepresentativeAddress.Zipcode", "4102");
+                    driver.selectElement(wait, "Representative.MobileNo", "9391873976");
+                    driver.selectElement(wait, "Representative.Email", emailVal);
+                    driver.selectElement(wait, "RepresentativeAddress.FullAddress", addressVal);
+                    driver.selectElement(wait, "RepresentativeAddress.Zipcode", "4102");
                     break;
                 default:
                     break;
             }
 
             //Login Credentials
-            driver.selectElement("AccountInfo.Username", credential);
-            driver.selectElement("AccountInfo.Password", "P@ssw0rd");
-            driver.selectElement("AccountInfo.ConfirmPassword", "P@ssw0rd");
+            driver.selectElement(wait, "AccountInfo.Username", credential);
+            driver.selectElement(wait, "AccountInfo.Password", "P@ssw0rd");
+            driver.selectElement(wait, "AccountInfo.ConfirmPassword", "P@ssw0rd");
 
             driver.selectDropdown(wait, "AccountInfo.SecurityQuestionID", "What is your Mothers' mother maiden name?");
 
-            driver.selectElement("AccountInfo.SecurityAnswer", "Google");
-            driver.selectElement("AccountInfo.SecurityCode", "1234");
+            driver.selectElement(wait, "AccountInfo.SecurityAnswer", "Google");
+            driver.selectElement(wait, "AccountInfo.SecurityCode", "1234");
 
             driver.FindElement(By.XPath("//*[@id='formRegister']/div[2]/div/div[2]/button")).Click();
 

@@ -1,18 +1,39 @@
 {
   "accounts": [
     {
-      "LastName": "robles",
-      "FirstName": "john",
-      "MiddleName": "santos",
-      "Department": "OBO",
-      "Position": "Engineer"
+      "LastName": "Santos",
+      "FirstName": "Maria",
+      "MiddleName": "Lopez",
+      "Department": "Human Resources",
+      "Position": "HR Manager"
     },
     {
-      "LastName": "rosales",
-      "FirstName": "julio",
-      "MiddleName": "klaro",
-      "Department": "OBO",
-      "Position": "Admin Aide"
+      "LastName": "Reyes",
+      "FirstName": "Juan",
+      "MiddleName": "Cruz",
+      "Department": "Finance",
+      "Position": "Accountant"
+    },
+    {
+      "LastName": "Garcia",
+      "FirstName": "Angela",
+      "MiddleName": "Torres",
+      "Department": "IT",
+      "Position": "Software Engineer"
+    },
+    {
+      "LastName": "Dela Cruz",
+      "FirstName": "Mark",
+      "MiddleName": "Villanueva",
+      "Department": "Marketing",
+      "Position": "Marketing Specialist"
+    },
+    {
+      "LastName": "Fernandez",
+      "FirstName": "Sophia",
+      "MiddleName": "Ramos",
+      "Department": "Operations",
+      "Position": "Operations Supervisor"
     }
   ]
 }

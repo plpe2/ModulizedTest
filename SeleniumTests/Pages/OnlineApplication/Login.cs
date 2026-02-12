@@ -22,12 +22,12 @@ namespace SeleniumTests.Pages
             driver.goToURL(url);
 
             //Initialize variables Selecting elements 
-            driver.selectElement("Prefix", "BLG");
-            driver.selectElement("pincode", "1234");
-            driver.selectElement("year", "26");
-            driver.selectElement("SeriesNo", cNum);
-            driver.selectElement("Username", Username);
-            driver.selectElement("Password", "P@ssw0rd");
+            driver.selectElement(wait, "Prefix", "BLG");
+            driver.selectElement(wait, "pincode", "1234");
+            driver.selectElement(wait, "year", "26");
+            driver.selectElement(wait, "SeriesNo", cNum);
+            driver.selectElement(wait, "Username", Username);
+            driver.selectElement(wait, "Password", "P@ssw0rd");
 
             //Submitting Form
             driver.FindElement(By.XPath("//*[@id='formLogin']/div[6]/div[2]/button")).SendKeys(Keys.Return);
@@ -35,7 +35,7 @@ namespace SeleniumTests.Pages
             wait.Until(d => d.FindElement(By.Id("frmVerification")).Displayed);
 
             var otpCode = driver.FindElement(By.Id("hidVerCode")).GetAttribute("value");
-            driver.selectElement("VerificationCode", otpCode);
+            driver.selectElement(wait, "VerificationCode", otpCode);
 
             driver.ClickElement(wait, "/html/body/section/div[2]/div[1]/div[1]/div/div/div/form/div/div[2]/div[1]/div[2]/button");
         }

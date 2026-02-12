@@ -73,24 +73,24 @@ namespace SeleniumTests.Pages
 
             wait.Until(d => d.FindElement(By.XPath("//*[@id='formProjectInfo']/div/div/div/div[2]/div[3]/div[1]/div[1]/div[1]/div/div[2]/div")));
             driver.ClickElement(wait, "//*[@id='formProjectInfo']/div/div/div/div[2]/div[3]/div[1]/div[1]/div[1]/div/div[2]/div/div[2]/ul/li[2]/a");
-            driver.selectElement("Building.Project.BaseBuildingName", appName);
+            driver.selectElement(wait, "Building.Project.BaseBuildingName", appName);
             driver.ProjInfoGens("Building.Project.TDN", "TDN");
             driver.ProjInfoGens("Building.Project.TCTNo", "TCT");
             driver.selectDropdown(wait, "Building.Project.ScopeofWork", "New Construction");
-            driver.selectElement("Building.Project.EstimatedCost", "30000000");
-            driver.selectElement("Building.Project.FloorArea", "30");
-            driver.selectElement("Building.Project.UnitsPerFloor", "2");
-            driver.selectElement("Building.Project.LotArea", "40");
-            driver.selectElement("Building.Project.OpenSpace", "10");
-            driver.selectElement("Building.Project.Garrage", "10");
-            driver.selectElement("Building.Project.Terrace", "10");
-            driver.selectElement("Building.Project.Height", "25");
-            driver.selectElement("Building.Project.TotalUnits", "1");
+            driver.selectElement(wait, "Building.Project.EstimatedCost", "30000000");
+            driver.selectElement(wait, "Building.Project.FloorArea", "30");
+            driver.selectElement(wait, "Building.Project.UnitsPerFloor", "2");
+            driver.selectElement(wait, "Building.Project.LotArea", "40");
+            driver.selectElement(wait, "Building.Project.OpenSpace", "10");
+            driver.selectElement(wait, "Building.Project.Garrage", "10");
+            driver.selectElement(wait, "Building.Project.Terrace", "10");
+            driver.selectElement(wait, "Building.Project.Height", "25");
+            driver.selectElement(wait, "Building.Project.TotalUnits", "1");
 
             // Start Building Location
             driver.selectDropdown(wait, "Building.Project.ConstructionProgressDescription", "To Start");
-            driver.selectElement("Building.Project.ConstructionDate", "06152025");
-            driver.selectElement("Building.Project.CompletionDate", "11272026");
+            driver.selectElement(wait, "Building.Project.ConstructionDate", "06152025");
+            driver.selectElement(wait, "Building.Project.CompletionDate", "11272026");
             driver.addressGens("Building.Project.Address.HouseNo");
             driver.addressGens("Building.Project.Address.LotNo");
             driver.addressGens("Building.Project.Address.BlockNo");
