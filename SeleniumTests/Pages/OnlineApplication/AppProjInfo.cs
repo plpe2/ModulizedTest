@@ -15,7 +15,7 @@ namespace SeleniumTests.Pages
         public AppProjInfo(IWebDriver driver, WebDriverWait wait)
         {
             this.driver = driver;
-            this.wait = wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+            this.wait = wait = new WebDriverWait(driver, TimeSpan.FromSeconds(30));
         }
 
         public void FillUserAppInfo(string appName, Boolean accType, string appType)
@@ -54,7 +54,7 @@ namespace SeleniumTests.Pages
 
             wait.UntilLoadingDisappears(driver);
 
-            IWebElement saveBtn = wait.Until(ExpectedConditions.ElementToBeClickable(By.CssSelector("li.save a.btn.btn-warning")));
+            IWebElement saveBtn = wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath("/html/body/div[1]/div[2]/div/ul/li[2]/a")));
             saveBtn.Click();
 
             wait.Until(d => d.FindElement(By.XPath("/html/body/div[3]")).Displayed);

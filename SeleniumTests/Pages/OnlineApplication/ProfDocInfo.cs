@@ -1,8 +1,10 @@
 using OpenQA.Selenium;
+using OpenQA.Selenium.DevTools.V125.Network;
 using OpenQA.Selenium.Support.UI;
 using SeleniumExtras.WaitHelpers;
 using SeleniumTests.Helpers;
 using System;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SeleniumTests
 {
@@ -30,11 +32,17 @@ namespace SeleniumTests
 
             driver.FindElement(By.XPath("//*[@id='btnSearchProfLicense']")).Click();
             wait.Until(d => d.FindElement(By.XPath("//*[@id='ModalExistingProf']/div")).Displayed);
-            driver.FindElement(By.XPath("//*[@id='tblExistingProfLicense']/tbody/tr[1]/td[1]")).Click();
+            var profrecord = driver.FindElement(By.XPath("//*[@id='tblExistingProfLicense']/tbody/tr[1]/td[1]"));
+            var WaitedRecord = profrecord.GetAttribute("value");
+            profrecord.Click();
             driver.selectDropdown(wait, "Designationmodal", "Plans and Specification");
             driver.FindElement(By.XPath("//*[@id='btnSaveExistingProf']")).Click();
             wait.UntilLoadingDisappears(driver);
-            driver.FindElement(By.XPath("/html/body/div[1]/div[2]/div/ul/li[3]/a")).Click();
+            // Need to refactor in order to work
+            // wait.Until(d => d.FindElement(By.XPath("/*//tr/td[normalize-space(text()) ='" + WaitedRecord + "']")).Displayed);
+            driver.ClickElement(wait, "/html/body/div[1]/div[2]/div/ul/li[3]/a");
+            driver.ClickElement(wait, "/html/body/div[3]/div/div[6]/button[1]");
+            driver.ClickElement(wait, "/html/body/div[1]/div[2]/div/ul/li[3]/a");
 
             wait.UntilLoadingDisappears(driver);
 

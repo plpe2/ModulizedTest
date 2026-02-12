@@ -31,8 +31,8 @@ namespace SeleniumTests
         public void Setup()
         {
             var options = new ChromeOptions();
-            // options.AddArgument("--headless=new");
-            options.AddArguments(["--start-maximized", "--ignore-certificate-errors", "--incognito", "--no-sandbox", "--disable-gpu"]);
+            // options.AddArgument(["--headless=new", "--incognito"]);
+            options.AddArguments(["--start-maximized", "--ignore-certificate-errors", "--no-sandbox", "--disable-gpu"]);
             driver = new ChromeDriver(options);
         }
 
@@ -62,20 +62,20 @@ namespace SeleniumTests
         public void RegisterTest()
         {
             var Register = new Register(driver, wait);
-            Register.RegisterTest("http://192.168.20.71:1024", "martin", "robles", "Male", "Individual");
+            Register.RegisterTest("http://192.168.20.71:1024", "tony", "erona", "Male", "Individual");
         }
 
         [TestMethod]
         [TestCategory("OnlineApplication")]
-        [Ignore]
+        // [Ignore]
         public void OnlineAppTesting()
         {
             var UserLog = new Login(driver, wait);
             var UserAppInfo = new AppProjInfo(driver, wait);
             var ProfDoc = new ProfDocInfo(driver, wait);
             var Submit = new SubmitApp(driver, wait);
-            UserLog.LoginTest("http://192.168.20.71:1024/Account/Login?statusCode=0", "mrobles", "0000007");
-            UserAppInfo.FillUserAppInfo("VNLK", true, "Create"); //Pending for Testing
+            UserLog.LoginTest("http://192.168.20.71:1024/Account/Login?statusCode=0", "terona", "0000016");
+            UserAppInfo.FillUserAppInfo("MNHP", false, "Existing"); //Pending for Testing
             ProfDoc.ProfDocTest();
             Submit.SubmitTest();
         }
