@@ -58,24 +58,24 @@ namespace SeleniumTests
 
         [TestMethod]
         [TestCategory("Register")]
-        [Ignore]
+        // [Ignore]
         public void RegisterTest()
         {
             var Register = new Register(driver, wait);
-            Register.RegisterTest("http://192.168.20.71:1024", "tony", "erona", "Male", "Individual");
+            Register.RegisterTest(Config.LiveRegistration, "thomas", "roman", "Male", "Individual");
         }
 
         [TestMethod]
         [TestCategory("OnlineApplication")]
-        // [Ignore]
+        [Ignore]
         public void OnlineAppTesting()
         {
             var UserLog = new Login(driver, wait);
             var UserAppInfo = new AppProjInfo(driver, wait);
             var ProfDoc = new ProfDocInfo(driver, wait);
             var Submit = new SubmitApp(driver, wait);
-            UserLog.LoginTest("http://192.168.20.71:1024/Account/Login?statusCode=0", "terona", "0000016");
-            UserAppInfo.FillUserAppInfo("MNHP", false, "Existing"); //Pending for Testing
+            UserLog.LoginTest("http://192.168.45.33:3001/Account/Login?statusCode=0", "tmalaan", "0000003");
+            UserAppInfo.FillUserAppInfo("MNHP", false, "Create"); //Pending for Testing
             ProfDoc.ProfDocTest();
             Submit.SubmitTest();
         }
