@@ -1,8 +1,10 @@
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using SeleniumExtras.WaitHelpers;
 using SeleniumTests.Helpers;
 using System;
+using System.Linq;
 
 namespace SeleniumTests
 {
@@ -11,10 +13,13 @@ namespace SeleniumTests
         private readonly IWebDriver driver;
         private readonly WebDriverWait wait;
 
-        public PTRAXTest(IWebDriver driver, WebDriverWait wait)
+        private readonly string DistributedUrl;
+
+        public PTRAXTest(IWebDriver driver, WebDriverWait wait, string url)
         {
             this.driver = driver;
             this.wait = wait = new WebDriverWait(driver, TimeSpan.FromSeconds(20));
+            this.DistributedUrl = url;
         }
 
         public void Receiving_into_Eval(string AppNumber)
@@ -22,7 +27,7 @@ namespace SeleniumTests
             string selColRecord = String.Concat("//td[contains(text(), '", AppNumber, "')]");
             string chkBox = String.Concat("//td[contains(text(), '", AppNumber, "')]/parent::tr//input[@type='checkbox']");
 
-            driver.goToURL("http://192.168.20.71:1023/Account/DtraxLogin.aspx");
+            driver.goToURL(DistributedUrl);
             driver.selectElement(wait, "ctl00$ContentPlaceHolder1$ctlLogin1$txtUser", "receiving");
             driver.selectElement(wait, "ctl00$ContentPlaceHolder1$ctlLogin1$txtPass", "P@ssw0rd");
             driver.ClickElement(wait, "//*[@id='ContentPlaceHolder1_ctlLogin1_btnLogin']");
@@ -41,7 +46,18 @@ namespace SeleniumTests
             wait.Until(d => d.FindElement(By.XPath("//*[@id='gbox_grdMailbox_Procurement']")).Displayed);
             driver.ClickElement(wait, chkBox);
             driver.ClickElement(wait, selColRecord);
-            driver.refactoredSelect(wait, By.XPath("//*[@id='MainContent_ctlDocMgr_OperatorsAdvice1_ddl_JumpTo_Steps']"), "257");
+            string valuePresent;
+            var JumpSelection = new SelectElement(driver.FindElement(By.XPath("//*[@id='MainContent_ctlDocMgr_OperatorsAdvice1_ddl_JumpTo_Steps']")));
+            valuePresent = JumpSelection.Options.Any(o => o.GetAttribute("value") == "542") switch
+            {
+                true => "542",
+                false => JumpSelection.Options.Any(o => o.GetAttribute("value") == "564") switch
+                {
+                    true => "564",
+                    false => "257"
+                }
+            };
+            driver.refactoredSelect(wait, By.XPath("//*[@id='MainContent_ctlDocMgr_OperatorsAdvice1_ddl_JumpTo_Steps']"), valuePresent);
             driver.ClickElement(wait, "//*[@id='btnJump']");
             IAlert alertJump = driver.SwitchTo().Alert();
             alertJump.Accept();
@@ -74,7 +90,7 @@ namespace SeleniumTests
             string selColRecord = String.Concat("//td[contains(text(), '", AppNumber, "')]");
             string chkBox = String.Concat("//td[contains(text(), '", AppNumber, "')]/parent::tr//input[@type='checkbox']");
 
-            driver.goToURL("http://192.168.20.71:1023/Account/DtraxLogin.aspx"); //Temporary for solo testing
+            driver.goToURL(DistributedUrl); //Temporary for solo testing
             driver.selectElement(wait, "ctl00$ContentPlaceHolder1$ctlLogin1$txtUser", "evaluator");
             driver.selectElement(wait, "ctl00$ContentPlaceHolder1$ctlLogin1$txtPass", "P@ssw0rd");
             driver.FindElement(By.XPath("//*[@id='ContentPlaceHolder1_ctlLogin1_btnLogin']")).Click();
@@ -109,7 +125,7 @@ namespace SeleniumTests
             string selColRecord = String.Concat("//td[contains(text(), '", AppNumber, "')]");
             string chkBox = String.Concat("//td[contains(text(), '", AppNumber, "')]/parent::tr//input[@type='checkbox']");
 
-            driver.goToURL("http://192.168.20.71:1023/Account/DtraxLogin.aspx"); //Temporary for solo testing
+            driver.goToURL(DistributedUrl); //Temporary for solo testing
 
             driver.selectElement(wait, "ctl00$ContentPlaceHolder1$ctlLogin1$txtUser", "evaluator");
             driver.selectElement(wait, "ctl00$ContentPlaceHolder1$ctlLogin1$txtPass", "P@ssw0rd");
@@ -123,7 +139,17 @@ namespace SeleniumTests
             driver.ClickElement(wait, selColRecord);
             driver.ClickElement(wait, chkBox);
 
-            driver.refactoredSelect(wait, By.XPath("//*[@id='MainContent_ctlDocMgr_OperatorsAdvice1_ddl_JumpTo_Steps']"), "261");
+            var JumpSelection = new SelectElement(driver.FindElement(By.XPath("//*[@id='MainContent_ctlDocMgr_OperatorsAdvice1_ddl_JumpTo_Steps']")));
+            string valuePresent;
+            if (JumpSelection.Options.Any(o => o.GetAttribute("value") == "261"))
+            {
+                valuePresent = "261";
+            }
+            else
+            {
+                valuePresent = "546";
+            }
+            driver.refactoredSelect(wait, By.XPath("//*[@id='MainContent_ctlDocMgr_OperatorsAdvice1_ddl_JumpTo_Steps']"), valuePresent);
             driver.ClickElement(wait, "//*[@id='btnJump']");
             IAlert alertJump = driver.SwitchTo().Alert();
             alertJump.Accept();
@@ -131,7 +157,7 @@ namespace SeleniumTests
             driver.FindElement(By.XPath("/html/body/div[13]/div[1]/a/span")).Click();
             wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath("//*[@id='LinkButton1']"))).Click();
 
-            driver.goToURL("http://192.168.20.71:1023/Account/DtraxLogin.aspx");
+            driver.goToURL(DistributedUrl);
 
             driver.selectElement(wait, "ctl00$ContentPlaceHolder1$ctlLogin1$txtUser", "billingdbo");
             driver.selectElement(wait, "ctl00$ContentPlaceHolder1$ctlLogin1$txtPass", "P@ssw0rd");
@@ -155,7 +181,7 @@ namespace SeleniumTests
             string selColRecord = String.Concat("//td[contains(text(), '", AppNumber, "')]");
             string chkBox = String.Concat("//td[contains(text(), '", AppNumber, "')]/parent::tr//input[@type='checkbox']");
 
-            driver.goToURL("http://192.168.20.71:1023/Account/DtraxLogin.aspx");
+            driver.goToURL(DistributedUrl);
 
             driver.selectElement(wait, "ctl00$ContentPlaceHolder1$ctlLogin1$txtUser", "billingdbo");
             driver.selectElement(wait, "ctl00$ContentPlaceHolder1$ctlLogin1$txtPass", "P@ssw0rd");
@@ -198,7 +224,7 @@ namespace SeleniumTests
             string selColRecord = String.Concat("//td[contains(text(), '", AppNumber, "')]");
             string chkBox = String.Concat("//td[contains(text(), '", AppNumber, "')]/parent::tr//input[@type='checkbox']");
 
-            driver.goToURL("http://192.168.20.71:1023/Account/DtraxLogin.aspx");
+            driver.goToURL(DistributedUrl);
 
             driver.selectElement(wait, "ctl00$ContentPlaceHolder1$ctlLogin1$txtUser", "treasury");
             driver.selectElement(wait, "ctl00$ContentPlaceHolder1$ctlLogin1$txtPass", "P@ssw0rd");

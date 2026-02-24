@@ -14,6 +14,7 @@ using SeleniumTests.Pages.BPAS.Records;
 using System.IO;
 using OpenQA.Selenium.DevTools.V125.Database;
 using SeleniumTests.Pages.SYSMAN;
+using Microsoft.VisualBasic;
 
 namespace SeleniumTests
 {
@@ -32,7 +33,7 @@ namespace SeleniumTests
         {
             var options = new ChromeOptions();
             // options.AddArgument(["--headless=new", "--incognito"]);
-            options.AddArguments(["--start-maximized", "--ignore-certificate-errors", "--no-sandbox", "--disable-gpu"]);
+            options.AddArguments(["--start-maximized", "--ignore-certificate-errors", "--no-sandbox", "--disable-gpu", "--incognito"]);
             driver = new ChromeDriver(options);
         }
 
@@ -62,7 +63,7 @@ namespace SeleniumTests
         public void RegisterTest()
         {
             var Register = new Register(driver, wait);
-            Register.RegisterTest(Config.LiveRegistration, "thomas", "roman", "Male", "Individual");
+            Register.RegisterTest(Config.LiveRegistration, "andrei", "charles", "Male", "Individual");
         }
 
         [TestMethod]
@@ -74,8 +75,8 @@ namespace SeleniumTests
             var UserAppInfo = new AppProjInfo(driver, wait);
             var ProfDoc = new ProfDocInfo(driver, wait);
             var Submit = new SubmitApp(driver, wait);
-            UserLog.LoginTest("http://192.168.45.33:3001/Account/Login?statusCode=0", "tmalaan", "0000003");
-            UserAppInfo.FillUserAppInfo("MNHP", false, "Create"); //Pending for Testing
+            UserLog.LoginTest(Config.LiveOnlineApp, "palero", "0000037");
+            UserAppInfo.FillUserAppInfo("PALERO", true, "Create"); //Pending for Testing
             ProfDoc.ProfDocTest();
             Submit.SubmitTest();
         }
@@ -87,8 +88,8 @@ namespace SeleniumTests
         {
             var WebPLogin = new WebPLogin(driver, wait);
             var PermitApp = new PermitApp(driver, wait);
-            WebPLogin.WebPLoginTesting("http://192.168.20.71:1025/");
-            PermitApp.ReceiveApp("NBP2602-00005");
+            WebPLogin.WebPLoginTesting(Config.LiveWebPortal);
+            PermitApp.ReceiveApp("NBP2602-00023");
         }
 
         [TestMethod]
@@ -96,12 +97,14 @@ namespace SeleniumTests
         [Ignore]
         public void PTRAXTesting()
         {
-            var PTRAXTest = new PTRAXTest(driver, wait);
-            // PTRAXTest.Receiving_into_Eval("NBP2602-00005");
-            // PTRAXTest.AppEval("NBP2602-00005");
-            // PTRAXTest.Eval_into_Billing("NBP2602-00005");
-            // PTRAXTest.Billing_into_Treasy("NBP2602-00005");
-            PTRAXTest.Treasury_into_Releasing("NBP2602-00005");
+            // PTRAXTest is where the environment being configured
+            var PTRAXTest = new PTRAXTest(driver, wait, Config.LivePTRAX);
+
+            // PTRAXTest.Receiving_into_Eval("NBP2602-00023");
+            // PTRAXTest.AppEval("NBP2602-00023");
+            // PTRAXTest.Eval_into_Billing("NBP2602-00023");
+            PTRAXTest.Billing_into_Treasy("NBP2602-00023");
+            // PTRAXTest.Treasury_into_Releasing("NBP2602-00023");
         }
 
         [TestMethod]
@@ -109,18 +112,18 @@ namespace SeleniumTests
         [Ignore]
         public void BPASTesting()
         {
-            var BPASLogin = new BPASLogin(driver, wait);
+            var BPASLogin = new BPASLogin(driver, wait, Config.LiveBPAS);
             var Records_module = new GenAccount(driver, wait);
 
             BPASLogin.BPASLoginTest();
-            BPASLogin.GeodeticTest("NBP2602-00005");
-            BPASLogin.ArchiTest("NBP2602-00005");
-            BPASLogin.ElectricalTest("NBP2602-00005");
-            BPASLogin.StrucuralTest("NBP2602-00005");
-            // BPASLogin.MEchanicalTest("NBP2602-00005");
-            // BPASLogin.SanitaryTest("NBP2602-00005");
-            // BPASLogin.PlumbingTest("NBP2602-00005");
-            // BPASLogin.ElectronicsTest("NBP2602-00005");
+            BPASLogin.GeodeticTest("NBP2602-00023");
+            BPASLogin.ArchiTest("NBP2602-00023");
+            BPASLogin.ElectricalTest("NBP2602-00023");
+            BPASLogin.StrucuralTest("NBP2602-00023");
+            // BPASLogin.MEchanicalTest("NBP2602-00023");
+            // BPASLogin.SanitaryTest("NBP2602-00023");
+            // BPASLogin.PlumbingTest("NBP2602-00023");
+            // BPASLogin.ElectronicsTest("NBP2602-00023");
 
             // Records_module.MigrateAccount("Lot1, Blk30, Brgy. MAMBOG IV, District 2, Bacoor City, Cavite");
         }
@@ -133,7 +136,7 @@ namespace SeleniumTests
             var Professionalfunc = new AddProf(driver, wait);
             var UserLog = new Login(driver, wait);
             var UserAppInfo = new AppProjInfo(driver, wait);
-            UserLog.LoginTest("http://192.168.20.71:1024/Account/Login?statusCode=0", "vbote", "0000059");
+            UserLog.LoginTest("http://192.168.20.71:1024/Account/Login?statusCode=0", "vbote", "0000179");
             Professionalfunc.CreateProf("BOTE");
         }
 
@@ -150,6 +153,20 @@ namespace SeleniumTests
         [TestCleanup]
         public void DriverQuit()
         {
+            // string name = TestContext.TestRunDirectory;
+            // string projectLocation = TestContext.TestResultsDirectory;
+            // Console.WriteLine("Test Run Directory: " + name);
+            // Console.WriteLine("Project Location: " + projectLocation);
+
+            // if (TestContext.CurrentTestOutcome == UnitTestOutcome.Failed)
+            // {
+            //     Screenshot ss = ((ITakesScreenshot)driver).GetScreenshot();
+            //     ss.SaveAsFile($"{name}\\Out\\{TestContext.TestName}.png");
+            // }
+
+            // TestContext.AddResultFile("Result");
+
+
             driver?.Quit();
         }
     }

@@ -40,9 +40,10 @@ namespace SeleniumTests
             wait.UntilLoadingDisappears(driver);
             // Need to refactor in order to work
             // wait.Until(d => d.FindElement(By.XPath("/*//tr/td[normalize-space(text()) ='" + WaitedRecord + "']")).Displayed);
+            // For Sweetalert in Prof
             driver.ClickElement(wait, "/html/body/div[1]/div[2]/div/ul/li[3]/a");
-            driver.ClickElement(wait, "/html/body/div[3]/div/div[6]/button[1]");
-            driver.ClickElement(wait, "/html/body/div[1]/div[2]/div/ul/li[3]/a");
+            // driver.ClickElement(wait, "/html/body/div[3]/div/div[6]/button[1]");
+            // driver.ClickElement(wait, "/html/body/div[1]/div[2]/div/ul/li[3]/a");
 
             wait.UntilLoadingDisappears(driver);
 
