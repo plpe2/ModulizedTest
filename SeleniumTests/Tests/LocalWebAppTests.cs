@@ -15,28 +15,13 @@ using System.IO;
 using OpenQA.Selenium.DevTools.V125.Database;
 using SeleniumTests.Pages.SYSMAN;
 using Microsoft.VisualBasic;
+using SeleniumTests.Tests;
 
 namespace SeleniumTests
 {
     [TestClass]
-    public class LocalWebAppTests
+    public class LocalWebAppTests : BaseTest
     {
-        private IWebDriver driver;
-        private WebDriverWait wait;
-        private HttpClient httpClient = new HttpClient();
-
-        public TestContext TestContext { get; set; }
-
-
-        [TestInitialize]
-        public void Setup()
-        {
-            var options = new ChromeOptions();
-            // options.AddArgument(["--headless=new", "--incognito"]);
-            options.AddArguments(["--start-maximized", "--ignore-certificate-errors", "--no-sandbox", "--disable-gpu", "--incognito"]);
-            driver = new ChromeDriver(options);
-        }
-
 
         [TestMethod]
         [Ignore]
@@ -59,11 +44,11 @@ namespace SeleniumTests
 
         [TestMethod]
         [TestCategory("Register")]
-        [Ignore]
+        // [Ignore]
         public void RegisterTest()
         {
             var Register = new Register(driver, wait);
-            Register.RegisterTest(Config.TESTRegistration, "carlo", "ronuel", "Male", "Individual");
+            Register.RegisterTest(Config.TESTRegistration, "roderick", "quebas", "Male", "Individual");
         }
 
         [TestMethod]
@@ -147,27 +132,6 @@ namespace SeleniumTests
         {
             var SysmanFunc = new accAdd(driver, wait);
             SysmanFunc.CreateACcount();
-        }
-
-
-        [TestCleanup]
-        public void DriverQuit()
-        {
-            // string name = TestContext.TestRunDirectory;
-            // string projectLocation = TestContext.TestResultsDirectory;
-            // Console.WriteLine("Test Run Directory: " + name);
-            // Console.WriteLine("Project Location: " + projectLocation);
-
-            // if (TestContext.CurrentTestOutcome == UnitTestOutcome.Failed)
-            // {
-            //     Screenshot ss = ((ITakesScreenshot)driver).GetScreenshot();
-            //     ss.SaveAsFile($"{name}\\Out\\{TestContext.TestName}.png");
-            // }
-
-            // TestContext.AddResultFile("Result");
-
-
-            driver?.Quit();
         }
     }
 }
