@@ -48,15 +48,14 @@ namespace SeleniumTests
             driver.ClickElement(wait, selColRecord);
             string valuePresent;
             var JumpSelection = new SelectElement(driver.FindElement(By.XPath("//*[@id='MainContent_ctlDocMgr_OperatorsAdvice1_ddl_JumpTo_Steps']")));
-            valuePresent = JumpSelection.Options.Any(o => o.GetAttribute("value") == "542") switch
+            if (JumpSelection.Options.Any(o => o.GetAttribute("value") == "542"))
             {
-                true => "542",
-                false => JumpSelection.Options.Any(o => o.GetAttribute("value") == "564") switch
-                {
-                    true => "564",
-                    false => "257"
-                }
-            };
+                valuePresent = "542";
+            }
+            else
+            {
+                valuePresent = "257";
+            }
             driver.refactoredSelect(wait, By.XPath("//*[@id='MainContent_ctlDocMgr_OperatorsAdvice1_ddl_JumpTo_Steps']"), valuePresent);
             driver.ClickElement(wait, "//*[@id='btnJump']");
             IAlert alertJump = driver.SwitchTo().Alert();

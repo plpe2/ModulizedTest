@@ -59,11 +59,11 @@ namespace SeleniumTests
 
         [TestMethod]
         [TestCategory("Register")]
-        // [Ignore]
+        [Ignore]
         public void RegisterTest()
         {
             var Register = new Register(driver, wait);
-            Register.RegisterTest(Config.LiveRegistration, "andrei", "charles", "Male", "Individual");
+            Register.RegisterTest(Config.TESTRegistration, "carlo", "ronuel", "Male", "Individual");
         }
 
         [TestMethod]
@@ -75,8 +75,8 @@ namespace SeleniumTests
             var UserAppInfo = new AppProjInfo(driver, wait);
             var ProfDoc = new ProfDocInfo(driver, wait);
             var Submit = new SubmitApp(driver, wait);
-            UserLog.LoginTest(Config.LiveOnlineApp, "palero", "0000037");
-            UserAppInfo.FillUserAppInfo("PALERO", true, "Create"); //Pending for Testing
+            UserLog.LoginTest(Config.TESTOnlineApp, "mroberto", "0000029");
+            UserAppInfo.FillUserAppInfo("ROBERTO", true, "Create"); //Pending for Testing
             ProfDoc.ProfDocTest();
             Submit.SubmitTest();
         }
@@ -88,8 +88,8 @@ namespace SeleniumTests
         {
             var WebPLogin = new WebPLogin(driver, wait);
             var PermitApp = new PermitApp(driver, wait);
-            WebPLogin.WebPLoginTesting(Config.LiveWebPortal);
-            PermitApp.ReceiveApp("NBP2602-00023");
+            WebPLogin.WebPLoginTesting(Config.TESTWebPortal);
+            PermitApp.ReceiveApp("NBP2602-00021");
         }
 
         [TestMethod]
@@ -98,13 +98,13 @@ namespace SeleniumTests
         public void PTRAXTesting()
         {
             // PTRAXTest is where the environment being configured
-            var PTRAXTest = new PTRAXTest(driver, wait, Config.LivePTRAX);
+            var PTRAXTest = new PTRAXTest(driver, wait, Config.TESTPTRAX);
 
-            // PTRAXTest.Receiving_into_Eval("NBP2602-00023");
-            // PTRAXTest.AppEval("NBP2602-00023");
-            // PTRAXTest.Eval_into_Billing("NBP2602-00023");
-            PTRAXTest.Billing_into_Treasy("NBP2602-00023");
-            // PTRAXTest.Treasury_into_Releasing("NBP2602-00023");
+            PTRAXTest.Receiving_into_Eval("NBP2602-00021");
+            // PTRAXTest.AppEval("NBP2602-00021");
+            // PTRAXTest.Eval_into_Billing("NBP2602-00021");
+            // PTRAXTest.Billing_into_Treasy("NBP2602-00021");
+            // PTRAXTest.Treasury_into_Releasing("NBP2602-00021");
         }
 
         [TestMethod]
@@ -112,18 +112,18 @@ namespace SeleniumTests
         [Ignore]
         public void BPASTesting()
         {
-            var BPASLogin = new BPASLogin(driver, wait, Config.LiveBPAS);
+            var BPASLogin = new BPASLogin(driver, wait, Config.TESTBPAS);
             var Records_module = new GenAccount(driver, wait);
 
             BPASLogin.BPASLoginTest();
-            BPASLogin.GeodeticTest("NBP2602-00023");
-            BPASLogin.ArchiTest("NBP2602-00023");
-            BPASLogin.ElectricalTest("NBP2602-00023");
-            BPASLogin.StrucuralTest("NBP2602-00023");
-            // BPASLogin.MEchanicalTest("NBP2602-00023");
-            // BPASLogin.SanitaryTest("NBP2602-00023");
-            // BPASLogin.PlumbingTest("NBP2602-00023");
-            // BPASLogin.ElectronicsTest("NBP2602-00023");
+            BPASLogin.GeodeticTest("NBP2602-00021");
+            BPASLogin.ArchiTest("NBP2602-00021");
+            BPASLogin.ElectricalTest("NBP2602-00021");
+            BPASLogin.StrucuralTest("NBP2602-00021");
+            // BPASLogin.MEchanicalTest("NBP2602-00021");
+            // BPASLogin.SanitaryTest("NBP2602-00021");
+            // BPASLogin.PlumbingTest("NBP2602-00021");
+            // BPASLogin.ElectronicsTest("NBP2602-00021");
 
             // Records_module.MigrateAccount("Lot1, Blk30, Brgy. MAMBOG IV, District 2, Bacoor City, Cavite");
         }
